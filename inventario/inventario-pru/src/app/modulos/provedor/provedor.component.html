@@ -1,0 +1,21 @@
+<form [formGroup]="proveedorForm"  (ngSubmit)="onSubmit()">
+
+  <input type="text" 
+        id="nombre_pro"  
+        class="form-control"
+        formControlName="nombre_pro">
+ <br>
+        <input type="text" 
+        id="direccion_pro"  
+        class="form-control"
+        formControlName="direccion_pro"_pro>
+        <br>
+        <input type="text" 
+        id="nit_pro"  
+        class="form-control"
+        formControlName="nit_pro">
+        <br>
+        <button class="btn btn-primary" 
+          [disabled]="!proveedorForm.valid"> Anadir proveedor
+        </button>
+</form>
