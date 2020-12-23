@@ -41,9 +41,6 @@ export class EditprovedorComponent implements OnInit {
   get nombreNovalido() {
     return this.formaForm.get('nombre_pro').invalid && this.formaForm.get('nombre_pro').touched;
   }
-  get direccionNovalido() {
-    return this.formaForm.get('direccion_pro').invalid && this.formaForm.get('direccion_pro').touched;
-  }
 
   get nitNovalido() {
     return this.formaForm.get('nit_pro').invalid && this.formaForm.get('nit_pro').touched;
@@ -57,8 +54,7 @@ export class EditprovedorComponent implements OnInit {
 
     this.formaForm = this.fb.group({
       nombre_pro: ['', [Validators.required,Validators.minLength(5)]],
-      direccion_pro: ['', [Validators.required,Validators.minLength(10)]],
-      nit_pro: ['', [Validators.required,Validators.minLength(10)]],
+      nit_pro: ['', [Validators.required,Validators.minLength(9)]],
      });
   }
   onSubmit() {
@@ -81,7 +77,6 @@ export class EditprovedorComponent implements OnInit {
   saveProvedor() {
     const saveProvedor = {
       nombre_pro: this.formaForm.get('nombre_pro').value,
-      direccion_pro: this.formaForm.get('direccion_pro').value,
       nit_pro: this.formaForm.get('nit_pro').value,
     }
     return saveProvedor;

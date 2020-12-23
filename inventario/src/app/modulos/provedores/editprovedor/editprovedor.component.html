@@ -12,26 +12,12 @@
                      placeholder="Nombre"
                      formControlName="nombre_pro"
                      [class.is-invalid]="nombreNovalido"
-                     [(ngModel)]="proveedor.nombre_pro">
+                     [(ngModel)]="proveedor.nombre_pro"
+                     >
                     
                     <small *ngIf="nombreNovalido" class="text text-danger">
                         Ingrese nombre valido
                       </small>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label class="col-2 col-form-label">Direccion</label>
-            <div class="col">
-      
-              <input class="form-control"
-                     type="text"
-                     placeholder="Direccion"
-                     formControlName="direccion_pro"
-                     [class.is-invalid]="direccionNovalido"
-                     [(ngModel)]="proveedor.direccion_pro">
-                    <small *ngIf="direccionNovalido" class="text text-danger">
-                        Ingrese Direccion valida
-                      </small>  
             </div>
           </div>
 
@@ -45,6 +31,7 @@
                      formControlName="nit_pro"
                      [class.is-invalid]="nitNovalido"
                      [(ngModel)]="proveedor.nit_pro"
+                     ngModel pattern="^[0-9]{0,}$"
                     >
                     <small *ngIf="nitNovalido" class="text text-danger">
                         Ingrese nit valido
@@ -69,13 +56,3 @@
         
 </form>
 </div>
-
-<hr>
-<pre>Estado delfomrulario:{{formaForm.valid}}</pre>
-<br>
-<pre>
-status:{{formaForm.status}}
-</pre>
-<pre>
-  {{formaForm.value | json}}
-</pre>

@@ -15,82 +15,80 @@ if($method == "OPTIONS") {
     die();
 }
 
-//listar provedores
-$app -> get('/provedor',function() use($db,$app){
-        $sql ='select * from provedor order by id_pro ASC;';
+//listar ubicacion
+$app -> get('/ubicacion',function() use($db,$app){
+        $sql ='select * from ubicacion order by id_ubi ASC;';
         $query =$db->query($sql);
        
-        $provedores = array();
-        while($provedor = $query->fetch_assoc()){
+        $ubicacionn = array();
+        while($ubicacion = $query->fetch_assoc()){
 
-            $provedores[] =$provedor;
+            $ubicacionn[] =$ubicacion;
         }
 
         $result  = array (
             'status'=>'success',
             'code' =>200,
-            'data'=>$provedores
+            'data'=>$ubicacionn
            );
     echo json_encode($result);
 
 });
 
-//devolver un solo provedor
+//devolver un solo ubicacion
 
-$app ->get ('/provedor/:id', function ($id) use($db,$app){
-    $sql=' select * from provedor where  id_pro='.$id;
+$app ->get ('/ubicacion/:id', function ($id) use($db,$app){
+    $sql=' select * from ubicacion where  id_ubi='.$id;
     $query =$db->query($sql);
     
 
     $result=array(
         'status'=> 'error',
         'code' => 404,
-        'message'=>'producto no disponible'
+        'message'=>'Ubicacion no disponible'
     );
 
     if($query ->num_rows == 1 ){
-     $provedor = $query->fetch_assoc();
+     $ubicacion = $query->fetch_assoc();
     
      $result=array(
      'status'=> 'success',
      'code' => 200,
-     'data'=>$provedor
+     'data'=>$ubicacion
     );
     }
     echo json_encode($result);
 });
 
-//elominar  provedor
+//eliminar  ubicacion
 
-$app->get('/provedor-delete/:id', function($id) use($db,$app){
-$sql ='delete from provedor where id_pro='.$id;
+$app->get('/ubicacion-delete/:id', function($id) use($db,$app){
+$sql ='delete from ubicacion where id_ubi='.$id;
 $query= $db->query($sql);
     if($query){
         $result=array(
             'status'=> 'success',
             'code' => 200,
-            'message'=>'el provedor se a eliminado correctamente'
+            'message'=>'La ubicacion se elimino correctamente'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el provedor no se a eliminado correctamente'
+            'message'=>'La ubicacion no se elimino correctamente'
            );
     }
     echo json_encode($result);
     }); 
 
-//actulizacion de provedor
+//actulizacion de ubicacion
 
-$app->post('/provedor-update/:id',function($id) use($db,$app){
+$app->post('/ubicacion-update/:id',function($id) use($db,$app){
 
     $data = json_decode(file_get_contents('php://input', true));
-    $nombre = $data->{'nombre_pro'};
-    $direccion = $data->{'direccion_pro'};
-    $nit = $data->{'nit_pro'};
-
-    $sql ="UPDATE provedor SET nombre_pro = '$nombre', direccion_pro = '$direccion', nit_pro = '$nit' WHERE id_pro = '$id'";
+    $nombre = $data->{'nombre_ubi'};
+ 
+    $sql ="UPDATE ubicacion SET nombre_ubi = '$nombre' WHERE id_ubi = '$id'";
 
     $query = $db ->query($sql);
     
@@ -98,39 +96,37 @@ $app->post('/provedor-update/:id',function($id) use($db,$app){
         $result=array(
             'status'=> 'succes',
             'code' => 200,
-            'message'=>'el provedor el provedor se actualizado corectamente '
+            'message'=>'La ubicacion se actualizo de manera correcta'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el provedor no se a actualizado correctamente'
+            'message'=>'La ubicacion no se actualizo de manera correcta'
            );
     }
     echo json_encode($result); 
 });
-//guardar provedor
-$app ->post('/provedor',function() use($app,$db){
+//guardar ubicacion
+$app ->post('/ubicacion',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
     
-    $nombre = $data->{'nombre_pro'};
-    $direccion = $data->{'direccion_pro'};
-    $nit = $data->{'nit_pro'};
+    $nombre = $data->{'nombre_ubi'};
 
-    $query ="INSERT INTO provedor (nombre_pro, direccion_pro, nit_pro) VALUES ('".$nombre."', '".$direccion."', '".$nit."')";
+    $query ="INSERT INTO ubicacion (nombre_ubi) VALUES ('".$nombre."')";
     $insert = $db->query($query);
     $result  = array (
         'status'=>'error',
         'code' =>404,
-        'message'=>'provedor no creado correctamente'
+        'message'=>'Ubicacion no creada correctamente'
        );
     
     if($insert){
      $result  = array (
      'status'=>'success',
      'code' =>200,
-     'message'=>'provedor creado correctamente'
+     'message'=>'Ubicacion creada correctamente'
     );
 
     }

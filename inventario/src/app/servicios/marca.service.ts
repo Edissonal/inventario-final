@@ -6,29 +6,25 @@ import 'rxjs/Rx';
 @Injectable({
   providedIn: 'root'
 })
-export class ProvedoresService {
+export class MarcaService {
 
-  prourl = "http://localhost/inventario/provedor.php/provedor";
-  
+  prourl = "http://localhost/inventario/marca.php/marca";
+
   constructor(private http:HttpClient) { }
 
- 
-  postprovedor(provedor: any) {
-    const newpro = provedor;
+  postmarca(marca: any) {
+    const newpro = marca;
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post(this.prourl, newpro, httpOptions);
   }
- 
- 
-  getprovedor() {
+
+
+  getmarca() {
     return this.http.get(this.prourl);
   }
 
-
-
-  putprovedor(provedor:any ,id:string) {
-    const newprove = provedor;
-    console.log(newprove);
+  putmarca(marca:any ,id:string) {
+    const newprove = marca;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json' 
     });
@@ -36,15 +32,15 @@ export class ProvedoresService {
     return this.http.post(url, newprove, {headers});
   }
 
-  getProveedorr(id$: string) {
+  getMarcaa(id$: string) {
     const url = `${this.prourl + '/' + id$}`;
     return this.http.get(url);
   }
 
-  delprovedor(id$:string){
+  delmarca(id$:string){
   
-   return this.http.get(this.prourl+ '-delete/'+ id$)
+    return this.http.get(this.prourl+ '-delete/'+ id$)
+ 
+   }
 
-  }
 }
-

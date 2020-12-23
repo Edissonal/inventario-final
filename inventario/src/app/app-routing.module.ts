@@ -6,6 +6,11 @@ import { EditprovedorComponent } from './modulos/provedores/editprovedor/editpro
 import { ConsequipoComponent } from './modulos/equipos/consequipo/consequipo.component';
 import { AddequipoComponent } from './modulos/equipos/addequipo/addequipo.component';
 import { EdiequiComponent } from './modulos/equipos/ediequi/ediequi.component';
+import { ConstComponent } from './modulos/consultas/const/const.component';
+import { AddconsComponent } from './modulos/consultas/addcons/addcons.component';
+import { EditconComponent } from './modulos/consultas/editcon/editcon.component';
+
+
 
 
 
@@ -17,7 +22,10 @@ const routes: Routes = [
   { path: 'consequi', component: ConsequipoComponent },
   { path: 'adicionarequi', component: AddequipoComponent },
   { path: 'editarequi/:id', component: EdiequiComponent },
-  { path:'**',pathMatch:'full',redirectTo:'consequi' },
+  { path: 'consultas', component: ConstComponent },
+  { path: 'addcons', component: AddconsComponent },
+  { path: 'editcon/:id', component: EditconComponent },
+  { path:'**',pathMatch:'full',redirectTo:'addcons' },
 ];
 
 @NgModule({

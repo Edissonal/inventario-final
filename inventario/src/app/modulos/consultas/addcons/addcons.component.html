@@ -1,0 +1,44 @@
+
+<h4>Ingreso de Equipo</h4>
+<form autocomplete="off">
+
+    <div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Proveedor</label>
+            <div class="col">
+                <select class="form-control"
+                        #busca
+                        name="busca"
+                        [disabled]="provedores.length === 0"
+                        [class.is-invalid]="busca.invalid && busca.touched"
+            
+                        >
+                    <option *ngFor="let pro of provedores"
+                            [value]="pro.id_pro">{{pro.nombre_pro}}</option>
+                </select>
+               
+              
+                   
+            </div>
+          </div>
+        
+        
+          <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col">
+              <button 
+                      type="submit" 
+                      class="btn btn-outline-primary"
+                      (click)="buscar(busca.value)"
+                     >
+                Consultar
+              </button>
+            </div>
+          </div>
+          
+        </div>
+</form>
+
+
+
+<app-addc-final *ngIf="consulta" [consulta]="consulta"></app-addc-final>

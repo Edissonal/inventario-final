@@ -6,29 +6,24 @@ import 'rxjs/Rx';
 @Injectable({
   providedIn: 'root'
 })
-export class ProvedoresService {
+export class UbicacionService {
 
-  prourl = "http://localhost/inventario/provedor.php/provedor";
-  
+  prourl = "http://localhost/inventario/ubicacion.php/ubicacion";
+
   constructor(private http:HttpClient) { }
 
- 
-  postprovedor(provedor: any) {
-    const newpro = provedor;
+  postubicacion(ubicacion: any) {
+    const newpro = ubicacion;
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post(this.prourl, newpro, httpOptions);
   }
- 
- 
-  getprovedor() {
+
+  getubicacion() {
     return this.http.get(this.prourl);
   }
 
-
-
-  putprovedor(provedor:any ,id:string) {
-    const newprove = provedor;
-    console.log(newprove);
+  putubicacion(ubicacion:any ,id:string) {
+    const newprove = ubicacion;
     const headers = new HttpHeaders({
       'Content-Type': 'application/json' 
     });
@@ -36,15 +31,15 @@ export class ProvedoresService {
     return this.http.post(url, newprove, {headers});
   }
 
-  getProveedorr(id$: string) {
+  getUbicacionn(id$: string) {
     const url = `${this.prourl + '/' + id$}`;
     return this.http.get(url);
   }
 
-  delprovedor(id$:string){
+  delubicacion(id$:string){
   
-   return this.http.get(this.prourl+ '-delete/'+ id$)
+    return this.http.get(this.prourl+ '-delete/'+ id$)
+ 
+   }
 
-  }
 }
-
