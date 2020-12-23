@@ -15,81 +15,80 @@ if($method == "OPTIONS") {
     die();
 }
 
-//listar equipos
-$app -> get('/equipo',function() use($db,$app){
-        $sql ='select * from equipo order by id_equi ASC;';
+//listar sede
+$app -> get('/sede',function() use($db,$app){
+        $sql ='select * from sede order by id_sede ASC;';
         $query =$db->query($sql);
        
-        $equipos = array();
-        while($equipo = $query->fetch_assoc()){
+        $sedes = array();
+        while($sede = $query->fetch_assoc()){
 
-            $equipos[] =$equipo;
+            $sedes[] =$sede;
         }
 
         $result  = array (
             'status'=>'success',
             'code' =>200,
-            'data'=>$equipos
+            'data'=>$sedes
            );
     echo json_encode($result);
 
 });
 
-//devolver un solo equipo
+//devolver un solo sede
 
-$app ->get ('/equipo/:id', function ($id) use($db,$app){
-    $sql=' select * from equipo where  id_ubi='.$id;
+$app ->get ('/sede/:id', function ($id) use($db,$app){
+    $sql=' select * from sede where  id_sede='.$id;
     $query =$db->query($sql);
     
 
     $result=array(
         'status'=> 'error',
         'code' => 404,
-        'message'=>'equipo no disponible'
+        'message'=>'Sede no disponible'
     );
 
     if($query ->num_rows == 1 ){
-     $provedor = $query->fetch_assoc();
+     $sede = $query->fetch_assoc();
     
      $result=array(
      'status'=> 'success',
      'code' => 200,
-     'data'=>$provedor
+     'data'=>$sede
     );
     }
     echo json_encode($result);
 });
 
-//eliminar  equipo
+//eliminar  sede
 
-$app->get('/equipo-delete/:id', function($id) use($db,$app){
-$sql ='delete from equipo where id_equi='.$id;
+$app->get('/sede-delete/:id', function($id) use($db,$app){
+$sql ='delete from sede where id_sede='.$id;
 $query= $db->query($sql);
     if($query){
         $result=array(
             'status'=> 'success',
             'code' => 200,
-            'message'=>'el equipo se a eliminado correctamente'
+            'message'=>'La sede se elimino correctamente'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el equipo no se a eliminado correctamente'
+            'message'=>'La sede se elimino correctamente'
            );
     }
     echo json_encode($result);
     }); 
 
-//actulizacion de provedor
+//actulizacion de sede
 
-$app->post('/equipo-update/:id',function($id) use($db,$app){
+$app->post('/sede-update/:id',function($id) use($db,$app){
 
     $data = json_decode(file_get_contents('php://input', true));
-    $nombre = $data->{'nombre_equi'};
-
-
-    $sql ="UPDATE equipo SET nombre_equi = '$nombre' WHERE id_equi = '$id'";
+    $nombre = $data->{'nombre_sede'};
+ 
+    $sql ="UPDATE sede SET nombre_sede = '$nombre' WHERE id_sede = '$id'";
 
     $query = $db ->query($sql);
     
@@ -97,37 +96,37 @@ $app->post('/equipo-update/:id',function($id) use($db,$app){
         $result=array(
             'status'=> 'succes',
             'code' => 200,
-            'message'=>'el equipo se actualizo corectamente '
+            'message'=>'La sede se actualizo de manera correcta'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el equipo no se a actualizado correctamente'
+            'message'=>'La sede no se actualizo de manera correcta'
            );
     }
     echo json_encode($result); 
 });
-//guardar equipo
-$app ->post('/equipo',function() use($app,$db){
+//guardar sede
+$app ->post('/sede',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
     
-    $nombre = $data->{'nombre_equi'};
+    $nombre = $data->{'nombre_sede'};
 
-    $query ="INSERT INTO equipo (nombre_equi) VALUES ('".$nombre."')";
+    $query ="INSERT INTO sede (nombre_sede) VALUES ('".$nombre."')";
     $insert = $db->query($query);
     $result  = array (
         'status'=>'error',
         'code' =>404,
-        'message'=>'equipo no creado correctamente'
+        'message'=>'Sede no creada correctamente'
        );
     
     if($insert){
      $result  = array (
      'status'=>'success',
      'code' =>200,
-     'message'=>'equipo creado correctamente'
+     'message'=>'Sede creada correctamente'
     );
 
     }
