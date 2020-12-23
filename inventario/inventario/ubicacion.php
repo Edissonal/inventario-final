@@ -15,81 +15,80 @@ if($method == "OPTIONS") {
     die();
 }
 
-//listar equipos
-$app -> get('/equipo',function() use($db,$app){
-        $sql ='select * from equipo order by id_equi ASC;';
+//listar ubicacion
+$app -> get('/ubicacion',function() use($db,$app){
+        $sql ='select * from ubicacion order by id_ubi ASC;';
         $query =$db->query($sql);
        
-        $equipos = array();
-        while($equipo = $query->fetch_assoc()){
+        $ubicacionn = array();
+        while($ubicacion = $query->fetch_assoc()){
 
-            $equipos[] =$equipo;
+            $ubicacionn[] =$ubicacion;
         }
 
         $result  = array (
             'status'=>'success',
             'code' =>200,
-            'data'=>$equipos
+            'data'=>$ubicacionn
            );
     echo json_encode($result);
 
 });
 
-//devolver un solo equipo
+//devolver un solo ubicacion
 
-$app ->get ('/equipo/:id', function ($id) use($db,$app){
-    $sql=' select * from equipo where  id_ubi='.$id;
+$app ->get ('/ubicacion/:id', function ($id) use($db,$app){
+    $sql=' select * from ubicacion where  id_ubi='.$id;
     $query =$db->query($sql);
     
 
     $result=array(
         'status'=> 'error',
         'code' => 404,
-        'message'=>'equipo no disponible'
+        'message'=>'Ubicacion no disponible'
     );
 
     if($query ->num_rows == 1 ){
-     $provedor = $query->fetch_assoc();
+     $ubicacion = $query->fetch_assoc();
     
      $result=array(
      'status'=> 'success',
      'code' => 200,
-     'data'=>$provedor
+     'data'=>$ubicacion
     );
     }
     echo json_encode($result);
 });
 
-//eliminar  equipo
+//eliminar  ubicacion
 
-$app->get('/equipo-delete/:id', function($id) use($db,$app){
-$sql ='delete from equipo where id_equi='.$id;
+$app->get('/ubicacion-delete/:id', function($id) use($db,$app){
+$sql ='delete from ubicacion where id_ubi='.$id;
 $query= $db->query($sql);
     if($query){
         $result=array(
             'status'=> 'success',
             'code' => 200,
-            'message'=>'el equipo se a eliminado correctamente'
+            'message'=>'La ubicacion se elimino correctamente'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el equipo no se a eliminado correctamente'
+            'message'=>'La ubicacion no se elimino correctamente'
            );
     }
     echo json_encode($result);
     }); 
 
-//actulizacion de provedor
+//actulizacion de ubicacion
 
-$app->post('/equipo-update/:id',function($id) use($db,$app){
+$app->post('/ubicacion-update/:id',function($id) use($db,$app){
 
     $data = json_decode(file_get_contents('php://input', true));
-    $nombre = $data->{'nombre_equi'};
-
-
-    $sql ="UPDATE equipo SET nombre_equi = '$nombre' WHERE id_equi = '$id'";
+    $nombre = $data->{'nombre_ubi'};
+ 
+    $sql ="UPDATE ubicacion SET nombre_ubi = '$nombre' WHERE id_ubi = '$id'";
 
     $query = $db ->query($sql);
     
@@ -97,37 +96,37 @@ $app->post('/equipo-update/:id',function($id) use($db,$app){
         $result=array(
             'status'=> 'succes',
             'code' => 200,
-            'message'=>'el equipo se actualizo corectamente '
+            'message'=>'La ubicacion se actualizo de manera correcta'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el equipo no se a actualizado correctamente'
+            'message'=>'La ubicacion no se actualizo de manera correcta'
            );
     }
     echo json_encode($result); 
 });
-//guardar equipo
-$app ->post('/equipo',function() use($app,$db){
+//guardar ubicacion
+$app ->post('/ubicacion',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
     
-    $nombre = $data->{'nombre_equi'};
+    $nombre = $data->{'nombre_ubi'};
 
-    $query ="INSERT INTO equipo (nombre_equi) VALUES ('".$nombre."')";
+    $query ="INSERT INTO ubicacion (nombre_ubi) VALUES ('".$nombre."')";
     $insert = $db->query($query);
     $result  = array (
         'status'=>'error',
         'code' =>404,
-        'message'=>'equipo no creado correctamente'
+        'message'=>'Ubicacion no creada correctamente'
        );
     
     if($insert){
      $result  = array (
      'status'=>'success',
      'code' =>200,
-     'message'=>'equipo creado correctamente'
+     'message'=>'Ubicacion creada correctamente'
     );
 
     }

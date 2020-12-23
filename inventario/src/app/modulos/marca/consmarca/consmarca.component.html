@@ -1,0 +1,20 @@
+<h3>Listado Marcas</h3>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr class="filters">
+            <th>Nombre</th>
+             </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let marca of marcas">
+        <td>{{marca.nombre_ma}}</td>
+        <td><button 
+            class="btn btn-primary" 
+            routerLink="/editarmar/{{marca.id_ma}}">editar</button></td>
+        <td><button 
+            class="btn btn-danger"
+            (click)="eliminarmar(marca.id_ma)"
+            >eliminar</button></td>
+        </tr>
+    </tbody>
+    </table>

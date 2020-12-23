@@ -15,81 +15,80 @@ if($method == "OPTIONS") {
     die();
 }
 
-//listar equipos
-$app -> get('/equipo',function() use($db,$app){
-        $sql ='select * from equipo order by id_equi ASC;';
+//listar marca
+$app -> get('/marca',function() use($db,$app){
+        $sql ='select * from marca order by id_ma ASC;';
         $query =$db->query($sql);
        
-        $equipos = array();
-        while($equipo = $query->fetch_assoc()){
+        $marcas = array();
+        while($marca = $query->fetch_assoc()){
 
-            $equipos[] =$equipo;
+            $marcas[] =$marca;
         }
 
         $result  = array (
             'status'=>'success',
             'code' =>200,
-            'data'=>$equipos
+            'data'=>$marcas
            );
     echo json_encode($result);
 
 });
 
-//devolver un solo equipo
+//devolver un solo marca
 
-$app ->get ('/equipo/:id', function ($id) use($db,$app){
-    $sql=' select * from equipo where  id_ubi='.$id;
+$app ->get ('/marca/:id', function ($id) use($db,$app){
+    $sql=' select * from marca where  id_ma='.$id;
     $query =$db->query($sql);
     
 
     $result=array(
         'status'=> 'error',
         'code' => 404,
-        'message'=>'equipo no disponible'
+        'message'=>'Marca no disponible'
     );
 
     if($query ->num_rows == 1 ){
-     $provedor = $query->fetch_assoc();
+     $marca = $query->fetch_assoc();
     
      $result=array(
      'status'=> 'success',
      'code' => 200,
-     'data'=>$provedor
+     'data'=>$marca
     );
     }
     echo json_encode($result);
 });
 
-//eliminar  equipo
+//eliminar  marca
 
-$app->get('/equipo-delete/:id', function($id) use($db,$app){
-$sql ='delete from equipo where id_equi='.$id;
+$app->get('/marca-delete/:id', function($id) use($db,$app){
+$sql ='delete from marca where id_ma='.$id;
 $query= $db->query($sql);
     if($query){
         $result=array(
             'status'=> 'success',
             'code' => 200,
-            'message'=>'el equipo se a eliminado correctamente'
+            'message'=>'La marca se elimino correctamente'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el equipo no se a eliminado correctamente'
+            'message'=>'La marca se elimino correctamente'
            );
     }
     echo json_encode($result);
     }); 
 
-//actulizacion de provedor
+//actulizacion de Marca
 
-$app->post('/equipo-update/:id',function($id) use($db,$app){
+$app->post('/marca-update/:id',function($id) use($db,$app){
 
     $data = json_decode(file_get_contents('php://input', true));
-    $nombre = $data->{'nombre_equi'};
-
-
-    $sql ="UPDATE equipo SET nombre_equi = '$nombre' WHERE id_equi = '$id'";
+    $nombre = $data->{'nombre_ma'};
+ 
+    $sql ="UPDATE marca SET nombre_ma = '$nombre' WHERE id_ma = '$id'";
 
     $query = $db ->query($sql);
     
@@ -97,37 +96,37 @@ $app->post('/equipo-update/:id',function($id) use($db,$app){
         $result=array(
             'status'=> 'succes',
             'code' => 200,
-            'message'=>'el equipo se actualizo corectamente '
+            'message'=>'La marca se actualizo de manera correcta'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'el equipo no se a actualizado correctamente'
+            'message'=>'La marca no se actualizo de manera correcta'
            );
     }
     echo json_encode($result); 
 });
-//guardar equipo
-$app ->post('/equipo',function() use($app,$db){
+//guardar marca
+$app ->post('/marca',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
     
-    $nombre = $data->{'nombre_equi'};
+    $nombre = $data->{'nombre_ma'};
 
-    $query ="INSERT INTO equipo (nombre_equi) VALUES ('".$nombre."')";
+    $query ="INSERT INTO marca (nombre_ma) VALUES ('".$nombre."')";
     $insert = $db->query($query);
     $result  = array (
         'status'=>'error',
         'code' =>404,
-        'message'=>'equipo no creado correctamente'
+        'message'=>'Marca no creada correctamente'
        );
     
     if($insert){
      $result  = array (
      'status'=>'success',
      'code' =>200,
-     'message'=>'equipo creado correctamente'
+     'message'=>'Marca creada correctamente'
     );
 
     }
