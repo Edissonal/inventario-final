@@ -38,7 +38,7 @@ $app -> get('/equipo',function() use($db,$app){
 //devolver un solo equipo
 
 $app ->get ('/equipo/:id', function ($id) use($db,$app){
-    $sql=' select * from equipo where  id_ubi='.$id;
+    $sql=' select * from equipo where  id_equi='.$id;
     $query =$db->query($sql);
     
 
@@ -49,12 +49,12 @@ $app ->get ('/equipo/:id', function ($id) use($db,$app){
     );
 
     if($query ->num_rows == 1 ){
-     $provedor = $query->fetch_assoc();
+     $equipo = $query->fetch_assoc();
     
      $result=array(
      'status'=> 'success',
      'code' => 200,
-     'data'=>$provedor
+     'data'=>$equipo
     );
     }
     echo json_encode($result);
@@ -81,13 +81,13 @@ $query= $db->query($sql);
     echo json_encode($result);
     }); 
 
-//actulizacion de provedor
+//actulizacion de equipo
 
 $app->post('/equipo-update/:id',function($id) use($db,$app){
 
     $data = json_decode(file_get_contents('php://input', true));
     $nombre = $data->{'nombre_equi'};
-
+   
 
     $sql ="UPDATE equipo SET nombre_equi = '$nombre' WHERE id_equi = '$id'";
 
@@ -97,7 +97,7 @@ $app->post('/equipo-update/:id',function($id) use($db,$app){
         $result=array(
             'status'=> 'succes',
             'code' => 200,
-            'message'=>'el equipo se actualizo corectamente '
+            'message'=>'el equipo se actualizado corectamente '
            );
     }else{
         $result=array(

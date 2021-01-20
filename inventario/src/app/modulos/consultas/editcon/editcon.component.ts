@@ -6,6 +6,8 @@ import { EquiposService } from '../../../servicios/equipos.service';
 import { UbicacionService } from '../../../servicios/ubicacion.service';
 import { ConsultasService } from '../../../servicios/consultas.service';
 import { ProvedoresService } from '../../../servicios/provedores.service';
+import { CiudadService } from '../../../servicios/ciudad.service';
+import { SedeService } from '../../../servicios/sede.service';
 
 @Component({
   selector: 'app-editcon',
@@ -20,6 +22,9 @@ export class EditconComponent implements OnInit {
   equipos: any[] = [];
   ubicaciones: any[] = [];
   provedores: any[] = [];
+  ciudades: any[] = [];
+  sedes: any[] = [];
+  
   showView: boolean = false;
 
   constructor(private fb: FormBuilder,
@@ -28,8 +33,12 @@ export class EditconComponent implements OnInit {
               private marcaService: MarcaService,
               private equiposService: EquiposService,
               private ubicacionService: UbicacionService,
+              private ciudadService: CiudadService,
+              private sedeService:SedeService,
               private consultasService: ConsultasService,
-              private   provedoresService:ProvedoresService) {
+              private provedoresService: ProvedoresService,
+              
+       ) {
     this.activatedRoute.params
       .subscribe(resp => {
         this.id_con = resp['id'];
@@ -73,6 +82,16 @@ export class EditconComponent implements OnInit {
     return this.consultaForm.get('placa_con').invalid && this.consultaForm.get('placa_con').touched;
   }
 
+  get ciudadNovalido() {
+    return this.consultaForm.get('id_ciu').invalid && this.consultaForm.get('id_ciu').touched;
+  }
+
+  get sedeNovalido() {
+    return this.consultaForm.get('id_sede').invalid && this.consultaForm.get('id_sede').touched;
+  }
+
+
+
   creaFormulario() {
     
     this.consultaForm = this.fb.group({
@@ -80,6 +99,8 @@ export class EditconComponent implements OnInit {
       id_ma: ['', Validators.required],
       id_equi: ['', Validators.required],
       id_ubi: ['', Validators.required],
+      id_ciu: ['', Validators.required], 
+      id_sede: ['', Validators.required],
       modelo_con: ['', [Validators.required,Validators.minLength(3)]],
       serial_con: ['', [Validators.required,Validators.minLength(3)]],
       placa_con: [{value: '', disabled: true}, Validators.required],
@@ -91,6 +112,8 @@ export class EditconComponent implements OnInit {
     this.conEqui();
     this.conUbi();
     this.conpro();
+    this.conCiu();
+    this.conSede();
   }
 
   conMa() {
@@ -126,6 +149,18 @@ export class EditconComponent implements OnInit {
      });
   }
 
+  conCiu() {
+    this.ciudadService.getCiudad()
+      .subscribe(res => {
+        this.ciudades = res['data'];
+        this.showView = true;
+        console.log(this.ciudades);
+      }, error => {
+          console.log(<any>error);
+      });
+  }
+
+
   conpro() {
     this.provedoresService.getprovedor()
       .subscribe(res => {
@@ -136,6 +171,15 @@ export class EditconComponent implements OnInit {
          
      });
   }
+
+  conSede() {
+    this.sedeService.getsede()
+      .subscribe(res => {
+        this.sedes = res['data'];
+      }, error => {
+          console.log(<any>error);
+    })
+ }
 
   onSubmit() { 
     this.consultas = this.saveConsulta();
@@ -155,7 +199,9 @@ export class EditconComponent implements OnInit {
       id_pro: this.consultaForm.get('id_pro').value,
       id_ma: this.consultaForm.get('id_ma').value,
       id_equi:this.consultaForm.get('id_equi').value,
-      id_ubi:this.consultaForm.get('id_ubi').value, 
+      id_ubi: this.consultaForm.get('id_ubi').value, 
+      id_ciu: this.consultaForm.get('id_ciu').value,
+      id_sede: this.consultaForm.get('id_sede').value,
       modelo_con:this.consultaForm.get('modelo_con').value, 
       serial_con: this.consultaForm.get('serial_con').value,
       placa_con:this.consultaForm.get('placa_con').value, 

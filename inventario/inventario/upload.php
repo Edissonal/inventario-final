@@ -47,7 +47,7 @@ $app ->post('/provedor',function() use($app,$db){
   foreach($data as $row){
 
     $nombre =  $row->{'nombre_pro'};
-    $direccion =  $row->{'direccion_pro'};
+    //$direccion =  $row->{'direccion_pro'};
     $result = $db->query("select * from provedor  where nombre_pro='".$nombre."'");
     $count=$result->num_rows;
 
@@ -65,25 +65,12 @@ $app ->post('/provedor',function() use($app,$db){
         $valorf = $letra.$cadena2;
     
         
-      $query ="INSERT INTO provedor (nombre_pro, direccion_pro, nit_pro) VALUES ('".$nombre."', '".$direccion."', '".$valorf."')";
+      $query ="INSERT INTO provedor (nombre_pro,nit_pro) VALUES ('".$nombre."','".$valorf."')";
       $insert = $db->query($query);
       
       
       
-      $result  = array (
-        'status'=>'error',
-        'code' =>404,
-        'message'=>'provedor no creado'
-        );
-    
-      if($insert){
-        $result  = array (
-        'status'=>'success',
-        'code' =>200,
-        'message'=>'provedor creado correctamente'
-        );
-      }  
-      echo json_encode($result);
+   
     }
     else{
 
@@ -97,29 +84,34 @@ $app ->post('/provedor',function() use($app,$db){
       $valorf = $letra.$cadena2;
 
 
-      $query ="INSERT INTO provedor (nombre_pro, direccion_pro, nit_pro) VALUES ('".$nombre."', '".$direccion."', '".$valorf."')";
+      $query ="INSERT INTO provedor (nombre_pro,nit_pro) VALUES ('".$nombre."','".$valorf."')";
       $insert = $db->query($query);
 
       
 
-      $result  = array (
-        'status'=>'error',
-        'code' =>404,
-        'message'=>'provedor no creado'
-        );
     
-      if($insert){
-        $result  = array (
-          'status'=>'success',
-          'code' =>200,
-          'message'=>'provedor creado correctamente'
-        );
-      }  
-        echo json_encode($result);
+    
+     
+
   
     }
   }
-    
+   
+  
+  $result  = array (
+    'status'=>'error',
+    'code' =>404,
+    'message'=>'provedor no creado'
+    );
+
+  if($insert){
+    $result  = array (
+    'status'=>'success',
+    'code' =>200,
+    'message'=>'provedor creado correctamente'
+    );
+  }  
+  echo json_encode($result);
 });
 
 $app->run();

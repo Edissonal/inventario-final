@@ -1,0 +1,17 @@
+<h4>Cargas de  Productos</h4>
+<div class="col-md-8 form-group">        
+    <input type="file" 
+           class="form-control" 
+           (change)="addfile($event)" 
+           placeholder="Upload file" 
+           accept=".csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">        
+  </div> 
+
+  <div *ngIf="estado" class="mt-5">
+      
+    <app-barra 
+              [progresBar]="0"
+              [progresBarBackground]="'#17747E'"
+              [respuesta]="estado"
+               ></app-barra>
+    </div>

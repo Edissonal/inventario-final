@@ -122,14 +122,17 @@ $app ->post('/consultas',function() use($app,$db){
      $id_equi = $data->{'id_equi'};
      $id_pro =  $data->{'id_con'};
      $id_ubi =  $data->{'id_ubi'};
+     $id_pro =  $data->{'id_con'}; 
+     $id_ciu =  $data->{'id_ciu'};
+     $id_se =  $data->{'id_se'};
      $modelo =  $data->{'modelo_con'};
      $serial =  $data->{'serial_con'};
      $placa =   $data->{'placa_con'};
 
 
-    $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ubi,modelo_con,serial_con,placa_con) 
+    $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con) 
             VALUES 
-            ('".$id_ma."', '".$id_equi."', '".$id_pro."', '".$id_ubi."', '".$modelo."', '".$serial."', '".$placa."')";
+            ('".$id_ma."', '".$id_equi."', '".$id_pro."','".$id_ciu."','".$id_se."','".$id_ubi."', '".$modelo."', '".$serial."', '".$placa."')";
             
     $insert = $db->query($query);
     $result  = array (
@@ -176,7 +179,15 @@ $app->get('/consultas-delete/:id', function($id) use($db,$app){
 //devolver una sola consulta
 
 $app ->get ('/consultas-con/:id', function ($id) use($db,$app){
-    $sql='select C.id_con,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,modelo_con,C.serial_con,C.placa_con from consultas C ,marca M ,equipo E,provedor P,ubicacion U where C.id_ma = M.id_ma and C.id_equi = E.id_equi and C.id_pro =P.id_pro and C.id_ubi = U.id_ubi and id_con='.$id;
+    $sql='select C.id_con,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,modelo_con,C.serial_con,C.placa_con,C.id_ciu,CI.nombre_ciu,C.id_sede,S.nombre_sede
+    from consultas C ,marca M ,equipo E,provedor P,ubicacion U, ciudad CI,sede S
+    where C.id_ma = M.id_ma and
+    C.id_equi = E.id_equi and
+    C.id_pro =P.id_pro and 
+    C.id_ubi = U.id_ubi and
+    C.id_ciu = CI.id_ciu and 
+    C.id_sede = S.id_sede and
+    id_con='.$id;
     $query =$db->query($sql);
     
 
@@ -208,11 +219,13 @@ $app->post('/consultas-update/:id',function($id) use($db,$app){
      $id_equi = $data->{'id_equi'};
      $id_pro =  $data->{'id_pro'};
      $id_ubi =  $data->{'id_ubi'};
+     $id_ciu =  $data->{'id_ciu'};
+     $id_sede =  $data->{'id_sede'};
      $modelo =  $data->{'modelo_con'};
      $serial =  $data->{'serial_con'};
      $placa =   $data->{'placa_con'};
 
-    $sql ="UPDATE consultas SET id_ma = '$id_ma', id_equi = '$id_equi', id_pro = '$id_pro',id_ubi = '$id_ubi',modelo_con = '$modelo',serial_con = '$serial',placa_con = '$placa'
+    $sql ="UPDATE consultas SET id_ma = '$id_ma', id_equi = '$id_equi', id_pro = '$id_pro', id_ciu = '$id_ciu',id_sede = '$id_sede',id_ubi = '$id_ubi',modelo_con = '$modelo',serial_con = '$serial',placa_con = '$placa'
      WHERE id_con = '$id'";
 
     $query = $db ->query($sql);

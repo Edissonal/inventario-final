@@ -15,46 +15,46 @@ if($method == "OPTIONS") {
     die();
 }
 
-//listar sede
-$app -> get('/sede',function() use($db,$app){
-        $sql ='select * from sede order by id_sede ASC;';
+//listar ciudad
+$app -> get('/ciudad',function() use($db,$app){
+        $sql ='select * from ciudad order by id_ciu ASC;';
         $query =$db->query($sql);
        
-        $sedes = array();
-        while($sede = $query->fetch_assoc()){
+        $ciudadd = array();
+        while($ciudad = $query->fetch_assoc()){
 
-            $sedes[] =$sede;
+            $ciudadd[] =$ciudad;
         }
 
         $result  = array (
             'status'=>'success',
             'code' =>200,
-            'data'=>$sedes
+            'data'=>$ciudadd
            );
     echo json_encode($result);
 
 });
 
-//devolver un solo sede
+//devolver un solo ciudad
 
-$app ->get ('/sede/:id', function ($id) use($db,$app){
-    $sql=' select * from sede where  id_sede='.$id;
+$app ->get ('/ciudad/:id', function ($id) use($db,$app){
+    $sql=' select * from ciudad where  id_ciu='.$id;
     $query =$db->query($sql);
     
 
     $result=array(
         'status'=> 'error',
         'code' => 404,
-        'message'=>'Sede no disponible'
+        'message'=>'Ciudad no disponible'
     );
 
     if($query ->num_rows == 1 ){
-     $sede = $query->fetch_assoc();
+     $ciudad = $query->fetch_assoc();
     
      $result=array(
      'status'=> 'success',
      'code' => 200,
-     'data'=>$sede
+     'data'=>$ciudad
     );
     }
     echo json_encode($result);
@@ -62,20 +62,20 @@ $app ->get ('/sede/:id', function ($id) use($db,$app){
 
 //eliminar  sede
 
-$app->get('/sede-delete/:id', function($id) use($db,$app){
-$sql ='delete from sede where id_sede='.$id;
+$app->get('/ciudad-delete/:id', function($id) use($db,$app){
+$sql ='delete from ciudad where id_ciu='.$id;
 $query= $db->query($sql);
     if($query){
         $result=array(
             'status'=> 'success',
             'code' => 200,
-            'message'=>'La sede se elimino correctamente'
+            'message'=>'La ciudad se elimino correctamente'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'La sede se elimino correctamente'
+            'message'=>'La ciudad se elimino correctamente'
            );
     }
     echo json_encode($result);
@@ -83,15 +83,12 @@ $query= $db->query($sql);
 
 //actulizacion de sede
 
-$app->post('/sede-update/:id',function($id) use($db,$app){
+$app->post('/ciudad-update/:id',function($id) use($db,$app){
 
     $data = json_decode(file_get_contents('php://input', true));
-    $id_ciu = $data->{'id_ciu'};
-    $id_pro = $data->{'id_pro'};
-    $nombre = $data->{'nombre_sede'};
-    $direccion = $data->{'direccion_sede'};
+    $nombre = $data->{'nombre_ciu'};
  
-    $sql ="UPDATE sede SET id_ciu= '$id_ciu', id_pro= '$id_pro', nombre_sede = '$nombre', direccion_sede= '$direccion' WHERE id_sede = '$id'";
+    $sql ="UPDATE ciudad SET nombre_ciu = '$nombre' WHERE id_ciu = '$id'";
 
     $query = $db ->query($sql);
     
@@ -99,40 +96,37 @@ $app->post('/sede-update/:id',function($id) use($db,$app){
         $result=array(
             'status'=> 'succes',
             'code' => 200,
-            'message'=>'La sede se actualizo de manera correcta'
+            'message'=>'La ciudad se actualizo de manera correcta'
            );
     }else{
         $result=array(
             'status'=> 'error',
             'code' => 404,
-            'message'=>'La sede no se actualizo de manera correcta'
+            'message'=>'La ciudad no se actualizo de manera correcta'
            );
     }
     echo json_encode($result); 
 });
-//guardar sede
-$app ->post('/sede',function() use($app,$db){
+//guardar ciudad
+$app ->post('/ciudad',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
     
-    $id_ciu = $data->{'id_ciu'};
-    $id_pro = $data->{'id_pro'};
-    $nombre = $data->{'nombre_sede'};
-    $direccion = $data->{'direccion_sede'};
+    $nombre = $data->{'nombre_ciu'};
 
-    $query ="INSERT INTO sede (id_ciu, id_pro, nombre_sede, direccion_sede) VALUES ('".$id_ciu."','".$id_pro."','".$nombre."','".$direccion."')";
+    $query ="INSERT INTO ciudad (nombre_ciu) VALUES ('".$nombre."')";
     $insert = $db->query($query);
     $result  = array (
         'status'=>'error',
         'code' =>404,
-        'message'=>'Sede no creada correctamente'
+        'message'=>'Ciudad no creada correctamente'
        );
     
     if($insert){
      $result  = array (
      'status'=>'success',
      'code' =>200,
-     'message'=>'Sede creada correctamente'
+     'message'=>'Ciudad creada correctamente'
     );
 
     }

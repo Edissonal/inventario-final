@@ -9,6 +9,7 @@ import { EdiequiComponent } from './modulos/equipos/ediequi/ediequi.component';
 import { ConstComponent } from './modulos/consultas/const/const.component';
 import { AddconsComponent } from './modulos/consultas/addcons/addcons.component';
 import { EditconComponent } from './modulos/consultas/editcon/editcon.component';
+import { CargaconsultComponent } from './modulos/cargas/cargaconsult/cargaconsult.component';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
   { path: 'consultas', component: ConstComponent },
   { path: 'addcons', component: AddconsComponent },
   { path: 'editcon/:id', component: EditconComponent },
-  { path:'**',pathMatch:'full',redirectTo:'addcons' },
+  { path: 'cargaconsul', component: CargaconsultComponent },
+  { path:'**',pathMatch:'full',redirectTo:'cargaconsul' },
 ];
 
 @NgModule({

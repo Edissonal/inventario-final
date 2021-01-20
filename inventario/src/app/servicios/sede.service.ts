@@ -8,38 +8,39 @@ import 'rxjs/Rx';
 })
 export class SedeService {
 
-  prourl = "http://localhost/inventario/sede.php/sede";
+  sedeurl = "http://localhost/inventario/sede.php/sede";
 
   constructor(private http:HttpClient) { }
 
+  
   postsede(sede: any) {
-    const newpro = sede;
+    const newsede = sede;
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.prourl, newpro, httpOptions);
+    return this.http.post(this.sedeurl, newsede, httpOptions);
 
 }
 
-getmarca() {
-  return this.http.get(this.prourl);
+getsede() {
+  return this.http.get(this.sedeurl);
 }
 
 putsede(sede:any ,id:string) {
-  const newprove = sede;
+  const newsede = sede;
   const headers = new HttpHeaders({
     'Content-Type': 'application/json' 
   });
-  const url = `${this.prourl}-update/${id}`;
-  return this.http.post(url, newprove, {headers});
+  const url = `${this.sedeurl}-update/${id}`;
+  return this.http.post(url, newsede, {headers});
 }
 
 getSedes(id$: string) {
-  const url = `${this.prourl + '/' + id$}`;
+  const url = `${this.sedeurl + '/' + id$}`;
   return this.http.get(url);
 }
 
 delsede(id$:string){
   
-  return this.http.get(this.prourl+ '-delete/'+ id$)
+  return this.http.get(this.sedeurl+ '-delete/'+ id$)
 
  }
 

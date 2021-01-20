@@ -12,6 +12,7 @@ export class ConsultasService {
   consultasurl = "http://localhost/inventario/consultas.php/consultas";
   conprourl = "http://localhost/inventario/consultas.php/pro"
   consprove = "http://localhost/inventario/index.php/provedor";
+  cargaurl = "http://localhost/inventario/upload-consultas.php/provedor";
   constructor(private http: HttpClient) { }
   
   getConsultas(termino:string) 
@@ -51,5 +52,12 @@ export class ConsultasService {
     const url = `${this.consultasurl}-update/${id}`;
     return this.http.post(url, upconsulta, { headers });
     
+  }
+
+  cargaConsul(carga:any) {
+    console.log(carga);
+   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+   return this.http.post(this.cargaurl, carga, httpOptions);
+ 
   }
 }
