@@ -14,13 +14,20 @@ export class CargaconsultComponent implements OnInit {
   arrayBuffer:any
   filelist: any
   datos: any[] = [];
-  estado: boolean = false;
+  validacion: any;
+  mensaje: any;
 
   constructor(private consultasService:ConsultasService) { }
 
   ngOnInit() {
   }
-
+  
+  tiempo() { 
+    setTimeout(() => {
+      this.validacion = "";
+    }, 5000);
+  }
+  
   addfile(event) {
     this.file = event.target.files[0];
     let fileReader = new FileReader();
@@ -37,12 +44,26 @@ export class CargaconsultComponent implements OnInit {
       this.datos = XLSX.utils.sheet_to_json(worksheet, { raw: true });
      
       this.consultasService.cargaConsul(this.datos)
-      .subscribe(res => {
-        console.log(res);
-        this.estado = true;
+      .subscribe((res:any) => {
+        if (res.code == "404") {
+          console.log("quepasa aqui");
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+         
+
+        } else {
+          console.log("esta ok");
+         this.mensaje = res.message;
+         this.validacion = res.code;
+         this.tiempo(); 
+        
+          
+     }
+       
       }, (error) =>
       
-        console.log(error.error.Message)
+        console.log(error)
       
         );
     }

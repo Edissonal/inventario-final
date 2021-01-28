@@ -15,7 +15,7 @@ export class BarraComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    if (this.respuesta) {
+    if (this.respuesta == 200) {
       console.log(this.respuesta);
       setTimeout(() => {
         for (this.progresBar = 0; this.progresBar <= 99; this.progresBar++) {

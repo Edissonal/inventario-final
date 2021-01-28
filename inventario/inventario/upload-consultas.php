@@ -83,7 +83,7 @@ $app ->post('/provedor',function() use($app,$db){
           'message'=>'productos no creados'
           );
       
-        echo  $imprime;
+        //echo  $imprime;
         echo json_encode($result);
       }else{
        //implementacion de codigo 

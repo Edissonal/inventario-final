@@ -21,6 +21,7 @@ import { AddcFinalComponent } from './modulos/consultas/addc-final/addc-final.co
 import { EditconComponent } from './modulos/consultas/editcon/editcon.component';
 import { CargaconsultComponent } from './modulos/cargas/cargaconsult/cargaconsult.component';
 import { BarraComponent } from './modulos/barra/barra.component';
+import { SnackbarComponent } from './modulos/snackbar/snackbar.component';
 
 
 
@@ -39,7 +40,8 @@ import { BarraComponent } from './modulos/barra/barra.component';
     AddcFinalComponent,
     EditconComponent,
     CargaconsultComponent,
-    BarraComponent
+    BarraComponent,
+    SnackbarComponent
 ,
 
   ],
