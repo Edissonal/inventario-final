@@ -1,0 +1,31 @@
+<h3>Listado de sede</h3>
+
+<table class="table table-bordered table-striped">
+<thead>
+    <tr class="filters">
+        <th>Ciudad</th>
+        <th>Proveedor</th>
+         <th>Nombre Sede </th>
+        <th>Direccion Sede</th>
+        <th>editar</th>
+        <th>eliminar</th>
+
+        </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let sede of sedes">
+    <td>{{sede.nombre_ciu}}</td>
+    <td>{{sede.nombre_pro}}</td>
+    <td>{{sede.nombre_sede}}</td>
+    <td>{{sede.direccion_sede}}</td>
+    
+    <td><button 
+        class="btn btn-primary" 
+        routerLink="/editarsede/{{sede.id_sede}}">editar</button></td>
+    <td><button 
+        class="btn btn-danger"
+        (click)="eliminarsede(sede.id_sede)"
+        >eliminar</button></td>
+    </tr>
+</tbody>
+</table>
