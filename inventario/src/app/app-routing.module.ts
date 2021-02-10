@@ -11,6 +11,7 @@ import { AddconsComponent } from './modulos/consultas/addcons/addcons.component'
 import { EditconComponent } from './modulos/consultas/editcon/editcon.component';
 import { CargaconsultComponent } from './modulos/cargas/cargaconsult/cargaconsult.component';
 import { SnackbarComponent } from './modulos/snackbar/snackbar.component';
+import { ConstmanComponent } from './modulos/mantenimientos/constman/constman.component';
 
 
 
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'editcon/:id', component: EditconComponent },
   { path: 'cargaconsul', component: CargaconsultComponent },
   { path: 'snakbar', component: SnackbarComponent },
-  { path:'**',pathMatch:'full',redirectTo:'cargaconsul' },
+  { path: 'mante', component: ConstmanComponent },
+  { path:'**',pathMatch:'full',redirectTo:'mante' },
 ];
 
 @NgModule({

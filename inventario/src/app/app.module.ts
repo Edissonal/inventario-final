@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {ReactiveFormsModule} from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { EditconComponent } from './modulos/consultas/editcon/editcon.component'
 import { CargaconsultComponent } from './modulos/cargas/cargaconsult/cargaconsult.component';
 import { BarraComponent } from './modulos/barra/barra.component';
 import { SnackbarComponent } from './modulos/snackbar/snackbar.component';
+import { ConstmanComponent } from './modulos/mantenimientos/constman/constman.component';
 
 
 
@@ -41,7 +43,8 @@ import { SnackbarComponent } from './modulos/snackbar/snackbar.component';
     EditconComponent,
     CargaconsultComponent,
     BarraComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    ConstmanComponent
 ,
 
   ],
@@ -50,7 +53,10 @@ import { SnackbarComponent } from './modulos/snackbar/snackbar.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
+    
+
   ],
   providers: [],
   bootstrap: [AppComponent]

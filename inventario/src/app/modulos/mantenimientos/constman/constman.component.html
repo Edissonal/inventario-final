@@ -1,0 +1,117 @@
+<h3>Listado de mantenimientos a relizar</h3>
+
+<div class="row">
+    <div class="col">
+        <input type="text"  class="form-control" #termino (keyup)="consultas(termino.value)" placeholder="buscar provedor">
+    </div>
+</div>
+
+<div *ngIf="termino.value" class="mt-5">
+    
+<form [formGroup]="manteForm"  (ngSubmit)="onSubmit()">
+    
+<table class="table table-bordered table-striped">
+    <tr class="filters">
+        <th>equipo</th>
+        <th>Ciudad</th>
+        <th>Sede</th>
+        <th>Ubicacion</th>
+        <th>Serial</th>
+        <th>fecha inicial</th>
+        <th>fecha proximo</th>
+        <th>fecha periodicidad</th>
+
+    </tr>
+ <tbody>
+     <tr *ngFor="let bus of busquedas;">
+        <td>
+            <select class="form-control largo " 
+                    disabled
+                    formControlName="id_equi"
+                    [(ngModel)]="bus.id_equi">
+        <option [value]="bus.id_equi">{{bus.nombre_equi}}</option>
+         </select>
+        </td>
+        
+        <td>
+            <select class="form-control largo" 
+                    disabled
+                    formControlName="id_ciu"
+                    [(ngModel)]="bus.id_ciu">
+        <option [value]="bus.id_ciu">{{bus.nombre_ciu}}</option>
+         </select>
+        </td>
+        
+      
+        <td>
+            <select class="form-control largo largo" 
+                    disabled
+                    formControlName="id_sede"
+                    [(ngModel)]="bus.id_sede">
+        <option [value]="bus.id_sede">{{bus.nombre_sede}}</option>
+         </select>
+        </td>
+        
+
+        <td>
+            <select class="form-control largo" 
+                    disabled
+                    formControlName="id_ubi"
+                    [(ngModel)]="bus.id_ubi">
+        <option [value]="bus.id_ubi">{{bus.nombre_ubi}}</option>
+         </select>
+        </td>
+        
+
+        <td>
+            <input  type="text"  
+                    class="form-control largo"
+                    disabled 
+                    formControlName="serial_con" 
+                    [(ngModel)]="bus.serial_con" >
+        </td>
+        
+        <td>
+            <div class="input-group largo">
+                <input class="form-control" 
+                        placeholder="yyyy-mm-dd" 
+                        ngbDatepicker #d1="ngbDatepicker"
+                        formControlName="fecha_ini" >
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary  far fa-calendar-alt" (click)="d1.toggle()" type="button"></button>
+                </div>
+              </div>
+          
+        </td>
+
+        <td>
+            <div class="input-group largo">
+                <input class="form-control" 
+                        placeholder="yyyy-mm-dd" 
+                        ngbDatepicker #d2="ngbDatepicker"
+                        formControlName="fecha_fi">
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary  far fa-calendar-alt" (click)="d2.toggle()" type="button"></button>
+                </div>
+
+              </div>
+          </td>
+
+          <td>
+          
+  
+            
+  
+  
+          </td>
+         
+       
+
+     </tr>
+ </tbody>
+</table>
+
+<button class="btn btn-primary">Guardar Cambios</button>
+</form>
+</div>
+
