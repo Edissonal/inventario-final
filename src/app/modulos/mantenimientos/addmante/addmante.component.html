@@ -1,0 +1,217 @@
+<form>
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Serial</label>
+        <div class="col">
+            <select class="form-control"
+                    #valor
+                    (change)="postmante(valor.value)"
+                    >
+                <option>Selecione Serial</option>
+                <option *ngFor="let item of mante" 
+                        [value]="item.serial_con">{{item.serial_con}}</option>
+            </select>
+
+         
+        </div>
+    </div>
+
+</form>
+
+
+<div *ngIf="vista" >
+    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Marca</label>
+        <div class="col">
+      <select class="form-control"
+                    [(ngModel)]="datos[0].id_ma"
+                    formControlName="id_ma"
+                    [class.is-invalid]="marcano"
+                    >
+                   
+                <option *ngFor="let mar of marcas" 
+                        [value]="mar.id_ma">{{mar.nombre_ma}}</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Equipo</label>
+        <div class="col">
+      <select class="form-control"
+                    [(ngModel)]="datos[0].id_equi"
+                    formControlName="id_equi"
+                    [class.is-invalid]="equino"
+                    >
+                   
+                <option *ngFor="let eq of equipos"
+                        [value]="eq.id_equi">{{eq.nombre_equi}}</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Provedores</label>
+        <div class="col">
+      <select class="form-control"
+                    [(ngModel)]="datos[0].id_pro"
+                    formControlName="id_pro"
+                    [class.is-invalid]="prono"
+                    >
+                   
+                <option *ngFor="let pro of provedor"
+                        [value]="pro.id_pro">{{pro.nombre_pro}}</option>
+            </select>
+            <small *ngIf="prono" class="text text-danger">
+                Ingrese provedor valido
+            </small>
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Ciudad</label>
+        <div class="col">
+      <select class="form-control"
+                    [(ngModel)]="datos[0].id_ciu"
+                    formControlName="id_ciu"
+                    [class.is-invalid]="ciuno"
+                    >
+                   
+                <option *ngFor="let ci of ciudad"
+                        [value]="ci.id_ciu">{{ci.nombre_ciu}}</option>
+            </select>
+            <small *ngIf="ciuno" class="text text-danger">
+                Ingrese ciudad valido
+            </small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Sede</label>
+        <div class="col">
+      <select class="form-control"
+                    [(ngModel)]="datos[0].id_sede"
+                    formControlName="id_sede"
+                    [class.is-invalid]="sedeno"
+                    >
+                   
+                <option *ngFor="let se of sede"
+                        [value]="se.id_sede">{{se.nombre_sede}}</option>
+            </select>
+            <small *ngIf="sedeno" class="text text-danger">
+                Ingrese sede valido
+            </small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Ubicacion</label>
+        <div class="col">
+      <select class="form-control"
+                    [(ngModel)]="datos[0].id_ubi"
+                    formControlName="id_ubi"
+                    [class.is-invalid]="ubino"
+                    >
+                   
+                <option *ngFor="let ubi of ubicacion"
+                        [value]="ubi.id_ubi">{{ubi.nombre_ubi}}</option>
+            </select>
+            <small *ngIf="ubino" class="text text-danger">
+                Ingrese ubicacion valido
+            </small>
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Fecha Ini man</label>
+        <div class="col">
+            <input type="text"  class="form-control" 
+                   formControlName="fecha_man" 
+                   [class.is-invalid]="fechamanno">
+                   <small *ngIf="fechamanno" class="text text-danger">
+                    Ingrese fecha valido
+                </small>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Periodicidad</label>
+        <div class="col">
+           
+            <select class="form-control"
+            #valor
+            formControlName="peri_man"
+            [class.is-invalid]="perino"
+            >
+           
+        <option value="3">trimestral</option>
+        <option value="6">semestral</option>
+        <option value="12">anual</option>
+        </select>
+        <small *ngIf="perino" class="text text-danger">
+            Ingrese periodicidad valido
+        </small>
+
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">Estado Man</label>
+        <div class="col">
+           
+            <select class="form-control"
+            formControlName="esta_man"
+            [class.is-invalid]="estano"
+            >
+           
+        <option value="0">En curso</option>
+        <option value="1">finalizado</option>
+    </select>
+    <small *ngIf="estano" class="text text-danger">
+        Ingrese estado valido
+    </small>
+
+        </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label class="col-2 col-form-label">&nbsp;</label>
+        <div class="col">
+            <button
+                   type="submit"
+                    class="btn btn-outline-primary">Guardar</button>
+                    
+        </div>
+    </div>
+    
+    <div class="form-group row invisible">
+        <label class="col-2 col-form-label">id consulta</label>
+        <div class="col">
+           
+            <input type="text" class="form-control" 
+                               [(ngModel)]="datos[0].id_con" 
+                               formControlName="id_con" 
+                               [class.is-invalid]="idconno">
+                               <small *ngIf="idconno" class="text text-danger">
+                                Ingrese id  valido
+                            </small>
+        </div>
+    </div>
+
+
+    
+
+    </form>
+</div>
+
+
+
+
+

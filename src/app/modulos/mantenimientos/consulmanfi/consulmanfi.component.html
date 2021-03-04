@@ -1,0 +1,25 @@
+<h4>Ingreso Mantenimiento</h4>
+<form autocomplete="off">
+
+    <div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Proveedor</label>
+            <div class="col">
+
+                <select class="form-control" 
+                #busca 
+                (change)="buscaMan(busca.value)">
+                <option>Selecione Provedor</option>
+                <option
+                *ngFor="let pro of provedores"
+                [value]="pro.nombre_pro">{{pro.nombre_pro}}</option>
+            </select>
+                  
+        </div>
+    </div>
+
+    </div>
+</form>
+
+
+<app-addmante  *ngIf="mante" [mante]="mante"></app-addmante>

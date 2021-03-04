@@ -1,0 +1,35 @@
+<h3>Listado de mantenimientos a relizar</h3>
+
+<div class="row">
+    <div class="col">
+        <input type="text"  class="form-control" #termino (keyup)="consultas(termino.value)" placeholder="buscar provedor">
+    </div>
+</div>
+
+<div *ngIf="termino.value" class="mt-5">
+    
+    
+<table class="table table-bordered table-striped"  id="excel-table">
+    <tr class="filters">
+        <th>equipo</th>
+        <th>Ciudad</th>
+        <th>Sede</th>
+        <th>Ubicacion</th>
+        <th>Serial</th>
+
+    </tr>
+ <tbody>
+     <tr *ngFor="let bus of busquedas;">
+  
+    <td>{{bus.nombre_equi}}</td>   
+    <td>{{bus.nombre_ciu}}</td>  
+    <td>{{bus.nombre_sede}}</td>   
+    <td>{{bus.nombre_ubi}}</td> 
+    <td>{{bus.serial_con}}</td> 
+     </tr>
+ </tbody>
+</table>
+
+<button class="btn btn-primary" (click)="exportexcel()">Exportar</button>
+</div>
+
