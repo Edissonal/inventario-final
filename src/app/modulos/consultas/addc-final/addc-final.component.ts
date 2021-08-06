@@ -22,6 +22,8 @@ export class AddcFinalComponent implements OnInit {
   sedes: any[] = [];
   showView: boolean = false;
   consultas: any;
+  validacion: any;
+  mensaje: string;
   constructor(private fb: FormBuilder,
               private marcaService: MarcaService,
               private equiposService: EquiposService,
@@ -35,6 +37,13 @@ export class AddcFinalComponent implements OnInit {
     }
     this.creaFormulario();
   }
+
+  tiempo() {
+    setTimeout(() => {
+      this.validacion = "";
+    }, 5000);
+  }
+
 
   get idNovalido() {
     return this.consultaForm.get('id_con').invalid && this.consultaForm.get('id_con').touched;
@@ -75,6 +84,10 @@ export class AddcFinalComponent implements OnInit {
     return this.consultaForm.get('id_se').invalid && this.consultaForm.get('id_se').touched;
   }
 
+  get tinno() {
+    return this.consultaForm.get('ti_man').invalid && this.consultaForm.get('ti_man').touched;
+  }
+
 
   ngOnInit() {
     this.conMa();
@@ -98,6 +111,7 @@ export class AddcFinalComponent implements OnInit {
       modelo_con: ['', [Validators.required,Validators.minLength(3)]],
       serial_con: ['', [Validators.required,Validators.minLength(3)]],
       placa_con: [{value: '', disabled: true}, Validators.required],
+      ti_man: ['', Validators.required],
     });
   }
 
@@ -166,8 +180,19 @@ export class AddcFinalComponent implements OnInit {
     }
     this.consultas = this.saveConsulta();
     this.consultasService.postConsulta(this.consultas)
-      .subscribe(res => { 
-        console.log(res);
+      .subscribe((res:any) => {
+        
+        if(res.cor == "404"){
+          console.log(res);
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+        } else {
+          console.log(res);
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+        }
       }, error => console.log(<any>error));
       this.consultaForm.reset();
   }
@@ -184,7 +209,8 @@ export class AddcFinalComponent implements OnInit {
       id_se: this.consultaForm.get('id_se').value,
       modelo_con:this.consultaForm.get('modelo_con').value, 
       serial_con: this.consultaForm.get('serial_con').value,
-      placa_con:this.consultaForm.get('placa_con').value, 
+      placa_con: this.consultaForm.get('placa_con').value,
+      ti_man:this.consultaForm.get('ti_man').value
     }
     return saveconsulta
   }

@@ -29,6 +29,7 @@ export class EdiequiComponent implements OnInit {
         this.equiposService.getequipo(this.id_equi)
           .subscribe(res=>{
             this.equipo = res['data'];
+            console.log(this.equipo);
             this.showView = true;
           });
       });
@@ -60,7 +61,7 @@ export class EdiequiComponent implements OnInit {
     this.equiposService.putequipo(this.equipo,this.id_equi)
       .subscribe(newequi => {
         console.log(newequi);
-      this.router.navigate(['consequi']);
+      this.router.navigate(['/auth/consequi']);
       }, error => console.log(<any>error));
   
   }

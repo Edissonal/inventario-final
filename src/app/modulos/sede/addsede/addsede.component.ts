@@ -5,6 +5,7 @@ import { SedeService } from '../../../servicios/sede.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
 import { ProvedoresService } from '../../../servicios/provedores.service';
 import { NgForm } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-addsede',
   templateUrl: './addsede.component.html',
@@ -21,6 +22,7 @@ export class AddsedeComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private sedeService : SedeService,
               private ciudadService: CiudadService,
+              private router: Router,
               private provedoresService: ProvedoresService) { 
                 if (this.sede) {
                   this.showView = true;
@@ -58,7 +60,7 @@ export class AddsedeComponent implements OnInit {
   }
 
   conCiu() {
-    this.ciudadService.getciudad()
+    this.ciudadService.getCiudad()
       .subscribe(res => {
         this.ciudades = res['data'];
         this.showView = true;
@@ -90,6 +92,7 @@ export class AddsedeComponent implements OnInit {
     this.sedeService.postsede(this.sedes)
       .subscribe(newsede => { 
         console.log(newsede);
+        this.router.navigate(['/auth/conssede']);
       }, error => console.log(<any>error));
       this.sedeForm.reset();
   }

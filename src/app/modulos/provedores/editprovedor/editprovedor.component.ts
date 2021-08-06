@@ -69,7 +69,7 @@ export class EditprovedorComponent implements OnInit {
     this.provedoresService.putprovedor(this.proveedor,this.id_pro)
       .subscribe(newpro => { 
         console.log(newpro);
-         this.router.navigate(['consprovedor']);
+         this.router.navigate(['/auth/consprovedor']);
       }, error => console.log(<any>error));
      
   }

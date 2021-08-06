@@ -1,0 +1,38 @@
+<h4>Ingreso de Ubicacion</h4>
+<form autocomplete="off" [formGroup]="formaForm"  (ngSubmit)="onSubmit()">
+
+    <div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre</label>
+            <div class="col">
+      
+              <input class="form-control"
+                     type="text"
+                     placeholder="Nombre"
+                     formControlName="nombre_ubi"
+                     [class.is-invalid]="nombreNovalido">
+                    
+                    <small *ngIf="nombreNovalido" class="text text-danger">
+                        Ingrese nombre ubicacion valido
+                      </small>
+            </div>
+          </div>
+                
+        
+          <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col">
+              <button 
+                      type="submit" 
+                      class="btn btn-outline-primary"
+                    
+                     >
+                Guardar
+              </button>
+              <button class="btn btn-primary ml-3" 
+                      routerLink="/auth/consultarubi">Regresar</button>
+            </div>
+          </div>
+          
+    </div>
+</form>

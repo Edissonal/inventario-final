@@ -17,17 +17,17 @@ export class ConstmanComponent implements OnInit {
 
 
   termino: string;
-  busquedas: any[] = [];
-  fileName= 'ExcelSheet.xlsx'; 
+  busquedas: [] = [];
+  fileName = 'ExcelSheet.xlsx';
 
 
 
   constructor(private mantenimientosService: MantenimientosService,
-              private fb: FormBuilder,
-              private cdref: ChangeDetectorRef,
-              private gnecxelService:GnecxelService
+    private fb: FormBuilder,
+    private cdref: ChangeDetectorRef,
+    private gnecxelService: GnecxelService
               
-              ) {}
+  ) { }
   ngOnInit() {
   }
 
@@ -40,13 +40,28 @@ export class ConstmanComponent implements OnInit {
         this.busquedas = res['data'];
         this.cdref.detectChanges();
       }, error => {
-          console.log(<any>error);
-    })
+        console.log(<any>error);
+      })
   }
 
 
-  exportexcel():void {
-      this.gnecxelService.exportAsExcelFile(this.busquedas ,'muestra')
-    }
+  exportexcel(): void {
+    this.gnecxelService.exportAsExcelFile(this.busquedas, 'muestra')
+  }
+  
+  quitar() {
+  
+    console.log('ejecutado');
+  
+    var result:any = this.busquedas.filter(function(obj:any, index){
+      return obj.mantenimiento_con === 'si';
+      
+    })
+    this.busquedas = [];
+
+    this.busquedas =result.slice();
+
+    console.log(this.busquedas);
+  }
   
 }

@@ -12,13 +12,22 @@ import { EquiposService } from '../../../servicios/equipos.service';
 export class AddequipoComponent implements OnInit {
   formaForm: FormGroup;
   equipo: any;
+  mensaje: string;
+  validacion: any;
 
   constructor(private fb: FormBuilder,
                 private equiposService: EquiposService) {
                   this.crearFormulario();  
                    }
   ngOnInit() {
-      }
+  }
+  
+  tiempo() {
+    setTimeout(() => {
+      this.validacion = "";
+    }, 5000);
+  }
+
   
   get equipoNovalido() {
     return this.formaForm.get('nombre_equi').invalid && this.formaForm.get('nombre_equi').touched;
@@ -38,8 +47,20 @@ export class AddequipoComponent implements OnInit {
     }
     this.equipo = this.saveEquipo();
     this.equiposService.postequipo(this.equipo)
-      .subscribe(newequi => {
-        console.log(newequi);
+      .subscribe((res: any) => {
+        if (res.code == '404') {
+          console.log(res);
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+        } else {
+          console.log(res);
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+          
+        }
+       
       }, error => console.log(<any>error));
     this.formaForm.reset();
   }

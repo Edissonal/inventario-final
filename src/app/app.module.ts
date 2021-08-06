@@ -1,35 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
 
 //modulos
-import { AddprovedorComponent } from './modulos/provedores/addprovedor/addprovedor.component';
-import { ConsprovedorComponent } from './modulos/provedores/consprovedor/consprovedor.component';
-import { EditprovedorComponent } from './modulos/provedores/editprovedor/editprovedor.component';
-import { ConsequipoComponent } from './modulos/equipos/consequipo/consequipo.component';
-import { AddequipoComponent } from './modulos/equipos/addequipo/addequipo.component';
-import { EdiequiComponent } from './modulos/equipos/ediequi/ediequi.component';
-import { ConstComponent } from './modulos/consultas/const/const.component';
-import { AddconsComponent } from './modulos/consultas/addcons/addcons.component';
-import { AddcFinalComponent } from './modulos/consultas/addc-final/addc-final.component';
-import { EditconComponent } from './modulos/consultas/editcon/editcon.component';
-import { CargaconsultComponent } from './modulos/cargas/cargaconsult/cargaconsult.component';
-import { BarraComponent } from './modulos/barra/barra.component';
-import { SnackbarComponent } from './modulos/snackbar/snackbar.component';
-import { ConstmanComponent } from './modulos/mantenimientos/constman/constman.component';
-import { CargamanComponent } from './modulos/cargas/cargaman/cargaman.component';
-import { ConsulmanComponent } from './modulos/mantenimientos/consulman/consulman.component';
-import { AddmanteComponent } from './modulos/mantenimientos/addmante/addmante.component';
-import { ConsulmanfiComponent } from './modulos/mantenimientos/consulmanfi/consulmanfi.component';
-import { AddmantefiComponent } from './modulos/mantenimientos/addmantefi/addmantefi.component';
-
+import { ModulosModule } from './modulos.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EstandarModule } from './estandar/estandar/estandar.module';
 
 
 
@@ -37,38 +16,18 @@ import { AddmantefiComponent } from './modulos/mantenimientos/addmantefi/addmant
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AddprovedorComponent,
-    ConsprovedorComponent,
-    EditprovedorComponent,
-    ConsequipoComponent,
-    AddequipoComponent,
-    EdiequiComponent,
-    ConstComponent,
-    AddconsComponent,
-    AddcFinalComponent,
-    EditconComponent,
-    CargaconsultComponent,
-    BarraComponent,
-    SnackbarComponent,
-    ConstmanComponent,
-    CargamanComponent,
-    ConsulmanComponent,
-    AddmanteComponent,
-    ConsulmanfiComponent,
-    AddmantefiComponent,
-
-
+    AppComponent
+    
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule
-    
-
+    ModulosModule,
+    EstandarModule,
+    NgbModule,
+   
   ],
   providers: [],
   bootstrap: [AppComponent]

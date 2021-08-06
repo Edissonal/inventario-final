@@ -14,3 +14,37 @@
 .element {
   @include invisible(hidden);
 }
+
+.btn-primary {
+  color: #fff;
+  background-color: #055d6b /* #d86d25*/;
+  border-color:  #055d6b;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+.btn-primary:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #333;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+
+.btn-danger {
+  color: #fff;
+  background-color: #d86d25 /* #d86d25*/;
+  border-color:  #d86d25;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+
+.btn-danger:hover {
+  color: #fff;
+  background-color: #333;
+  border-color: #333;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+
+}
+

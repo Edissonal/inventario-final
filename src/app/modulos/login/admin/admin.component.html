@@ -1,0 +1,123 @@
+<html>
+  <body>       
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="http://www.tecsoni.com.co/">TECSONI</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link" routerLink="/auth/consultas">Inicio <span class="sr-only">(current)</span></a>
+          </li>
+
+                  
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Proyecto
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/consprovedor">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/adicionarpro">Ingresar</a>              
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Equipo
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/consequi">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/adicionarequi">Ingresar</a>        
+              <a class="dropdown-item" routerLink="/auth/uploadequipo">Carga Masiva</a>      
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Marca
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/consultarma">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/adicionarma">Ingresar</a>  
+              <a class="dropdown-item" routerLink="/auth/uploadmarca">Carga Masiva</a>             
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Sedes
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/conssede">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/adicionarsede">Ingresar</a>              
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ubicacion
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/consultarubi">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/adicionarubi">Ingresar</a>    
+              <a class="dropdown-item" routerLink="/auth/uploadubicacion">Carga Masiva</a>          
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Inventario
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/consultas">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/addcons">Ingresar</a> 
+              <a class="dropdown-item" routerLink="/auth/cargaconsul">Carga Masiva</a>     
+              <a class="dropdown-item" routerLink="/auth/hisconsultas">Historico</a>         
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Manteniento
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/cosman">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/addmanfi">Ingresar</a>  
+              <a class="dropdown-item" routerLink="/auth/hismantenimiento">Historico</a>  
+
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" routerLinkActive="active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              usuarios
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" routerLink="/auth/constlogi">Consultar / Eliminar</a>              
+              <a class="dropdown-item" routerLink="/auth/logire">Ingresar</a>          
+            </div>
+          </li>
+
+
+
+          <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link">{{datos.data.nombre_usu}} <span class="sr-only">(current)</span></a>
+              </li>
+
+              <li class="nav-item" routerLinkActive="active">
+                <a class="nav-link"(click)="logout()"> cerrar cesion <span class="sr-only">(current)</span></a>
+              </li>
+          
+        </ul>
+        
+      </div>
+    </nav>
+    
+  </body> 
+</html>
+
+<div class="container mt-5">
+<router-outlet></router-outlet>
+</div>

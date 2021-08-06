@@ -1,4 +1,9 @@
-<h3>Listado de provedores</h3>
+<h3>Listado de Equipos</h3>
+
+<div class="d-flex flex-row-reverse mt-3">
+    <button class="btn btn-primary" routerLink="/auth/adicionarequi" >Agregar</button>
+</div>
+<br>
 
 <table class="table table-bordered table-striped">
 <thead>
@@ -14,7 +19,7 @@
     
     <td><button 
         class="btn btn-primary" 
-        routerLink="/editarequi/{{equipo.id_equi}}">editar</button></td>
+        routerLink="/auth/editarequi/{{equipo.id_equi}}">editar</button></td>
     <td><button 
         class="btn btn-danger"
         (click)="eliminarequi(equipo.id_equi)"

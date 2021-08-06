@@ -6,6 +6,17 @@
     </div>
 </div>
 
+
+<div class="form-check">
+        <input class="form-check-input"
+                type="radio"
+                name="mante"
+                (click)="quitar()"
+                 >
+                <label class="form-check-label">quitar elementos que no tienen mantenimiento</label>
+</div>
+
+
 <div *ngIf="termino.value" class="mt-5">
     
     
@@ -16,16 +27,19 @@
         <th>Sede</th>
         <th>Ubicacion</th>
         <th>Serial</th>
-
+        <th>Modelo</th>
+        <th>Mante</th>
     </tr>
  <tbody>
-     <tr *ngFor="let bus of busquedas;">
-  
+     <tr *ngFor="let bus of busquedas">
+      
     <td>{{bus.nombre_equi}}</td>   
     <td>{{bus.nombre_ciu}}</td>  
     <td>{{bus.nombre_sede}}</td>   
     <td>{{bus.nombre_ubi}}</td> 
     <td>{{bus.serial_con}}</td> 
+    <td>{{bus.modelo_con}}</td> 
+    <td>{{bus.mantenimiento_con}}</td> 
      </tr>
  </tbody>
 </table>

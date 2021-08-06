@@ -18,6 +18,7 @@ export class MantenimientosService {
   seriurl = "http://localhost/inventario/mantenimientos.php/consulman";
 
   potsman = "http://localhost/inventario/mantenimientos.php/addman";
+  mantu = "http://localhost/inventario/mantenimientos.php/mantenimientos-te";
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +30,6 @@ export class MantenimientosService {
 
   carmantenimiento(datos: any) {
    
-    console.log(datos);
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post(this.manurl, datos, httpOptions);
     
@@ -51,4 +51,24 @@ export class MantenimientosService {
     
   }
 
+  deleteMan(id:string) {
+    return this.http.get(this.manurl + '-delete/' + id);
+  }
+
+
+  getMa(id:string) {
+    const url = `${this.manurl}-te/${id}`
+    return this.http.get(url);
+  }
+
+  putman(mantenimiento: any, id: string) {
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    const url = `${this.manurl}-update/${id}`;
+    return this.http.post(url, mantenimiento, { headers });
+  }
 }
+
+

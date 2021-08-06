@@ -6,6 +6,10 @@
     </div>
  </div>
 
+ <div class="d-flex flex-row-reverse mt-3">
+    <button class="btn btn-primary" routerLink="/auth/addcons" >Agregar</button>
+</div>
+
  <div *ngIf="termino.value" class="mt-5">
 <table class="table table-bordered table-striped">
 <thead>
@@ -19,6 +23,7 @@
         <th>Sede</th>
         <th>Serial</th>
         <th>Placa</th>
+        <th>TieneMan</th>
         <th>editar</th>
         <th>eliminar</th>
         </tr>
@@ -34,10 +39,11 @@
     <td>{{busqueda.nombre_sede}}</td>
     <td>{{busqueda.serial_con}}</td>
     <td>{{busqueda.placa_con}}</td>
+    <td>{{busqueda.mantenimiento_con}}</td>
     
     <td><button 
         class="btn btn-primary" 
-        routerLink="/editcon/{{busqueda.id_con}}">editar</button></td>
+        routerLink="/auth/editcon/{{busqueda.id_con}}">editar</button></td>
     <td><button 
         class="btn btn-danger"
         (click)="eliminarcon(busqueda.id_con,termino.value)"

@@ -46,7 +46,7 @@ export class EditconComponent implements OnInit {
           .subscribe(res => {
             
             this.consultas = res['data'];
-            console.log(this.consultas);
+            console.log("Consulta",this.consultas);
             this.showView = true;
 
           });
@@ -90,6 +90,11 @@ export class EditconComponent implements OnInit {
     return this.consultaForm.get('id_sede').invalid && this.consultaForm.get('id_sede').touched;
   }
 
+  get tinno() {
+    return this.consultaForm.get('mantenimiento_con').invalid && this.consultaForm.get('mantenimiento_con').touched;
+  }
+
+
 
 
   creaFormulario() {
@@ -104,6 +109,7 @@ export class EditconComponent implements OnInit {
       modelo_con: ['', [Validators.required,Validators.minLength(3)]],
       serial_con: ['', [Validators.required,Validators.minLength(3)]],
       placa_con: [{value: '', disabled: true}, Validators.required],
+      mantenimiento_con: ['', Validators.required],
     });
   }
 
@@ -187,7 +193,7 @@ export class EditconComponent implements OnInit {
       .subscribe(res => { 
         console.log(res);
         this.showView = true;
-        this.router.navigate(['consulta']);
+        this.router.navigate(['/auth/consultas']);
       }, error => {
           console.log(<any>error);
       });
@@ -204,7 +210,8 @@ export class EditconComponent implements OnInit {
       id_sede: this.consultaForm.get('id_sede').value,
       modelo_con:this.consultaForm.get('modelo_con').value, 
       serial_con: this.consultaForm.get('serial_con').value,
-      placa_con:this.consultaForm.get('placa_con').value, 
+      placa_con: this.consultaForm.get('placa_con').value,
+      mantenimiento_con:this.consultaForm.get('mantenimiento_con').value
     }
     return saveconsulta;
   }

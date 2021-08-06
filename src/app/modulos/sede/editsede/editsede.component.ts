@@ -72,7 +72,7 @@ export class EditsedeComponent implements OnInit {
   }
 
   conCiu() {
-    this.ciudadService.getciudad()
+    this.ciudadService.getCiudad()
       .subscribe(res => {
         this.ciudades = res['data'];
         this.showView = true;
@@ -99,7 +99,7 @@ export class EditsedeComponent implements OnInit {
       .subscribe(newsede => { 
         console.log(newsede);
         this.showView = true;
-         this.router.navigate(['conssede']);
+         this.router.navigate(['/auth/conssede']);
       }, error => console.log(<any>error));
      
   }

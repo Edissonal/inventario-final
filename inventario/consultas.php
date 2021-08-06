@@ -41,7 +41,7 @@ function iniciales($nombre) {
 //listar provedores
 $app -> get('/consultas/:id',function($id) use($db,$app){
        
-        $sql="select C.id_con,D.id_ciu,D.nombre_ciu,S.id_sede,S.nombre_sede,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,C.modelo_con,C.serial_con,C.placa_con
+        $sql="select C.id_con,D.id_ciu,D.nombre_ciu,S.id_sede,S.nombre_sede,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,C.modelo_con,C.serial_con,C.placa_con,C.mantenimiento_con
         from 
         consultas C ,marca M ,equipo E,provedor P,ubicacion U, sede S,ciudad D 
         where C.id_ma = M.id_ma and
@@ -49,7 +49,8 @@ $app -> get('/consultas/:id',function($id) use($db,$app){
         C.id_pro =P.id_pro and 
         C.id_ubi = U.id_ubi and
         C.id_ciu = D.id_ciu and
-        C.id_sede = S.id_sede and nombre_pro  like''".$id."'%'";
+        C.id_sede = S.id_sede and  (P.nombre_pro =''".$id."'' OR C.serial_con = ''".$id."'' or E.nombre_equi=''".$id."'')";
+
         $query =$db->query($sql);
        
         $consultas = array();
@@ -128,11 +129,12 @@ $app ->post('/consultas',function() use($app,$db){
      $modelo =  $data->{'modelo_con'};
      $serial =  $data->{'serial_con'};
      $placa =   $data->{'placa_con'};
+     $mante =   $data->{'ti_man'};
 
 
-    $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con) 
+    $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con,mantenimiento_con) 
             VALUES 
-            ('".$id_ma."', '".$id_equi."', '".$id_pro."','".$id_ciu."','".$id_se."','".$id_ubi."', '".$modelo."', '".$serial."', '".$placa."')";
+            ('".$id_ma."', '".$id_equi."', '".$id_pro."','".$id_ciu."','".$id_se."','".$id_ubi."', '".$modelo."', '".$serial."', '".$placa."','".$mante."')";
             
     $insert = $db->query($query);
     $result  = array (
@@ -179,7 +181,7 @@ $app->get('/consultas-delete/:id', function($id) use($db,$app){
 //devolver una sola consulta
 
 $app ->get ('/consultas-con/:id', function ($id) use($db,$app){
-    $sql='select C.id_con,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,modelo_con,C.serial_con,C.placa_con,C.id_ciu,CI.nombre_ciu,C.id_sede,S.nombre_sede
+    $sql='select C.id_con,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,modelo_con,C.serial_con,C.placa_con,C.id_ciu,CI.nombre_ciu,C.id_sede,S.nombre_sede,C.mantenimiento_con
     from consultas C ,marca M ,equipo E,provedor P,ubicacion U, ciudad CI,sede S
     where C.id_ma = M.id_ma and
     C.id_equi = E.id_equi and
@@ -224,8 +226,9 @@ $app->post('/consultas-update/:id',function($id) use($db,$app){
      $modelo =  $data->{'modelo_con'};
      $serial =  $data->{'serial_con'};
      $placa =   $data->{'placa_con'};
+     $mantenimiento_con =   $data->{'mantenimiento_con'};
 
-    $sql ="UPDATE consultas SET id_ma = '$id_ma', id_equi = '$id_equi', id_pro = '$id_pro', id_ciu = '$id_ciu',id_sede = '$id_sede',id_ubi = '$id_ubi',modelo_con = '$modelo',serial_con = '$serial',placa_con = '$placa'
+    $sql ="UPDATE consultas SET id_ma = '$id_ma', id_equi = '$id_equi', id_pro = '$id_pro', id_ciu = '$id_ciu',id_sede = '$id_sede',id_ubi = '$id_ubi',modelo_con = '$modelo',serial_con = '$serial',placa_con = '$placa',mantenimiento_con = '$mantenimiento_con'
      WHERE id_con = '$id'";
 
     $query = $db ->query($sql);
