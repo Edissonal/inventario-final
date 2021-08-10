@@ -97,6 +97,8 @@ $app ->post('/provedor',function() use($app,$db){
           $serial =  $row->{'serial_con'};
           $id_ciu =  $row->{'id_ciu'};
           $id_sede =  $row->{'id_sede'};
+          $mantenimiento_con =  $row->{'mantenimiento_con'};
+          
       
           $result = $db->query("select * from consultas  where id_pro='".$id_pro."'");
           $count=$result->num_rows;
@@ -116,8 +118,8 @@ $app ->post('/provedor',function() use($app,$db){
             $valorf = $letra.$cadena2;
       
             
-            $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con) VALUES
-            ('".$id_ma."', '".$id_equi."', '".$id_pro."', '".$id_ciu."', '".$id_sede."', '".$id_ubi."', '".$modelo."', '".$serial."', '". $valorf."')";
+            $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con,mantenimiento_con) VALUES
+            ('".$id_ma."', '".$id_equi."', '".$id_pro."', '".$id_ciu."', '".$id_sede."', '".$id_ubi."', '".$modelo."', '".$serial."', '". $valorf."','". $mantenimiento_con."')";
             $insert = $db->query($query);
       
            
@@ -136,8 +138,8 @@ $app ->post('/provedor',function() use($app,$db){
             $valorf = $letra.$cadena2;
       
             
-            $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con) VALUES
-            ('".$id_ma."', '".$id_equi."', '".$id_pro."', '".$id_ciu."', '".$id_sede."', '".$id_ubi."', '".$modelo."', '".$serial."', '". $valorf."')";
+            $query ="INSERT INTO consultas (id_ma, id_equi, id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con,mantenimiento_con) VALUES
+            ('".$id_ma."', '".$id_equi."', '".$id_pro."', '".$id_ciu."', '".$id_sede."', '".$id_ubi."', '".$modelo."', '".$serial."', '". $valorf."','". $mantenimiento_con."')";
             $insert = $db->query($query);
           }
         }
