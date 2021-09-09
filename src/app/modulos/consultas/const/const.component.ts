@@ -11,6 +11,9 @@ export class ConstComponent{
 
   busquedas: any[] = [];
   termino: string;
+  page = 1;
+  pageSize = 10;
+  
   constructor(private consultasService:ConsultasService) { }
 
   consul(termino) {

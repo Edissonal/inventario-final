@@ -20,6 +20,7 @@ export class MantenimientosService {
   potsman = "http://localhost/inventario/mantenimientos.php/addman";
   mantu = "http://localhost/inventario/mantenimientos.php/mantenimientos-te";
 
+
   constructor(private http: HttpClient) { }
 
 
@@ -48,6 +49,7 @@ export class MantenimientosService {
   postMante(datos: string) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post(this.potsman, datos, httpOptions);
+
     
   }
 

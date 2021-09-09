@@ -8,6 +8,8 @@ import { ProvedoresService } from '../../../servicios/provedores.service';
 })
 export class ConsprovedorComponent implements OnInit {
   provedores: any[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private provedoresService: ProvedoresService) { }
 
   ngOnInit() {

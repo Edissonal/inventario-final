@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { UsuariosService } from '../../../servicios/usuarios.service';
 
 import { CommonModule } from "@angular/common";
+import { Md5 } from 'ts-md5';
+import { Params } from '@angular/router';
+
 @Component({
   selector: 'app-conslogi',
   templateUrl: './conslogi.component.html',
@@ -10,6 +13,9 @@ import { CommonModule } from "@angular/common";
 export class ConslogiComponent implements OnInit {
 
   usuarios: any[] = [];
+  estado: string;
+  page = 1;
+  pageSize = 10;
 
   constructor(private usuariosService:UsuariosService) { }
 
@@ -43,10 +49,32 @@ export class ConslogiComponent implements OnInit {
       });
   }
 
-   generadorPass(correo:string){
+   generadorPass(correo:string,id:number){
     var pwdChars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     var pwdLen = 10;
-    var randPassword = Array(pwdLen).fill(pwdChars).map(function(x) { return x[Math.floor(Math.random() * x.length)] }).join('');
-    console.log(randPassword , correo);
+     var randPassword = Array(pwdLen).fill(pwdChars).map(function (x) { return x[Math.floor(Math.random() * x.length)] }).join('');
+     const md5 = new Md5();
+     var encriptFinal:any = md5.appendStr(randPassword).end();
+     console.log(randPassword, correo);
+     this.estado = "generado";
+
+     const valores:any={
+       password_usu: encriptFinal,
+       estado: this.estado,
+       correo: correo,
+       pass:randPassword
+     }
+     
+     this.usuariosService.cambiarpass(id, valores)
+       .subscribe(res => {
+         console.log(res);
+       }, error => {
+         console.log(error);
+       });
+     
+
    }
+  
+  
+  
 }

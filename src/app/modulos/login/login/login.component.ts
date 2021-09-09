@@ -53,21 +53,28 @@ export class LoginComponent implements OnInit {
     this.usuarios = this.savelogin();
     this.usuariosService.validacion(this.usuarios)
       .subscribe((res:any) => {
-
+          
         if (res.code ==200) {
           console.log(res);
           localStorage.setItem('token', res.data.id_usu);
-       
-          if (res.data.rol_usu == 'administrador') {
+
+          if (res.data.esta_usu == 'generado') {
             
-            this.router.navigate(['auth']);
+            this.router.navigate([`/editar/edita/${res.data.id_usu}`]);
           }
 
-          if (res.data.rol_usu == 'usuario') {
-          
-            this.router.navigate(['usu']);
+          if (res.data.esta_usu == 'digitado') {
+            
+            if (res.data.rol_usu == 'administrador') {
+            
+              this.router.navigate(['auth']);
+            }
+  
+            if (res.data.rol_usu == 'usuario') {
+            
+              this.router.navigate(['usu']);
+            }
           }
-          
         }
         else {
          // return;

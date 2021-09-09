@@ -9,6 +9,8 @@ import { SedeService } from '../../../servicios/sede.service';
 export class ConssedeComponent implements OnInit {
 
   sedes: any[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private sedeService: SedeService) { }
 
   ngOnInit() {

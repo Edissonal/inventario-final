@@ -4,6 +4,7 @@ import { ErrorComponent } from './modulos/error/error.component';
 import { LoginComponent } from './modulos/login/login/login.component';
 import { AuthGuard } from './modulos/auth/auth.guard';
 import { RegisloComponent } from './modulos/login/regislo/regislo.component';
+import { EditlogiComponent } from './modulos/login/editlogi/editlogi.component';
 
 
 
@@ -22,6 +23,12 @@ const routes: Routes = [
     canLoad: [AuthGuard],
     canActivate:[AuthGuard]
   },
+  {
+    path: 'editar', loadChildren: () => import('./restablece/restablece.module').then(m => m.RestableceModule),
+    canLoad: [AuthGuard],
+    canActivate:[AuthGuard]
+  },
+  
   { path: 'logi', component: LoginComponent },
   { path: 'logire', component: RegisloComponent },
   { path:'**',redirectTo:'logi'},

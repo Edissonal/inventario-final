@@ -73,7 +73,6 @@ const routes: Routes =[
   { path: 'error', component: ErrorComponent},
   { path: 'login', component: LoginComponent },
   { path: 'constlogi', component: ConslogiComponent },
-  { path: 'editLogi/:id', component: EditlogiComponent},
   { path: 'user', component: EstandarComponent },
   { path: 'adicionarma', component: AddmarcaComponent },
   { path: 'consultarma', component: ConsmarcaComponent },

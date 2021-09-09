@@ -49,6 +49,8 @@ export class AddmanteComponent implements OnInit {
   validacion: any;
   mensaje: string;
   costo_man: string = "0";
+  lista: boolean = false;
+  result: any[] = [];
 
   constructor(private mantenimientosService: MantenimientosService,
     private fb: FormBuilder,
@@ -216,20 +218,45 @@ export class AddmanteComponent implements OnInit {
 
   postmante(termino: string) {
     
+   this.mante;
+
+    console.log("termino", termino);
+    //console.log(resultado);
+
+  
+     this.result= this.mante.filter(function(obj:any, index){
+      return obj.serial_con.toLowerCase().includes(termino.toLowerCase());
+
+    })
+    
+ 
+    if (this.result.length > 0) {
+      this.lista = true;
+      console.log(this.result);
+       
+     }
+
+    }
+  
+  buscar(termino:string) {
+    console.log(termino);
+    
     console.log("select", termino);
     this.mantenimientosService.getserial(termino)
       .subscribe(res => {
       
         this.datos = res['data'];
         this.vista = true;
+        this.lista = false;
+        this.formi.value.seri = termino;
+        
         console.log(this.datos);
       }, error => {
           console.log(error);
       });
-   
     
   }
-  
+
 
   onSubmit() {
      

@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-08-2021 a las 05:38:02
--- Versión del servidor: 10.4.10-MariaDB
--- Versión de PHP: 7.1.33
+-- Tiempo de generación: 08-09-2021 a las 05:51:20
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -203,21 +202,18 @@ CREATE TABLE `consultas` (
 --
 
 INSERT INTO `consultas` (`id_con`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `modelo_con`, `serial_con`, `placa_con`, `mantenimiento_con`) VALUES
-(78, 3, 2, 2, 82, 1, 1, 'Prueba1234', 'Xcsttp231', 'DIA0005', 'si'),
-(79, 2, 2, 2, 15, 2, 1, 'QAZWSXEDC', 'CDEXSWZAQz', 'DIA0006', '1'),
-(87, 3, 1, 2, 82, 1, 1, 'Prueba1234', 'Xcsttp23po', 'DIA0014', '1'),
-(88, 3, 1, 1, 82, 1, 1, 'Prueba1234', 'Xcsttp23qa', 'DIA0004', 'si'),
-(89, 2, 2, 1, 15, 2, 1, 'QAZWSXEDC', 'CDEXSWZAQcv', 'DIA0005', 'si'),
-(90, 3, 2, 2, 82, 1, 1, 'Prueba1234', 'Xcsttp23', 'DIA0006', '1'),
-(114, 2, 2, 1, 15, 2, 3, '3000.3000', 'dslflsñdkflñsd', 'DIA0006', 'no'),
-(115, 2, 2, 1, 18, 14, 3, 'dfgdfgdf', '432423432', 'DIA0007', 'si'),
-(116, 3, 2, 1, 18, 14, 4, 'sdfdsjfksdljf', '2222222123456', 'DIA0008', 'no'),
-(117, 2, 2, 1, 15, 2, 2, '3200', '3600', 'DIA0009', 'si'),
-(136, 2, 2, 1, 15, 2, 2, '1200', '111515', 'DIA0010', 'si'),
-(137, 1, 1, 1, 15, 1, 1, 'qwertgfdsazxcv', '1234456788', 'DIA0011', 'si'),
-(138, 2, 2, 1, 15, 2, 3, 'qazxswedcvfr', '1qazxsw234', 'DIA0012', 'no'),
-(140, 2, 2, 1, 16, 2, 2, 'xls', 'lhkfljfkjfghlgk', 'DIA0013', 'si'),
-(141, 2, 2, 1, 14, 14, 2, 'dfdklj', 'fifififi', 'DIA0014', 'si');
+(190, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0001', 'si'),
+(191, 3, 2, 3, 2, 2, 3, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0001', 'no'),
+(192, 4, 2, 4, 7, 3, 8, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0001', 'si'),
+(193, 2, 1, 3, 15, 1, 9, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0002', 'no'),
+(194, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0002', 'no'),
+(195, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0002', 'no'),
+(196, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0003', 'si'),
+(197, 3, 2, 3, 2, 2, 6, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0003', 'no'),
+(198, 4, 2, 4, 7, 3, 6, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0003', 'si'),
+(199, 2, 1, 3, 15, 1, 8, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0004', 'no'),
+(200, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0004', 'no'),
+(201, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0004', 'no');
 
 --
 -- Disparadores `consultas`
@@ -251,10 +247,9 @@ CREATE TABLE `equipo` (
 --
 
 INSERT INTO `equipo` (`id_equi`, `nombre_equi`) VALUES
-(1, 'lampara'),
-(2, 'ACCES POINT'),
-(88, 'Aire Acondicionado de Precisión'),
-(89, 'ssssssssss');
+(1, 'SWITCH'),
+(2, 'SERVIDORES'),
+(3, 'ACCES POINT');
 
 -- --------------------------------------------------------
 
@@ -284,14 +279,18 @@ CREATE TABLE `hisconsultas` (
 --
 
 INSERT INTO `hisconsultas` (`id_hcon`, `id_con`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `modelo_con`, `serial_con`, `placa_con`, `mantenimiento_con`, `estado_hcon`, `fecha_hcon`) VALUES
-(1, 137, 1, 1, 1, 15, 1, 1, 'qwertgfdsazxcv', '1234456788', 'DIA0011', '0', 'Insert', '0000-00-00 00:00:00'),
-(2, 138, 2, 2, 1, 15, 2, 3, 'qazxswedcvfr', '1qazxsw234', 'DIA0012', 'no', 'Insert', '0000-00-00 00:00:00'),
-(3, 139, 2, 2, 1, 82, 1, 2, 'rfvcdewsxzaq', '1qazxsw23edc', 'DIA0013', 'si', 'Insert', '2021-08-04 00:00:00'),
-(5, 116, 3, 2, 1, 18, 14, 4, 'sdfdsjfksdljf', '2222222123456', 'DIA0008', 'no', 'Update', '2021-08-04 00:00:00'),
-(6, 139, 2, 2, 1, 82, 1, 2, 'rfvcdewsxzaq', '1qazxsw23edc', 'DIA0013', 'si', 'Deleted', '2021-08-05 00:00:00'),
-(9, 140, 2, 2, 1, 16, 2, 2, 'xls', 'lhkfljfkjfghlgk', 'DIA0013', 'si', 'Insert', '2021-08-05 22:22:44'),
-(10, 141, 2, 2, 1, 14, 14, 2, 'dfdklj', 'wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', 'DIA0014', 'si', 'Insert', '2021-08-05 22:24:08'),
-(11, 141, 2, 2, 1, 14, 14, 2, 'dfdklj', 'fifififi', 'DIA0014', 'si', 'Update', '2021-08-05 22:25:31');
+(64, 190, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0001', 'si', 'Insert', '2021-08-31 20:04:33'),
+(65, 191, 3, 2, 3, 2, 2, 3, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0001', 'no', 'Insert', '2021-08-31 20:04:33'),
+(66, 192, 4, 2, 4, 7, 3, 8, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0001', 'si', 'Insert', '2021-08-31 20:04:33'),
+(67, 193, 2, 1, 3, 15, 1, 9, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0002', 'no', 'Insert', '2021-08-31 20:04:33'),
+(68, 194, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0002', 'no', 'Insert', '2021-08-31 20:04:33'),
+(69, 195, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0002', 'no', 'Insert', '2021-08-31 20:04:33'),
+(70, 196, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0003', 'si', 'Insert', '2021-08-31 20:13:52'),
+(71, 197, 3, 2, 3, 2, 2, 6, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0003', 'no', 'Insert', '2021-08-31 20:13:52'),
+(72, 198, 4, 2, 4, 7, 3, 6, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0003', 'si', 'Insert', '2021-08-31 20:13:52'),
+(73, 199, 2, 1, 3, 15, 1, 8, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0004', 'no', 'Insert', '2021-08-31 20:13:52'),
+(74, 200, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0004', 'no', 'Insert', '2021-08-31 20:13:52'),
+(75, 201, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0004', 'no', 'Insert', '2021-08-31 20:13:52');
 
 -- --------------------------------------------------------
 
@@ -318,21 +317,6 @@ CREATE TABLE `hismantenimiento` (
   `fecha_hman` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
---
--- Volcado de datos para la tabla `hismantenimiento`
---
-
-INSERT INTO `hismantenimiento` (`id_hman`, `id_man`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `id_con`, `fecha_man`, `estado_man`, `periodicidad_man`, `fecha_pro_man`, `costo_man`, `estado_hman`, `fecha_hman`) VALUES
-(1, 353, 2, 2, 1, 18, 14, 3, 115, '2021-3-25', 'En curso', '3', '2021-6-25', '9000000', 'Insert', '2021-08-05 00:25:09'),
-(2, 353, 2, 2, 1, 18, 14, 3, 115, '2021-3-25', 'En curso', '3', '2021-6-25', '3000000', 'Update', '2021-08-05 00:26:22'),
-(3, 354, 39, 2, 3, 15, 2, 5, 87, '', '', '', '', '', 'Insert', '2021-08-05 00:28:59'),
-(4, 354, 39, 2, 3, 15, 2, 5, 87, '2021-3-25', '', '', '', '', 'Update', '2021-08-05 00:29:40'),
-(5, 354, 39, 2, 3, 15, 2, 5, 87, '2021-3-25', 'En curso', '', '', '', 'Update', '2021-08-05 00:30:07'),
-(6, 354, 39, 2, 3, 15, 2, 5, 87, '2021-3-25', 'En curso', '3', '', '', 'Update', '2021-08-05 00:30:13'),
-(7, 354, 39, 2, 3, 15, 2, 5, 87, '2021-3-25', 'En curso', '3', '2021-6-25', '', 'Update', '2021-08-05 00:30:29'),
-(8, 354, 39, 2, 3, 15, 2, 5, 87, '2021-3-25', 'En curso', '3', '2021-6-25', '3000000', 'Update', '2021-08-05 00:30:38'),
-(11, 354, 39, 2, 3, 15, 2, 5, 87, '2021-3-25', 'En curso', '3', '2021-6-25', '3000000', 'Delete', '2021-08-05 00:42:10');
-
 -- --------------------------------------------------------
 
 --
@@ -354,17 +338,6 @@ CREATE TABLE `mantenimiento` (
   `fecha_pro_man` char(100) COLLATE utf8_spanish_ci NOT NULL,
   `costo_man` char(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `mantenimiento`
---
-
-INSERT INTO `mantenimiento` (`id_man`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `id_con`, `fecha_man`, `estado_man`, `periodicidad_man`, `fecha_pro_man`, `costo_man`) VALUES
-(349, 3, 1, 1, 82, 1, 1, 88, '2021-3-25', 'Finalizado', '3', '2021-6-25', '4000000'),
-(350, 2, 2, 1, 15, 2, 1, 89, '2021-3-18', 'Finalizado', '6', '2021-9-18', '26000000'),
-(351, 2, 2, 1, 15, 2, 3, 114, '2021-7-30', 'En curso', '6', '2022-2-2', '300000'),
-(352, 3, 2, 1, 18, 14, 4, 116, '2021-8-3', 'En curso', '3', '2021-11-3', '3000000'),
-(353, 2, 2, 1, 18, 14, 3, 115, '2021-3-25', 'En curso', '3', '2021-6-25', '3000000');
 
 --
 -- Disparadores `mantenimiento`
@@ -402,7 +375,7 @@ INSERT INTO `marca` (`id_ma`, `nombre_ma`) VALUES
 (2, 'HP'),
 (3, 'DELL'),
 (4, 'D-LINK'),
-(39, 'APC Confort');
+(5, 'ARUBA');
 
 -- --------------------------------------------------------
 
@@ -421,13 +394,10 @@ CREATE TABLE `provedor` (
 --
 
 INSERT INTO `provedor` (`id_pro`, `nombre_pro`, `nit_pro`) VALUES
-(1, 'dian', '8001972684'),
-(2, 'BDOty', '1234567890876'),
+(1, 'DIAN', '8001972684'),
+(2, 'BDO', '1234567890876'),
 (3, 'Contraloria', '123567890'),
-(4, 'WOM', '123456789'),
-(98, 'Prueba2022', '123456789'),
-(99, 'Edisson Andres Alonso|', '1111111111111111'),
-(103, 'Prueba2021', '1232334456');
+(4, 'WOM', '123456789');
 
 -- --------------------------------------------------------
 
@@ -450,10 +420,10 @@ CREATE TABLE `sede` (
 INSERT INTO `sede` (`id_sede`, `id_ciu`, `id_pro`, `nombre_sede`, `direccion_sede`) VALUES
 (1, 15, 2, 'Sede calle 30', 'Carrea 20 N 30 - 55'),
 (2, 15, 1, 'Sede 68', 'Calle 68 - 20 50'),
-(14, 82, 1, 'Sede Poblado', 'Carrera 50 N 20 - 35'),
-(15, 13, 4, 'Sede Palmas', 'Carrera 13 N 50 25'),
-(16, 15, 3, 'Sede Edificio Inter', 'Calle 20 50 A 40'),
-(17, 8, 4, 'Centro', 'Calle 20 N 50 - 25');
+(3, 82, 1, 'Sede Poblado', 'Carrera 50 N 20 - 35'),
+(4, 13, 4, 'Sede Palmas', 'Carrera 13 N 50 25'),
+(5, 15, 3, 'Sede Edificio Inter', 'Calle 20 50 A 40'),
+(6, 8, 4, 'Centro', 'Calle 20 N 50 - 25');
 
 -- --------------------------------------------------------
 
@@ -493,17 +463,17 @@ CREATE TABLE `usuario` (
   `nombre_usu` char(100) COLLATE utf8_spanish_ci NOT NULL,
   `correo_usu` char(100) COLLATE utf8_spanish_ci NOT NULL,
   `password_usu` char(100) COLLATE utf8_spanish_ci NOT NULL,
-  `rol_usu` char(150) COLLATE utf8_spanish_ci NOT NULL
+  `rol_usu` char(150) COLLATE utf8_spanish_ci NOT NULL,
+  `esta_usu` char(100) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usu`, `nombre_usu`, `correo_usu`, `password_usu`, `rol_usu`) VALUES
-(29, 'edisson Andres', 'edissonalonso@gmail.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'administrador'),
-(30, 'Carolina Tavera', 'mcarotaverao@gmail.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'administrador'),
-(31, 'yuliam', 'ealonso@vision.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'usuario');
+INSERT INTO `usuario` (`id_usu`, `nombre_usu`, `correo_usu`, `password_usu`, `rol_usu`, `esta_usu`) VALUES
+(29, 'edisson Andres', 'edissonalonso@gmail.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'administrador', ''),
+(30, 'Carolina Tavera', 'mcarotaverao@gmail.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'administrador', '');
 
 --
 -- Índices para tablas volcadas
@@ -618,7 +588,7 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id_con` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id_con` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
@@ -630,19 +600,19 @@ ALTER TABLE `equipo`
 -- AUTO_INCREMENT de la tabla `hisconsultas`
 --
 ALTER TABLE `hisconsultas`
-  MODIFY `id_hcon` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_hcon` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT de la tabla `hismantenimiento`
 --
 ALTER TABLE `hismantenimiento`
-  MODIFY `id_hman` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_hman` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento`
 --
 ALTER TABLE `mantenimiento`
-  MODIFY `id_man` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=355;
+  MODIFY `id_man` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=375;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
@@ -672,7 +642,7 @@ ALTER TABLE `ubicacion`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usu` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_usu` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Restricciones para tablas volcadas

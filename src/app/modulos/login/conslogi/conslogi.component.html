@@ -5,7 +5,6 @@
         <tr class="filters">
                 <th>nombre </th>
                 <th>correo</th>
-                <th>Editar</th>
                 <th>Eliminar</th>
                 <th>Cambiar pass</th>
         </tr>
@@ -14,12 +13,15 @@
         <tr *ngFor="let usu of usuarios">
         <td>{{usu.nombre_usu}}</td>
         <td>{{usu.correo_usu}}</td>
-        <td> <button class="btn btn-danger" routerLink="/auth/editLogi/{{usu.id_usu}}">editar</button></td>
         <td> <button class="btn btn-primary"
                      (click)="delusuario(usu.id_usu)">eliminar</button></td>
     
-        <td> <button class="btn btn-danger"  (click)="generadorPass(usu.correo_usu)">Cambiar Pass</button></td>
+        <td> <button class="btn btn-danger"  (click)="generadorPass(usu.correo_usu,usu.id_usu)">Cambiar Pass</button></td>
         </tr>
     </tbody>
 
 </table>
+
+<ngb-pagination [collectionSize]="usuarios.length" 
+                [(page)]="page"
+                ></ngb-pagination>

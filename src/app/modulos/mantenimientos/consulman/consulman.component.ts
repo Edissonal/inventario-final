@@ -10,10 +10,13 @@ export class ConsulmanComponent implements OnInit {
 
   buscar: any[] = [];
   txtMan: string;
-  constructor(private mantenimientosService: MantenimientosService) { }
   date: Date;
   total: number[] = [];
   valor: number;
+  page = 1;
+  pageSize = 10;
+  constructor(private mantenimientosService: MantenimientosService) { }
+
  
   ngOnInit() { 
  

@@ -8,6 +8,8 @@ import { EquiposService } from '../../../servicios/equipos.service';
 })
 export class ConsequipoComponent implements OnInit {
   equipos: any[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private equiposService:EquiposService) { }
 
   ngOnInit() {

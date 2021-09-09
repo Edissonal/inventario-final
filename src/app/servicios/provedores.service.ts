@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,5 +47,7 @@ export class ProvedoresService {
    return this.http.get(this.prourl+ '-delete/'+ id$)
 
   }
+
+ 
 }
 

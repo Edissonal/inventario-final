@@ -20,7 +20,8 @@ export class EditlogiComponent implements OnInit {
   showview2: boolean = false;
   encrip:any;
   encrip1:any;
-  password:any;
+  password: any;
+  estado: string;
 
 
 
@@ -44,7 +45,7 @@ export class EditlogiComponent implements OnInit {
 
        formaform:FormGroup = this.fb.group({
         correo_usu: ['', [Validators.required,Validators.minLength(5)]],
-        nombre_usu: ['', [Validators.required,Validators.minLength(5)]],
+        nombre_usu: ['', [Validators.required, Validators.minLength(5)]],
         password_usu1:['',[Validators.required,Validators.minLength(8)]],
         password_usu2:['',[Validators.required,Validators.minLength(8)]],
        },{
@@ -71,7 +72,7 @@ export class EditlogiComponent implements OnInit {
     this.usuariosService.putlogida(this.usuario,this.id_usu)
     .subscribe(res =>{
       console.log(res);
-      this.router.navigate(['/auth/constlogi'])
+      this.router.navigate(['logi'])
     },error => console.log(error));
 
   }
@@ -82,10 +83,13 @@ export class EditlogiComponent implements OnInit {
     const md5 = new Md5();
     let password_usu1 = this.formaform.get('password_usu1').value;
     this.encrip1 = md5.appendStr(password_usu1).end();
+    this.estado = "digitado";
     const saveusu = {
+      nombre_usu:this.formaform.get('nombre_usu').value,
       correo_usu: this.formaform.get('correo_usu').value,
-      nombre_usu: this.formaform.get('nombre_usu').value,
-      password_usu1: this.encrip1
+      password_usu1: this.encrip1,
+      estado_usu: this.estado
+
     }
     
     return saveusu;

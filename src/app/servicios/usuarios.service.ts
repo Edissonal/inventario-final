@@ -114,5 +114,17 @@ export class UsuariosService {
   return this.http.post(url,usuario,{headers});
 
   }
+  
+  cambiarpass(id: number, pass: string) {
+    
+    console.log('CLAVE',pass);
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+    
+    const url = `${this.usurl}-update/${id}`;
+    return this.http.post(url, pass, { headers });
 
+  }
 }

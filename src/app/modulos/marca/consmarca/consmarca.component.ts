@@ -9,6 +9,8 @@ import { MarcaService } from '../../../servicios/marca.service';
 export class ConsmarcaComponent implements OnInit {
 
   marcas: any[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private marcaService: MarcaService) { }
 
   ngOnInit() {

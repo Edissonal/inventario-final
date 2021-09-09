@@ -39,7 +39,11 @@ function iniciales($nombre) {
     }
 }
 
-
+function validarFecha($fecha_man, $format = 'Y-m-d')
+{
+    $d = DateTime::createFromFormat($format, $fecha_man);
+    return $d && $d->format($format) == $fecha_man;
+}
 //listar consultas
 $app -> get('/mantenimientos/:id',function($id) use($db,$app){
        
@@ -106,50 +110,81 @@ $app -> get('/mantenimientos/:id',function($id) use($db,$app){
 });
 
 
-// ingresar mantenimiento
+// ingresar Carga
 
 $app ->post('/mantenimientos',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
+ 
+ $estado = true;
     foreach($data as $row){
-     $id_ma =   $row->{'id_ma'};
-     $id_equi = $row->{'id_equi'};
-     $id_pro =  $row->{'id_pro'};
-     $id_ciu =  $row->{'id_ciu'};
-     $id_sede =  $row->{'id_sede'}; 
-     $id_con  =  $row->{'id_con'};
-     $id_ubi =  $row->{'id_ubi'};
+
      $fecha_man=   $row->{'fecha_man'};
-     $estado_man=   $row->{'estado_man'};
-     $periodicidad_man=   $row->{'periodicidad_man'};
-     $costo_man=   $row->{'costo_man'};
 
-     $fecha_fi = date("Y-m-d",strtotime($fecha_man."+  ".$periodicidad_man." month")); 
+     $prueba = validarFecha($fecha_man);
+              
+        if($prueba == true){
+          
+        }else{
+           $estado = false;
+           $result  = array (
+            'status'=>'error',
+            'code' =>404,
+            'message'=>'Formato de fecha incorrecto'
+           );
+           echo json_encode($result); 
 
-
-   $query ="INSERT INTO mantenimiento (
-            id_ma,id_equi,id_pro,id_ciu,id_sede,id_ubi,id_con,fecha_man,estado_man,periodicidad_man,fecha_pro_man,costo_man) 
-            VALUES 
-            ('".$id_ma."','".$id_equi."','".$id_pro."','".$id_ciu."','".$id_sede."','".$id_ubi."','".$id_con."','".$fecha_man."','".$estado_man."','".$periodicidad_man."','".$fecha_fi."','".$costo_man."')";
-            
-    $insert = $db->query($query);
-
-   }
-    $result  = array (
-        'status'=>'error',
-        'code' =>404,
-        'message'=>'mantenimiento no creado correctamente'
-       );
-    
-    if($insert){
-     $result  = array (
-     'status'=>'success',
-     'code' =>200,
-     'message'=>'mantenimiento creado correctamente'
-    );
+            break;  
+    }
 
     }
-    echo json_encode($result);    
+
+    
+    
+    
+if($estado == true){
+    foreach($data as $row){
+        $id_ma =   $row->{'id_ma'};
+        $id_equi = $row->{'id_equi'};
+        $id_pro =  $row->{'id_pro'};
+        $id_ciu =  $row->{'id_ciu'};
+        $id_sede =  $row->{'id_sede'}; 
+        $id_con  =  $row->{'id_con'};
+        $id_ubi =  $row->{'id_ubi'};
+        $fecha_man=   $row->{'fecha_man'};
+        $estado_man=   $row->{'estado_man'};
+        $periodicidad_man=   $row->{'periodicidad_man'};
+        $costo_man=   $row->{'costo_man'};
+   
+        $fecha_fi = date("Y-m-d",strtotime($fecha_man."+  ".$periodicidad_man." month")); 
+   
+   
+      $query ="INSERT INTO mantenimiento (
+               id_ma,id_equi,id_pro,id_ciu,id_sede,id_ubi,id_con,fecha_man,estado_man,periodicidad_man,fecha_pro_man,costo_man) 
+               VALUES 
+               ('".$id_ma."','".$id_equi."','".$id_pro."','".$id_ciu."','".$id_sede."','".$id_ubi."','".$id_con."','".$fecha_man."','".$estado_man."','".$periodicidad_man."','".$fecha_fi."','".$costo_man."')";
+               
+       $insert = $db->query($query);
+   
+      }
+       $result  = array (
+           'status'=>'error',
+           'code' =>404,
+           'message'=>'mantenimiento no creado correctamente'
+          );
+       
+       if($insert){
+        $result  = array (
+        'status'=>'success',
+        'code' =>200,
+        'message'=>'mantenimiento creado correctamente'
+       );
+   
+       }
+      
+       echo json_encode($result); 
+}
+     
 });
 
 
@@ -187,6 +222,8 @@ $app ->get ('/consultasman/:id', function ($id) use($db,$app){
 echo json_encode($result);
 
 });
+
+
 
 
 //devolver datos serial  de consulta

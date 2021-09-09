@@ -9,6 +9,8 @@ import { UbicacionService } from '../../../servicios/ubicacion.service';
 export class ConsubicacionComponent implements OnInit {
 
   ubicacionn: any[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private ubicacionService: UbicacionService) { }
 
   ngOnInit() {

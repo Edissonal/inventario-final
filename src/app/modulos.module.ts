@@ -31,7 +31,6 @@ import { LoginComponent } from './modulos/login/login/login.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ErrorComponent } from './modulos/error/error.component';
 import { ConslogiComponent } from './modulos/login/conslogi/conslogi.component';
-import { EditlogiComponent } from './modulos/login/editlogi/editlogi.component';
 import { RegisloComponent } from './modulos/login/regislo/regislo.component';
 import { EstandarComponent } from './modulos/login/estandar/estandar.component';
 import { AdminComponent } from './modulos/login/admin/admin.component';
@@ -85,7 +84,6 @@ import { MenuadminComponent } from './modulos/login/menuadmin/menuadmin.componen
     LoginComponent,
     ErrorComponent,
     ConslogiComponent,
-    EditlogiComponent,
     RegisloComponent,
     EstandarComponent,
     AdminComponent,

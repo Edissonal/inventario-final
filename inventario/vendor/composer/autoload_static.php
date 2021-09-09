@@ -4,8 +4,22 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3d0113004a75cff908fcf4725a18f3a4
+class ComposerStaticInit8cac5fb70463e1dccf50be20e1bb0c8b
 {
+    public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'PHPMailer\\PHPMailer\\' => 20,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'PHPMailer\\PHPMailer\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpmailer/phpmailer/src',
+        ),
+    );
+
     public static $prefixesPsr0 = array (
         'S' => 
         array (
@@ -16,15 +30,12 @@ class ComposerStaticInit3d0113004a75cff908fcf4725a18f3a4
         ),
     );
 
-    public static $classMap = array (
-        'PiramideUploader' => __DIR__ . '/../..' . '/piramide-uploader-master/PiramideUploader.php',
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixesPsr0 = ComposerStaticInit3d0113004a75cff908fcf4725a18f3a4::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit3d0113004a75cff908fcf4725a18f3a4::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8cac5fb70463e1dccf50be20e1bb0c8b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8cac5fb70463e1dccf50be20e1bb0c8b::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit8cac5fb70463e1dccf50be20e1bb0c8b::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

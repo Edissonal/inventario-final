@@ -4,7 +4,7 @@
     <div class="form-group row">
         <label class="col-2 col-form-label">Serial</label>
         <div class="col">
-            <select class="form-control"
+           <!-- <select class="form-control"
                     #valor
                     formControlName="seri"
                     [class.is-invalid]="serino"
@@ -18,6 +18,21 @@
             <small *ngIf="serino" class="text text-danger">
                 Ingrese Serial valido
             </small>
+            -->
+            <input class="form-control" 
+                   #valores 
+                   formControlName="seri"
+                   (keyup)="postmante(valores.value)"
+                   [(ngModel)]="formi.value.seri"
+                   
+                   >
+           
+            <ul class="list-group" *ngIf="lista == true">
+                <li 
+                    class="list-group-item list-group-item-action"
+                    *ngFor="let seri of result"                 
+                    (click)="buscar(seri.serial_con)">{{seri.serial_con}}</li>
+            </ul>
         </div>
     </div>
 

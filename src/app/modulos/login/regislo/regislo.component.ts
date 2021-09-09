@@ -20,6 +20,7 @@ export class RegisloComponent implements OnInit {
   registro: any;
   validacion: number;
   mensaje: string;
+  estado: string;
 
   formaForm: FormGroup = this.fb.group({
     nombre_usu: ['', [Validators.required]],
@@ -79,12 +80,14 @@ export class RegisloComponent implements OnInit {
     const md5 = new Md5();
     let password_usu = this.formaForm.get('password_usu').value;
     this.encrip = md5.appendStr(password_usu).end();
+    this.estado = "digitado";
     
     const login = {
       nombre_usu: this.formaForm.get('nombre_usu').value,
       correo_usu: this.formaForm.get('correo_usu').value,
       password_usu: this.encrip,
-      roll_usu:this.formaForm.get('roll_usu').value
+      roll_usu: this.formaForm.get('roll_usu').value,
+      estado_usu:this.estado
     }
     return login;
   }
