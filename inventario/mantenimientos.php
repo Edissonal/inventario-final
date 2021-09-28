@@ -115,27 +115,136 @@ $app -> get('/mantenimientos/:id',function($id) use($db,$app){
 $app ->post('/mantenimientos',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
- 
- $estado = true;
+    $count ='';
+    $estado = true;
+    $mensaje='';
+
     foreach($data as $row){
 
-     $fecha_man=   $row->{'fecha_man'};
+        $fecha_man=   $row->{'fecha_man'};
 
-     $prueba = validarFecha($fecha_man);
+        $prueba = validarFecha($fecha_man);
               
-        if($prueba == true){
-          
-        }else{
-           $estado = false;
-           $result  = array (
-            'status'=>'error',
-            'code' =>404,
-            'message'=>'Formato de fecha incorrecto'
-           );
-           echo json_encode($result); 
-
+            if($prueba == true){
+            
+            }else{
+            $estado = false;
+            $mensaje ="Formato fecha incorrecto";
             break;  
-    }
+            }
+
+        $id_con =  $row->{'id_con'};
+        $result = $db->query("select * from consultas  where id_con='".$id_con."'");
+        $count=$result->num_rows;
+
+        if($count > 0){
+    
+        }elseif($count === 0){    
+            $estado= false;
+            $mensaje='id consulta invalida';
+            break;  
+        }
+
+        $id_ma =  $row->{'id_ma'};
+        $result = $db->query("select * from marca  where id_ma='".$id_ma."'");
+        $count=$result->num_rows;
+
+        if($count > 0){
+    
+        }elseif($count === 0){    
+            $estado= false;
+            $mensaje='id marca invalida';
+            break;  
+        }
+    
+        $id_equi =  $row->{'id_equi'};
+        $result = $db->query("select * from equipo  where id_equi='".$id_equi."'");
+        $count=$result->num_rows;
+
+        if($count > 0){
+    
+        }elseif($count === 0){    
+            $estado= false;
+            $mensaje='id equipo invalida';
+            break;  
+        }
+
+        $id_pro =  $row->{'id_pro'};
+        $result = $db->query("select * from provedor  where id_pro='".$id_pro."'");
+        $count=$result->num_rows;
+
+        if($count > 0){
+    
+        }elseif($count === 0){    
+            $estado= false;
+            $mensaje='id provedor invalida';
+            break;  
+        }
+
+        $id_ciu =  $row->{'id_ciu'};
+        $result = $db->query("select * from ciudad  where id_ciu='".$id_ciu."'");
+        $count=$result->num_rows;
+
+        if($count > 0){
+    
+        }elseif($count === 0){    
+            $estado= false;
+            $mensaje='id ciudad invalida';
+            break;  
+        }
+
+        $id_sede =  $row->{'id_sede'};
+        $result = $db->query("select * from sede  where id_sede='".$id_sede."'");
+        $count=$result->num_rows;
+
+        if($count > 0){
+    
+        }elseif($count === 0){    
+            $estado= false;
+            $mensaje='id sede invalida';
+            break;  
+        }
+
+        $id_ubi =  $row->{'id_ubi'};
+        $result = $db->query("select * from ubicacion  where id_ubi='".$id_ubi."'");
+        $count=$result->num_rows;
+
+        if($count > 0){
+    
+        }elseif($count === 0){    
+            $estado= false;
+            $mensaje='id ubicacion invalida';
+            break;  
+        }
+
+        $estado_man =  $row->{'estado_man'};
+        if(empty($estado_man)){
+          $mensaje='estado   es obligatorio';
+          $estado = false;
+          break;
+        }
+
+        $periodicidad_man =  $row->{'periodicidad_man'};
+        if(empty($periodicidad_man)){
+          $mensaje='periodicidad es obligatorio';
+          $estado = false;
+          break;
+        }
+
+
+        $costo_man =  $row->{'costo_man'};
+        if(empty($costo_man)){
+          $mensaje='costo man es obligatorio';
+          $estado = false;
+          break;
+        }
+
+
+
+        
+
+
+
 
     }
 
@@ -182,9 +291,14 @@ if($estado == true){
    
        }
       
-       echo json_encode($result); 
+}else{
+    $result  = array (
+        'status'=>'error',
+        'code' =>404,
+        'message'=>$mensaje
+        );
 }
-     
+echo json_encode($result);     
 });
 
 

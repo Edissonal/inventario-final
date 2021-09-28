@@ -15,27 +15,7 @@ if($method == "OPTIONS") {
     die();
 }
 
-function iniciales($nombre) {
-    $ret = '';
-    
-    $cadena = explode(" ", $nombre);
 
-    if(count($cadena) >= 2){
-    
-    foreach (explode(' ', $nombre,3) as $word)
-        $ret .= strtoupper($word[0]);
-             strlen($ret);
-           if(strlen($ret)<=2){
-           return  $ret = strtoupper(substr($nombre, 0,3));
-      }else{
-         return $ret;
-      }
-      
-    } else{
-        //echo "toca descomponer palabra";
-        return  $ret = strtoupper(substr($nombre, 0,3));
-    }
-}
 
 
 //listar historico consultas
@@ -177,6 +157,55 @@ $app ->get ('/mantenimiento-con/:id', function ($id) use($db,$app){
     }
     echo json_encode($result);
 });
+
+
+$app ->post('/addmanh',function() use($app,$db){
+
+    $data = json_decode(file_get_contents('php://input', true));
+
+    $id_ma =   $data->{'id_ma'};
+    $id_equi = $data->{'id_equi'};
+    $id_pro =  $data->{'id_pro'};
+    $id_ciu =  $data->{'id_ciu'};
+    $id_sede =  $data->{'id_sede'}; 
+    $id_con  =  $data->{'id_con'};
+    $id_ubi =  $data->{'id_ubi'};
+    $fecha_man =   $data->{'fecha_man'};
+    $estado_man =   $data->{'esta_man'};
+    $periodicidad_man =   $data->{'peri_man'};
+    $fecha_pro_man =   $data->{'fecha_pro_man'};
+    $costo_man =   $data->{'costo_man'};
+    $estado_hman =   $data->{'estado_hman'};
+    $fecha_hman =   $data->{'fecha_hman'};
+    $id_usu =   $data->{'id_usu'};
+    
+
+    $query ="INSERT INTO hismantenimiento (
+    id_ma,id_equi,id_pro,id_ciu,id_sede,id_ubi,id_con,fecha_man,estado_man,periodicidad_man,fecha_pro_man,costo_man,estado_hman,fecha_hman,id_usu) 
+    VALUES 
+    ('".$id_ma."','".$id_equi."','".$id_pro."','".$id_ciu."','".$id_sede."','".$id_ubi."','".$id_con."','".$fecha_man."','".$estado_man."','".$periodicidad_man."','".$fecha_pro_man."','".$costo_man."',
+     '".$estado_hman."','".$fecha_hman."','".$id_usu."')";
+     $insert = $db->query($query);  
+
+    $result  = array (
+            'status'=>'error',
+            'code' =>404,
+            'message'=>'mantenimiento no creado correctamente'
+    );
+        
+    if($insert){
+     $result  = array (
+     'status'=>'success',
+     'code' =>200,
+     'message'=>'mantenimiento creado correctamente'
+    );
+    
+    }
+    echo json_encode($result);    
+    
+});
+
+
 
 $app->run();
 

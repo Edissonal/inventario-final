@@ -17,7 +17,8 @@ export class MantenimientosService {
 
   seriurl = "http://localhost/inventario/mantenimientos.php/consulman";
 
-  potsman = "http://localhost/inventario/mantenimientos.php/addman";
+  potsmanh = "http://localhost/inventario/hismantenimiento.php/";
+  potsman = "http://localhost/inventario/mantenimientos.php/";
   mantu = "http://localhost/inventario/mantenimientos.php/mantenimientos-te";
 
 
@@ -48,8 +49,17 @@ export class MantenimientosService {
 
   postMante(datos: string) {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.potsman, datos, httpOptions);
+    let url = this.potsman + 'addman';
+    return this.http.post(url, datos, httpOptions);
 
+    
+  }
+
+  posManteH(datos: string) {
+    console.log(datos)
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    let url = this.potsmanh + 'addmanh';
+    return this.http.post(url, datos, httpOptions);
     
   }
 

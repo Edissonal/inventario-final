@@ -11,6 +11,7 @@ import { UbicacionService } from '../../../servicios/ubicacion.service';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { NumberPipe } from '../../pipes/numeros.pipe';
+import { UsuariosService } from '../../../servicios/usuarios.service';
 
 @Component({
   selector: 'app-editman',
@@ -35,7 +36,9 @@ export class EditmanComponent implements OnInit {
   fecha_pro_man: any = 0;
   perio: any=0;
   fecha_man: NgbDateStruct;
-  costo_man:  string ="0";
+  costo_man: string = "0";
+  valorfi: any;
+  histman: any;
   
   constructor(private fb:FormBuilder,  
               private activateRoute: ActivatedRoute,
@@ -47,7 +50,8 @@ export class EditmanComponent implements OnInit {
               private sedeService: SedeService,
               private ubicacionService: UbicacionService,
               private router: Router,
-              private changeRef:ChangeDetectorRef
+              private changeRef: ChangeDetectorRef,
+              private usuariosService:UsuariosService
               
               
               ) {
@@ -111,7 +115,7 @@ export class EditmanComponent implements OnInit {
     return this.formaForm.get('periodicidad_man').invalid && this.formaForm.get('periodicidad_man').touched;
   }
   get estano() {
-    return this.formaForm.get('estado_man').invalid && this.formaForm.get('estado_man').touched;
+    return this.formaForm.get('esta_man').invalid && this.formaForm.get('esta_man').touched;
   }
 
   get constono() {
@@ -191,7 +195,7 @@ export class EditmanComponent implements OnInit {
       id_ubi: ['', [Validators.required,]],
       fecha_man: ['', [Validators.required,]],
       periodicidad_man: ['', [Validators.required,]],
-      estado_man: ['', [Validators.required,]],
+      esta_man: ['', [Validators.required,]],
       fecha_pro_man: [{value:this.fecha_pro_man,disabled:true }, [Validators.required]],
       costo_man:['', [Validators.required,Validators.pattern("^[0-9]+(?:,[0-9]+)*$")]],
       
@@ -199,28 +203,7 @@ export class EditmanComponent implements OnInit {
   
   }
  
-  onSubmit() {
-    
-    if (this.formaForm.invalid) {
-      Object.values(this.formaForm.controls).forEach(control => {
-        control.markAllAsTouched();
-      });
-      return;
-    }
-
-
-    this.mantenimiento = this.saveman();
-    console.log(this.mantenimiento);
-    this.mantenimientosService.putman(this.mantenimiento, this.id_man)
-      .subscribe(res => {
-      
-        console.log(res);
-        this.router.navigate(['/auth/cosman']);
-      }, error => {
-        console.log(error);
-    })
-
-  }
+ 
 
 
 
@@ -292,7 +275,7 @@ export class EditmanComponent implements OnInit {
   saveman() {
     
     const valor = this.formaForm.get('fecha_man').value;
-    let valorfi = `${valor.year}-${valor.month}-${valor.day}`;
+    this.valorfi = `${valor.year}-${valor.month}-${valor.day}`;
     let costofi = parseFloat(this.costo_man.replace(/,/g, ''));
     const saveMante = {
     
@@ -303,9 +286,9 @@ export class EditmanComponent implements OnInit {
       id_ciu: this.formaForm.get('id_ciu').value,
       id_sede: this.formaForm.get('id_sede').value,
       id_ubi: this.formaForm.get('id_ubi').value,
-      fecha_man: valorfi,
+      fecha_man: this.valorfi,
       periodicidad_man: this.formaForm.get('periodicidad_man').value,
-      estado_man: this.formaForm.get('estado_man').value,
+      estado_man: this.formaForm.get('esta_man').value,
       fecha_pro_man: this.formaForm.get('fecha_pro_man').value,
       costo_man: costofi
 
@@ -314,6 +297,76 @@ export class EditmanComponent implements OnInit {
   }
 
 
+
+  saveManH() {
+    const valor = this.formaForm.get('fecha_man').value;
+    let costofi = parseFloat(this.costo_man.replace(/,/g, ''));
+    let fec = new Date();
+    let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+    let estado_hman = 'update';
+    let idusu = this.usuariosService.data.data.id_usu;
+    
+    
+    const saveManH = {
+    
+      id_con: this.formaForm.get('id_con').value,
+      id_ma: this.formaForm.get('id_ma').value,
+      id_equi: this.formaForm.get('id_equi').value,
+      id_pro: this.formaForm.get('id_pro').value,
+      id_ciu: this.formaForm.get('id_ciu').value,
+      id_sede: this.formaForm.get('id_sede').value,
+      id_ubi: this.formaForm.get('id_ubi').value,
+      fecha_man: this.valorfi,
+      peri_man: this.formaForm.get('periodicidad_man').value,
+      esta_man: this.formaForm.get('esta_man').value,
+      fecha_pro_man: this.formaForm.get('fecha_pro_man').value,
+      costo_man: costofi,
+      estado_hman:estado_hman,
+      fecha_hman: fachamo,
+      id_usu:idusu
+  
+  }
+  
+    return saveManH;
+  }
+
+
+  onSubmit() {
+    
+    if (this.formaForm.invalid) {
+      Object.values(this.formaForm.controls).forEach(control => {
+        control.markAllAsTouched();
+      });
+      return;
+    }
+
+
+    this.mantenimiento = this.saveman();
+    this.histman = this.saveManH();
+    console.log(this.mantenimiento);
+    this.mantenimientosService.putman(this.mantenimiento, this.id_man)
+      .subscribe(res => {
+      
+        console.log(res);
+        this.router.navigate(['/auth/cosman']);
+      }, error => {
+        console.log(error);
+    })
+
+  }
+
+
+  postDatos() {
+    this.mantenimientosService.posManteH(this.histman)
+    .subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error);
+    });
+    
+    
+  }
+  
   
   }
 

@@ -12,6 +12,7 @@ import { group } from '@angular/animations';
 import { map, delay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NumberPipe } from '../../pipes/numeros.pipe';
+import { UsuariosService } from '../../../servicios/usuarios.service';
 
 
 
@@ -41,6 +42,7 @@ export class AddmanteComponent implements OnInit {
   sede: any[] = [];
   ubicacion: any[] = [];
   mantenimientos: any;
+  histman: any;
   valu: any[] = [];
   fechaini: any =0;
   date: Date;
@@ -51,6 +53,9 @@ export class AddmanteComponent implements OnInit {
   costo_man: string = "0";
   lista: boolean = false;
   result: any[] = [];
+  valorfi: any;
+
+
 
   constructor(private mantenimientosService: MantenimientosService,
     private fb: FormBuilder,
@@ -62,7 +67,8 @@ export class AddmanteComponent implements OnInit {
     private ubicacionService: UbicacionService,
     private cdref: ChangeDetectorRef,
     private router: Router,
-    private changeRef: ChangeDetectorRef
+    private changeRef: ChangeDetectorRef,
+    private usuariosService:UsuariosService
     ) {
     this.crearFormulario();
     this.PriFormulario();
@@ -258,50 +264,7 @@ export class AddmanteComponent implements OnInit {
   }
 
 
-  onSubmit() {
-     
-    if (this.forma.invalid || this.formi.invalid) {
-      Object.values(this.forma.controls).forEach(control => {
-        control.markAllAsTouched();
-        this.respuesta = true;
-        this.onvalida.emit(this.respuesta);
-      });
-
-      Object.values(this.formi.controls).forEach(cntrl => {
-        cntrl.markAllAsTouched();
-      });
-      return;
-    }
-
-  
-     
-    this.mantenimientos = this.saveMan();
-  //  console.log(this.mantenimientos);
-    this.mantenimientosService.postMante(this.mantenimientos)
-      .subscribe((res:any) => {
-      
-        if (res.code == "404") {
-          console.log("respuesta"+res);
-          this.vista = true;
-          this.validacion = res.code;
-          this.mensaje = res.message;
-          this.tiempo();
-        } else {
-          this.validacion = res.code;
-          this.mensaje = res.message;
-          this.tiempo();
-        }
-      }, error => {
-        console.log(error);
-      });
-    this.forma.reset();
-    this.formi.reset();
-
-    this.respuesta = true;
-    this.onMantenimiento.emit(this.respuesta);
-    //this.router.navigate(['/auth/cosman']);
-    
-  }
+ 
   
  
 
@@ -370,7 +333,7 @@ export class AddmanteComponent implements OnInit {
 
   saveMan() {
     const valor = this.forma.get('fecha_man').value;
-    let valorfi = `${valor.year}-${valor.month}-${valor.day}`;
+     this.valorfi = `${valor.year}-${valor.month}-${valor.day}`;
     let costofi = parseFloat(this.costo_man.replace(/,/g, ''));
     
     const saveMante = {
@@ -382,7 +345,7 @@ export class AddmanteComponent implements OnInit {
       id_ciu: this.forma.get('id_ciu').value,
       id_sede: this.forma.get('id_sede').value,
       id_ubi: this.forma.get('id_ubi').value,
-      fecha_man: valorfi,
+      fecha_man: this.valorfi,
       peri_man: this.forma.get('peri_man').value,
       esta_man: this.forma.get('esta_man').value,
       fecha_pro_man: this.forma.get('fecha_pro_man').value,
@@ -394,5 +357,97 @@ export class AddmanteComponent implements OnInit {
 }
 
 
+saveManH() {
+  const valor = this.forma.get('fecha_man').value;
+  let costofi = parseFloat(this.costo_man.replace(/,/g, ''));
+  let fec = new Date();
+  let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+  let estado_hman = 'insert';
+  let idusu = this.usuariosService.data.data.id_usu;
+  
+  
+  const saveManH = {
+  
+    id_con: this.forma.get('id_con').value,
+    id_ma: this.forma.get('id_ma').value,
+    id_equi: this.forma.get('id_equi').value,
+    id_pro: this.forma.get('id_pro').value,
+    id_ciu: this.forma.get('id_ciu').value,
+    id_sede: this.forma.get('id_sede').value,
+    id_ubi: this.forma.get('id_ubi').value,
+    fecha_man: this.valorfi,
+    peri_man: this.forma.get('peri_man').value,
+    esta_man: this.forma.get('esta_man').value,
+    fecha_pro_man: this.forma.get('fecha_pro_man').value,
+    costo_man: costofi,
+    estado_hman:estado_hman,
+    fecha_hman: fachamo,
+    id_usu:idusu
+
+}
+
+  return saveManH;
+}
+
+
+
+onSubmit() {
+     
+  if (this.forma.invalid || this.formi.invalid) {
+    Object.values(this.forma.controls).forEach(control => {
+      control.markAllAsTouched();
+      this.respuesta = true;
+      this.onvalida.emit(this.respuesta);
+    });
+
+    Object.values(this.formi.controls).forEach(cntrl => {
+      cntrl.markAllAsTouched();
+    });
+    return;
+  }
+
+
+
+  this.mantenimientos = this.saveMan();
+  this.histman = this.saveManH();
+//  console.log(this.mantenimientos);
+  this.mantenimientosService.postMante(this.mantenimientos)
+    .subscribe((res:any) => {
+    
+      if (res.code == "404") {
+        console.log("respuesta"+res);
+        this.vista = true;
+        this.validacion = res.code;
+        this.mensaje = res.message;
+        this.tiempo();
+      } else {
+        this.validacion = res.code;
+        this.mensaje = res.message;
+        this.tiempo();
+      }
+    }, error => {
+      console.log(error);
+    });
+  this.forma.reset();
+  this.formi.reset();
+
+  this.respuesta = true;
+  this.onMantenimiento.emit(this.respuesta);
+  //this.router.navigate(['/auth/cosman']);
+
+
+
+}
+  
+  postDatos() {
+    this.mantenimientosService.posManteH(this.histman)
+    .subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error);
+    });
+    
+    
+  }
   
 }

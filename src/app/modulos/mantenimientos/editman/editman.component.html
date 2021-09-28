@@ -1,5 +1,5 @@
 <h4>Edicion de Mantenimiento</h4>
-<form autocomplete="off" [formGroup]="formaForm" (ngSubmit)="onSubmit()">
+<form autocomplete="off" [formGroup]="formaForm" (ngSubmit)="onSubmit();postDatos();">
 
     <div  *ngIf="showview">
           <div class="form-group row">
@@ -175,7 +175,7 @@
             <div class="col">
                
                 <select class="form-control"
-                formControlName="estado_man"
+                formControlName="esta_man"
                 [(ngModel)]="mantenimiento.estado_man"
                 [class.is-invalid]="estano"
                 

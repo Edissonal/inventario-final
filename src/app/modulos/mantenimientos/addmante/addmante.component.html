@@ -41,7 +41,7 @@
 
 
 <div *ngIf="vista" >
-    <form [formGroup]="forma" (ngSubmit)="onSubmit()">
+    <form [formGroup]="forma" (ngSubmit)="onSubmit();postDatos();">
       <div class="form-group row">
         <label class="col-2 col-form-label">Marca</label>
         <div class="col">
