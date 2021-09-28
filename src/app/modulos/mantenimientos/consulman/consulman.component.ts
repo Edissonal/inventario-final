@@ -77,20 +77,19 @@ export class ConsulmanComponent implements OnInit {
         }
         this.mantenimientosService.posManteH(hdata)
           .subscribe(res => {
-         
-        })
-        this.mantenimientosService.deleteMan(id)
-          .subscribe(res => {
-            this.buscar = [];
-        
-          this.mantenimientosService.getManteni(txtMan)
+            this.mantenimientosService.deleteMan(id)
             .subscribe(res => {
-              this.buscar = res['data'];
+              this.buscar = [];
+              this.mantenimientosService.getManteni(txtMan)
+              .subscribe(res => {
+                this.buscar = res['data'];
+              });
             });
-          });
-         
-       });
-     
+           
+         });
+       
+        })
+        
     
   }
 }
