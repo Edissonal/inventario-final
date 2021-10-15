@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { MantenimientosService } from '../../../servicios/mantenimientos.service';
 import { UsuariosService } from '../../../servicios/usuarios.service';
+import { Mantenimientos } from '../../../interfaces/mantenimiento.interface ';
 
 @Component({
   selector: 'app-consulman',
@@ -10,7 +11,7 @@ import { UsuariosService } from '../../../servicios/usuarios.service';
 })
 export class ConsulmanComponent implements OnInit {
 
-  buscar: any[] = [];
+  buscar: Mantenimientos[] = [];
   txtMan: string;
   date: Date;
   total: number[] = [];

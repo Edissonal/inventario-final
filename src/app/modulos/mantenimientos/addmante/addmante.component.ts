@@ -13,6 +13,13 @@ import { map, delay } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { NumberPipe } from '../../pipes/numeros.pipe';
 import { UsuariosService } from '../../../servicios/usuarios.service';
+import { Marcas } from '../../../interfaces/marcas.interfaces';
+import { Equipos } from '../../../interfaces/equipos.interface';
+import { Provedor } from '../../../interfaces/provedor.interface';
+import { Ciudad } from 'src/app/interfaces/ciudad.interface';
+import { Ubicacion } from '../../../interfaces/ubicacion.interface';
+import { Mantenimientos } from '../../../interfaces/mantenimiento.interface ';
+import { HistoMantenimientos } from 'src/app/interfaces/histomantenimiento.interface ';
 
 
 
@@ -35,26 +42,25 @@ export class AddmanteComponent implements OnInit {
   respuesta: boolean = false;
   forma: FormGroup;
   formi: FormGroup;
-  marcas: any[] = [];
-  equipos: any[] = [];
-  provedor: any[] = [];
-  ciudad: any[] = [];
-  sede: any[] = [];
-  ubicacion: any[] = [];
-  mantenimientos: any;
-  histman: any;
+  marcas: Marcas[] = [];
+  equipos: Equipos[] = [];
+  provedor: Provedor[] = [];
+  ciudad: Ciudad[] = [];
+  sede: SedeService[] = [];
+  ubicacion: Ubicacion[] = [];
+  mantenimientos: Mantenimientos;
+  histman: HistoMantenimientos;
   valu: any[] = [];
   fechaini: any =0;
   date: Date;
-  fecha_pro_man: any;
-  perio: any = 0;
-  validacion: any;
+  fecha_pro_man: string;
+  perio: number = 0;
+  validacion: number;
   mensaje: string;
   costo_man: string = "0";
   lista: boolean = false;
   result: any[] = [];
-  valorfi: any;
-
+  valorfi: string;
 
 
   constructor(private mantenimientosService: MantenimientosService,
@@ -91,7 +97,7 @@ export class AddmanteComponent implements OnInit {
 
   tiempo() {
     setTimeout(() => {
-      this.validacion = "";
+      this.validacion = null;
     }, 5000);
   }
 
@@ -414,7 +420,7 @@ onSubmit() {
   this.mantenimientosService.postMante(this.mantenimientos)
     .subscribe((res:any) => {
     
-      if (res.code == "404") {
+      if (res.code == 404) {
         console.log("respuesta"+res);
         this.vista = true;
         this.validacion = res.code;

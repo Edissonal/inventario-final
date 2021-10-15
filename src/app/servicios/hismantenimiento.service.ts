@@ -10,9 +10,7 @@ import 'rxjs/Rx';
 export class HismantenimientoService {
 
   consultasurl = "http://localhost/inventario/hismantenimiento.php/hismantenimiento";
-  conprourl = "http://localhost/inventario/hismantenimiento.php/pro"
-  consprove = "http://localhost/inventario/index.php/provedor";
-  cargaurl = "http://localhost/inventario/upload-consultas.php/provedor";
+  potsmanh = "http://localhost/inventario/hismantenimiento.php/";
 
   constructor(private http: HttpClient) { }
 
@@ -21,38 +19,16 @@ export class HismantenimientoService {
    return this.http.get(`${this.consultasurl}/"${termino}"`);
   }
 
-  getpro(id: string) {
-   return this.http.get(`${this.conprourl}/"${id}"`);
-  }
-
-  postConsulta(datos: string) {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-    return this.http.post(this.consultasurl, datos, httpOptions);
+  getvenceman() {
     
-  }
-
-  getConsulta(id:string) {
-    const url = `${this.consultasurl}-con/${id}`
+    let url = `${this.potsmanh}venman`;
     return this.http.get(url);
   }
 
-  putconsulta(upconsulta: any, id: string) {
-
-    console.log(upconsulta);
-    console.log("datos id" + id);
-    
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    });
-    const url = `${this.consultasurl}-update/${id}`;
-    return this.http.post(url, upconsulta, { headers });
-    
-  }
-
-  cargaConsul(carga:any) {
-    console.log(carga);
-   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-   return this.http.post(this.cargaurl, carga, httpOptions);
- 
+  
+  cargahistoman(datos: any) {
+    let url = this.potsmanh + 'mantenimientosh';
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post(url, datos, httpOptions);
   }
 }

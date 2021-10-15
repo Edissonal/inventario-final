@@ -1,7 +1,9 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { Observable } from 'rxjs';
+import { Mantenimientos } from '../interfaces/mantenimiento.interface ';
+import { HistoMantenimientos } from '../interfaces/histomantenimiento.interface ';
 
 
 
@@ -39,7 +41,7 @@ export class MantenimientosService {
   
   getManteni(termino:string){
 
-    return this.http.get(`${this.mantourl}/"${termino}"`);
+    return this.http.get(`${this.mantourl}/${termino}`);
   }
 
   getserial(termino:string) {
@@ -47,39 +49,38 @@ export class MantenimientosService {
     return this.http.get(`${this.seriurl}/"${termino}"`);
   }
 
-  postMante(datos: string) {
+  postMante(datos: Mantenimientos):Observable<Mantenimientos> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     let url = this.potsman + 'addman';
-    return this.http.post(url, datos, httpOptions);
+    return this.http.post<Mantenimientos>(url, datos, httpOptions);
 
     
   }
 
-  posManteH(datos: string) {
+  posManteH(datos: HistoMantenimientos):Observable<HistoMantenimientos> {
     console.log(datos)
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     let url = this.potsmanh + 'addmanh';
-    return this.http.post(url, datos, httpOptions);
-    
+    return this.http.post<HistoMantenimientos>(url, datos, httpOptions); 
   }
 
-  deleteMan(id:string) {
-    return this.http.get(this.manurl + '-delete/' + id);
+  deleteMan(id:string):Observable<Mantenimientos> {
+    return this.http.get<Mantenimientos>(this.manurl + '-delete/' + id);
   }
 
 
-  getMa(id:string) {
+  getMa(id:string):Observable<Mantenimientos> {
     const url = `${this.manurl}-te/${id}`
-    return this.http.get(url);
+    return this.http.get<Mantenimientos>(url);
   }
 
-  putman(mantenimiento: any, id: string) {
+  putman(mantenimiento: Mantenimientos, id: string):Observable<Mantenimientos> {
     
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
     const url = `${this.manurl}-update/${id}`;
-    return this.http.post(url, mantenimiento, { headers });
+    return this.http.post<Mantenimientos>(url, mantenimiento, { headers });
   }
 }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProvedoresService } from '../../../servicios/provedores.service';
+import { Provedor } from '../../../interfaces/provedor.interface';
 
 @Component({
   selector: 'app-consprovedor',
@@ -7,7 +8,7 @@ import { ProvedoresService } from '../../../servicios/provedores.service';
   styleUrls: ['./consprovedor.component.css']
 })
 export class ConsprovedorComponent implements OnInit {
-  provedores: any[] = [];
+  provedores: Provedor[] = [];
   page = 1;
   pageSize = 10;
   constructor(private provedoresService: ProvedoresService) { }

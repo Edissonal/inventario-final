@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EquiposService } from '../../../servicios/equipos.service';
+import { Equipos } from '../../../interfaces/equipos.interface';
 
 @Component({
   selector: 'app-consequipo',
@@ -7,7 +8,7 @@ import { EquiposService } from '../../../servicios/equipos.service';
   styleUrls: ['./consequipo.component.css']
 })
 export class ConsequipoComponent implements OnInit {
-  equipos: any[] = [];
+  equipos: Equipos[] = [];
   page = 1;
   pageSize = 10;
   constructor(private equiposService:EquiposService) { }

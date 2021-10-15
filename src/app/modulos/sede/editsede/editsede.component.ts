@@ -6,6 +6,9 @@ import { CiudadService } from '../../../servicios/ciudad.service';
 import { ProvedoresService } from '../../../servicios/provedores.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Ciudad } from 'src/app/interfaces/ciudad.interface';
+import { Provedor } from '../../../interfaces/provedor.interface';
+import { Sedes } from 'src/app/interfaces/sedes.interfaces';
 
 @Component({
   selector: 'app-editsede',
@@ -15,10 +18,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditsedeComponent implements OnInit {
 
   sedeForm: FormGroup;
-  ciudades: any[] = [];
-  provedores: any[] = [];
-  sede: any;
-  id_sede: any;
+  ciudades: Ciudad[] = [];
+  provedores: Provedor[] = [];
+  sede: Sedes;
+  id_sede: string;
   showView:boolean = false;
   constructor(private fb: FormBuilder,
               private sedeService : SedeService,

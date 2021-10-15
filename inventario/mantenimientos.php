@@ -106,6 +106,8 @@ $app -> get('/mantenimientos/:id',function($id) use($db,$app){
     echo json_encode($result);
         
     
+
+    
     
 });
 
@@ -318,7 +320,7 @@ $app ->get ('/consultasman/:id', function ($id) use($db,$app){
     M.id_ciu = CI.id_ciu and
     M.id_sede = S.id_sede  and
     M.id_ubi = U.id_ubi and 
-    P.nombre_pro like''".$id."'%'";
+    P.nombre_pro like'".$id."' ";
     $query =$db->query($sql);
     
 

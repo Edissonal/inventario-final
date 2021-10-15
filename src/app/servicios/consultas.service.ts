@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import 'rxjs/Rx';
+import { Observable } from 'rxjs';
+import { Consultas } from '../interfaces/consultas.interface';
 
 
 @Injectable({
@@ -15,24 +17,25 @@ export class ConsultasService {
   cargaurl = "http://localhost/inventario/upload-consultas.php/provedor";
   constructor(private http: HttpClient) { }
   
-  getConsultas(termino:string) 
+  getConsultas(termino:string):Observable<Consultas>
   {
-   return this.http.get(`${this.consultasurl}/"${termino}"`);
+   
+   return this.http.get<Consultas>(`${this.consultasurl}/${termino}`);
   }
 
   getpro(id: string) {
    return this.http.get(`${this.conprourl}/"${id}"`);
   }
 
-  postConsulta(datos: string) {
+  postConsulta(datos: Consultas):Observable<Consultas> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-    return this.http.post(this.consultasurl, datos, httpOptions);
+    return this.http.post<Consultas>(this.consultasurl, datos, httpOptions);
     
   }
 
-  delConsulta(id: string) {
+  delConsulta(id: string):Observable<Consultas> {
   
-   return this.http.get(this.consultasurl + '-delete/' + id);
+   return this.http.get<Consultas>(this.consultasurl + '-delete/' + id);
     
   }
 
@@ -41,7 +44,7 @@ export class ConsultasService {
     return this.http.get(url);
   }
 
-  putconsulta(upconsulta: any, id: string) {
+  putconsulta(upconsulta: Consultas, id: string):Observable<Consultas> {
 
     console.log(upconsulta);
     console.log("datos id" + id);
@@ -50,7 +53,7 @@ export class ConsultasService {
       'Content-Type': 'application/json'
     });
     const url = `${this.consultasurl}-update/${id}`;
-    return this.http.post(url, upconsulta, { headers });
+    return this.http.post<Consultas>(url, upconsulta, { headers });
     
   }
 

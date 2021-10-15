@@ -3,6 +3,8 @@ import * as XLSX from "xlsx";
 import { ConsultasService } from '../../../servicios/consultas.service';
 import { MantenimientosService } from '../../../servicios/mantenimientos.service';
 import * as moment from 'moment';
+import { UsuariosService } from '../../../servicios/usuarios.service';
+import { HismantenimientoService } from '../../../servicios/hismantenimiento.service';
 @Component({
   selector: 'app-cargaman',
   templateUrl: './cargaman.component.html',
@@ -18,7 +20,9 @@ export class CargamanComponent implements OnInit {
   validacion: any;
   mensaje: any;
  
-  constructor(private mantenimientosService:MantenimientosService) { }
+  constructor(private mantenimientosService: MantenimientosService,
+    private usuariosService: UsuariosService,
+    private hismantenimientoService:HismantenimientoService) { }
 
   ngOnInit() {
   }
@@ -51,13 +55,9 @@ export class CargamanComponent implements OnInit {
        this.datos[i].fecha_man = moment(this.datos[i].fecha_man).add(1, 'day').format('YYYY-MM-DD');
      }
       
+     this.cargaHman(this.datos);
      
-     
-    //  console.log(XLSX.utils.sheet_to_json(worksheet, {raw:false,dateNF:'yyyy-mm-dd'}))
-    //moment('2016-03-12').add(1, 'day').format('LLL')
-
-     // console.log(moment('2016-03-12').add(1, 'day').format('YYYY-MM-DD'));
-      
+  
 
       this.mantenimientosService.carmantenimiento(this.datos)
       .subscribe((res:any) => {
@@ -78,6 +78,27 @@ export class CargamanComponent implements OnInit {
     
 
     }
+
+  
   }
 
+  cargaHman(data: any) {
+
+   let datos: any[] = data;
+    let idusu = this.usuariosService.data.data.id_usu;
+    let fec = new Date();
+    let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+    let estado_hman = 'carga';
+    for (var i = 0; i < this.datos.length; i++) {
+    this.datos[i].id_usu = idusu;
+    this.datos[i].fecha_hman = fachamo;
+    this.datos[i].estado_hman = estado_hman;
+   
+     }
+    this.hismantenimientoService.cargahistoman(datos)
+      .subscribe(res => {
+        console.log(res);
+      });
+
+  }
 }

@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
+import { Ciudad } from '../interfaces/ciudad.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +17,8 @@ export class CiudadService {
     
   }
 
-  getCiudad() {
-    return this.http.get(this.ciurl);
+  getCiudad():Observable<Ciudad> {
+    return this.http.get<Ciudad>(this.ciurl);
   }
 
 }

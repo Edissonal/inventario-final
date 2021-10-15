@@ -3,6 +3,7 @@ import { FormControl, FormGroup,FormBuilder,Validators  } from '@angular/forms';
 import { subscribeOn } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { EquiposService } from '../../../servicios/equipos.service';
+import { Equipos } from '../../../interfaces/equipos.interface';
 
 @Component({
   selector: 'app-addequipo',
@@ -11,9 +12,9 @@ import { EquiposService } from '../../../servicios/equipos.service';
 })
 export class AddequipoComponent implements OnInit {
   formaForm: FormGroup;
-  equipo: any;
+  equipo: Equipos;
   mensaje: string;
-  validacion: any;
+  validacion: number;
 
   constructor(private fb: FormBuilder,
                 private equiposService: EquiposService) {
@@ -24,7 +25,7 @@ export class AddequipoComponent implements OnInit {
   
   tiempo() {
     setTimeout(() => {
-      this.validacion = "";
+      this.validacion = null;
     }, 5000);
   }
 
@@ -47,14 +48,13 @@ export class AddequipoComponent implements OnInit {
     }
     this.equipo = this.saveEquipo();
     this.equiposService.postequipo(this.equipo)
-      .subscribe((res: any) => {
-        if (res.code == '404') {
-          console.log(res);
+      .subscribe(res => {
+        if (res.code == 404) {
           this.validacion = res.code;
           this.mensaje = res.message;
           this.tiempo();
         } else {
-          console.log(res);
+          console.log(res.code);
           this.validacion = res.code;
           this.mensaje = res.message;
           this.tiempo();

@@ -53,6 +53,8 @@ import { ConshisconComponent } from './modulos/hisconsultas/conshiscon/conshisco
 import { ConshismanComponent } from './modulos/hismantenimiento/conshisman/conshisman.component';
 import { MenunavbarComponent } from './modulos/navbar/menunavbar/menunavbar.component';
 import { MenuadminComponent } from './modulos/login/menuadmin/menuadmin.component';
+import { VencemanComponent } from './modulos/hismantenimiento/venceman/venceman.component';
+
 
 
 
@@ -104,7 +106,8 @@ import { MenuadminComponent } from './modulos/login/menuadmin/menuadmin.componen
     ConshisconComponent,
     ConshismanComponent,
     MenunavbarComponent,
-    MenuadminComponent
+    MenuadminComponent,
+    VencemanComponent,
 
   ],
   imports: [

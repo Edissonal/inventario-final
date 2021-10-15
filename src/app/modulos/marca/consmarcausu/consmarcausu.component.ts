@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MarcaService } from '../../../servicios/marca.service';
+import { Marcas } from '../../../interfaces/marcas.interfaces';
 
 @Component({
   selector: 'app-consmarcausu',
@@ -8,7 +9,7 @@ import { MarcaService } from '../../../servicios/marca.service';
 })
 export class ConsmarcausuComponent implements OnInit {
 
-  marcas: any[] = [];
+  marcas: Marcas[] = [];
   constructor(private marcaService: MarcaService) { }
 
   ngOnInit() {

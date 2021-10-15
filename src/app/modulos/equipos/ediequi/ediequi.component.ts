@@ -4,6 +4,7 @@ import { subscribeOn } from 'rxjs/operators';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { EquiposService } from '../../../servicios/equipos.service';
+import { Equipos } from '../../../interfaces/equipos.interface';
 
 
 @Component({
@@ -14,8 +15,8 @@ import { EquiposService } from '../../../servicios/equipos.service';
 export class EdiequiComponent implements OnInit {
 
   formaForm: FormGroup;
-  equipo: any;
-  id_equi: any;
+  equipo: Equipos;
+  id_equi: number;
   showView:boolean = false;
 
   constructor(private fb: FormBuilder,

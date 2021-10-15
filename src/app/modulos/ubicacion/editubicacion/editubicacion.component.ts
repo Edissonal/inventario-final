@@ -4,6 +4,7 @@ import { subscribeOn } from 'rxjs/operators';
 import { UbicacionService } from '../../../servicios/ubicacion.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Ubicacion } from '../../../interfaces/ubicacion.interface';
 
 @Component({
   selector: 'app-editubicacion',
@@ -13,8 +14,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditubicacionComponent implements OnInit {
 
   formaForm: FormGroup;
-  ubicacion: any;
-  id_ubi: any;
+  ubicacion: Ubicacion;
+  id_ubi: string;
   showView:boolean = false;
   constructor(private fb: FormBuilder,
               private ubicacionService: UbicacionService,

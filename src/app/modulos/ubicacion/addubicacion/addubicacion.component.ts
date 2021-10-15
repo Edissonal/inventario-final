@@ -4,6 +4,7 @@ import { subscribeOn } from 'rxjs/operators';
 import { UbicacionService } from '../../../servicios/ubicacion.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Ubicacion } from '../../../interfaces/ubicacion.interface';
 
 @Component({
   selector: 'app-addubicacion',
@@ -13,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AddubicacionComponent implements OnInit {
 
   formaForm: FormGroup;
-  ubicacion: any;
+  ubicacion: Ubicacion;
   constructor(private fb: FormBuilder,
               private router: Router,
               private ubicacionService: UbicacionService) { 

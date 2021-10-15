@@ -41,7 +41,7 @@ function iniciales($nombre) {
 //listar provedores
 $app -> get('/consultas/:id',function($id) use($db,$app){
        
-        $sql="select C.id_con,D.id_ciu,D.nombre_ciu,S.id_sede,S.nombre_sede,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,C.modelo_con,C.serial_con,C.placa_con,C.mantenimiento_con
+       $sql="select C.id_con,D.id_ciu,D.nombre_ciu,S.id_sede,S.nombre_sede,C.id_ma,M.nombre_ma,C.id_equi,E.nombre_equi,C.id_pro,P.nombre_pro,C.id_ubi,U.nombre_ubi,C.modelo_con,C.serial_con,C.placa_con,C.mantenimiento_con
         from 
         consultas C ,marca M ,equipo E,provedor P,ubicacion U, sede S,ciudad D 
         where C.id_ma = M.id_ma and
@@ -49,7 +49,7 @@ $app -> get('/consultas/:id',function($id) use($db,$app){
         C.id_pro =P.id_pro and 
         C.id_ubi = U.id_ubi and
         C.id_ciu = D.id_ciu and
-        C.id_sede = S.id_sede and  (P.nombre_pro =''".$id."'' OR C.serial_con = ''".$id."'' or E.nombre_equi=''".$id."'')";
+        C.id_sede = S.id_sede and  (P.nombre_pro ='".$id."' OR C.serial_con = '".$id."' or E.nombre_equi='".$id."')";
 
         $query =$db->query($sql);
        
@@ -65,6 +65,7 @@ $app -> get('/consultas/:id',function($id) use($db,$app){
             'data'=>$consultas
            );
     echo json_encode($result);
+    
 });
 
 //consultar provedores

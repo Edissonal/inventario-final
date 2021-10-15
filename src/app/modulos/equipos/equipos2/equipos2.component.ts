@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EquiposService } from '../../../servicios/equipos.service';
+import { Equipos } from '../../../interfaces/equipos.interface';
 
 @Component({
   selector: 'app-equipos2',
@@ -9,7 +10,7 @@ import { EquiposService } from '../../../servicios/equipos.service';
 export class Equipos2Component implements OnInit {
 
   constructor(private equiposService:EquiposService) { }
-  equipos: any[] = [];
+  equipos: Equipos[] = [];
 
   ngOnInit(): void {
     this.consulteuipos();

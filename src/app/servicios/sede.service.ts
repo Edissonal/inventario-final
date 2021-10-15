@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
+import { Sedes } from '../interfaces/sedes.interfaces';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,34 +15,34 @@ export class SedeService {
   constructor(private http:HttpClient) { }
 
   
-  postsede(sede: any) {
+  postsede(sede: Sedes):Observable<Sedes> {
     const newsede = sede;
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.sedeurl, newsede, httpOptions);
+    return this.http.post<Sedes>(this.sedeurl, newsede, httpOptions);
 
 }
 
-getsede() {
-  return this.http.get(this.sedeurl);
+getsede():Observable<Sedes> {
+  return this.http.get<Sedes>(this.sedeurl);
 }
 
-putsede(sede:any ,id:string) {
+putsede(sede:Sedes ,id:string):Observable<Sedes>  {
   const newsede = sede;
   const headers = new HttpHeaders({
     'Content-Type': 'application/json' 
   });
   const url = `${this.sedeurl}-update/${id}`;
-  return this.http.post(url, newsede, {headers});
+  return this.http.post<Sedes>(url, newsede, {headers});
 }
 
-getSedes(id$: string) {
+getSedes(id$: string):Observable<Sedes> {
   const url = `${this.sedeurl + '/' + id$}`;
-  return this.http.get(url);
+  return this.http.get<Sedes>(url);
 }
 
-delsede(id$:string){
+delsede(id$:string):Observable<Sedes>{
   
-  return this.http.get(this.sedeurl+ '-delete/'+ id$)
+  return this.http.get<Sedes>(this.sedeurl+ '-delete/'+ id$)
 
  }
 

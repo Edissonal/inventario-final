@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConsultasService } from '../../../servicios/consultas.service';
+import { Consultas } from '../../../interfaces/consultas.interface';
 
 
 @Component({
@@ -9,7 +10,7 @@ import { ConsultasService } from '../../../servicios/consultas.service';
 })
 export class ConstComponent{
 
-  busquedas: any[] = [];
+  busquedas: Consultas[] = [];
   termino: string;
   page = 1;
   pageSize = 10;
@@ -18,7 +19,6 @@ export class ConstComponent{
 
   consul(termino) {
     console.log(termino);
-    
     this.consultasService.getConsultas(termino)
       .subscribe(resp => {
        console.log(resp);

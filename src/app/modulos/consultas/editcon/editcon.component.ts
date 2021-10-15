@@ -8,6 +8,13 @@ import { ConsultasService } from '../../../servicios/consultas.service';
 import { ProvedoresService } from '../../../servicios/provedores.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
 import { SedeService } from '../../../servicios/sede.service';
+import { Consultas } from '../../../interfaces/consultas.interface';
+import { Marcas } from '../../../interfaces/marcas.interfaces';
+import { Equipos } from '../../../interfaces/equipos.interface';
+import { Ubicacion } from '../../../interfaces/ubicacion.interface';
+import { Provedor } from '../../../interfaces/provedor.interface';
+import { Ciudad } from '../../../interfaces/ciudad.interface';
+import { Sedes } from '../../../interfaces/sedes.interfaces';
 
 @Component({
   selector: 'app-editcon',
@@ -15,15 +22,15 @@ import { SedeService } from '../../../servicios/sede.service';
   styleUrls: ['./editcon.component.css']
 })
 export class EditconComponent implements OnInit {
-  consultas: any;
-  id_con: any;
+  consultas: Consultas;
+  id_con: string;
   consultaForm: FormGroup;
-  marcas: any[] = [];
-  equipos: any[] = [];
-  ubicaciones: any[] = [];
-  provedores: any[] = [];
-  ciudades: any[] = [];
-  sedes: any[] = [];
+  marcas: Marcas[] = [];
+  equipos: Equipos[] = [];
+  ubicaciones: Ubicacion[] = [];
+  provedores: Provedor[] = [];
+  ciudades: Ciudad[] = [];
+  sedes: Sedes[] = [];
   
   showView: boolean = false;
 

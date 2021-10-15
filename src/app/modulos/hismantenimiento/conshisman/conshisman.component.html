@@ -10,7 +10,7 @@
 <table class="table table-bordered table-striped">
 <thead>
     <tr class="filters">
-        <th>ID_Mantenimiento</th>
+      
         <th>Marca</th>
         <th>Equipo</th>
         <th>Provedor</th>
@@ -25,11 +25,11 @@
         <th>costo_man</th>
         <th>estado_hman</th>
         <th>fecha_hman</th>
+        <th>Usuario</th>
         </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let busqueda of busquedas">
-    <td>{{busqueda.id_man}}</td>    
+    <tr *ngFor="let busqueda of busquedas">   
     <td>{{busqueda.nombre_ma}}</td>
     <td>{{busqueda.nombre_equi}}</td>
     <td>{{busqueda.nombre_pro}}</td>
@@ -44,6 +44,7 @@
     <td>{{busqueda.costo_man |number}}</td>  
     <td>{{busqueda.estado_hman}}</td>
     <td>{{busqueda.fecha_hman}}</td>
+    <td>{{busqueda.nombre_usu}}</td>
     </tr>
 </tbody>
 </table>

@@ -4,6 +4,7 @@ import { subscribeOn } from 'rxjs/operators';
 import { MarcaService } from '../../../servicios/marca.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Marcas } from '../../../interfaces/marcas.interfaces';
 
 @Component({
   selector: 'app-addmarca',
@@ -13,7 +14,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class AddmarcaComponent implements OnInit {
 
   formaForm: FormGroup;
-  marca: any;
+  marca: Marcas;
   constructor(private fb: FormBuilder,
               private router: Router,
               private marcaService: MarcaService) { 

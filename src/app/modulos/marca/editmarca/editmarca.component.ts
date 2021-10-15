@@ -13,8 +13,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditmarcaComponent implements OnInit {
 
   formaForm: FormGroup;
-  marca: any;
-  id_ma: any;
+  marca: object;
+  id_ma: string;
   showView:boolean = false;
   constructor(private fb: FormBuilder,
               private marcaService: MarcaService,

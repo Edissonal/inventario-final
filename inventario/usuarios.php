@@ -386,11 +386,22 @@ $app->post('/login-update/:id',function($id) use($db,$app,$mail){
         line-height: 1.25!important;
         font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji!important;
                 }
+
+                .centrar{
+                
+                    /*/ margin-left: 10%;*/
+                    text-align:center
+                 }
+     
+                 div.centrar table {
+                     margin: 0 auto;
+                     text-align: center;
+     }
                 
                 </style>
             </head>
             <body>
-                
+            <div class="centrar">
               
                <table>
                 <tr>
@@ -416,6 +427,7 @@ $app->post('/login-update/:id',function($id) use($db,$app,$mail){
                <td  aling="center" valing="top">clave:'.$clave.'</td>
                </tr>
                 </table>
+                </div>
                 </body>
                 </html>';
            // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';

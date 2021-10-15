@@ -12,6 +12,13 @@ import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { map } from 'rxjs/operators';
 import { NumberPipe } from '../../pipes/numeros.pipe';
 import { UsuariosService } from '../../../servicios/usuarios.service';
+import { Marcas } from '../../../interfaces/marcas.interfaces';
+import { Equipos } from '../../../interfaces/equipos.interface';
+import { Provedor } from '../../../interfaces/provedor.interface';
+import { Ciudad } from 'src/app/interfaces/ciudad.interface';
+import { Sedes } from '../../../interfaces/sedes.interfaces';
+import { Ubicacion } from '../../../interfaces/ubicacion.interface';
+import { HistoMantenimientos } from '../../../interfaces/histomantenimiento.interface ';
 
 @Component({
   selector: 'app-editman',
@@ -23,22 +30,22 @@ export class EditmanComponent implements OnInit {
 
   formaForm: FormGroup;
   mantenimiento: any;
-  id_man: any;
+  id_man: string;
   showview: boolean = false;
-  marcas: any[] = [];
-  equipos: any[] = [];
-  proveedor: any[] = [];
-  ciudad: any[] = [];
-  sede: any[] = [];
-  ubicacion: any[] = [];
+  marcas: Marcas[] = [];
+  equipos: Equipos[] = [];
+  proveedor: Provedor[] = [];
+  ciudad: Ciudad[] = [];
+  sede: Sedes[] = [];
+  ubicacion: Ubicacion[] = [];
   fechaini: any =0;
   date: Date;
-  fecha_pro_man: any = 0;
-  perio: any=0;
+  fecha_pro_man: string;
+  perio: number=0;
   fecha_man: NgbDateStruct;
   costo_man: string = "0";
-  valorfi: any;
-  histman: any;
+  valorfi: string;
+  histman: HistoMantenimientos;
   
   constructor(private fb:FormBuilder,  
               private activateRoute: ActivatedRoute,

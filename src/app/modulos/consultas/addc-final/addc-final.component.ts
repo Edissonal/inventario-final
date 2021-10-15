@@ -6,6 +6,12 @@ import { UbicacionService } from '../../../servicios/ubicacion.service';
 import { ConsultasService } from '../../../servicios/consultas.service';
 import { CiudadService } from '../../../servicios/ciudad.service';
 import { SedeService } from '../../../servicios/sede.service';
+import { Marcas } from '../../../interfaces/marcas.interfaces';
+import { Equipos } from '../../../interfaces/equipos.interface';
+import { Ciudad } from '../../../interfaces/ciudad.interface';
+import { Sedes } from '../../../interfaces/sedes.interfaces';
+import { Consultas } from '../../../interfaces/consultas.interface';
+import { Ubicacion } from '../../../interfaces/ubicacion.interface';
 
 @Component({
   selector: 'app-addc-final',
@@ -15,14 +21,14 @@ import { SedeService } from '../../../servicios/sede.service';
 export class AddcFinalComponent implements OnInit {
   @Input() consulta: any;
   consultaForm: FormGroup;
-  marcas: any[] = [];
-  equipos: any[] = [];
-  ubicaciones: any[] = [];
-  ciudades: any[] = [];
-  sedes: any[] = [];
+  marcas: Marcas[] = [];
+  equipos: Equipos[] = [];
+  ubicaciones: Ubicacion[] = [];
+  ciudades: Ciudad[] = [];
+  sedes: Sedes[] = [];
   showView: boolean = false;
-  consultas: any;
-  validacion: any;
+  consultas: Consultas;
+  validacion: number;
   mensaje: string;
   constructor(private fb: FormBuilder,
               private marcaService: MarcaService,
@@ -40,7 +46,7 @@ export class AddcFinalComponent implements OnInit {
 
   tiempo() {
     setTimeout(() => {
-      this.validacion = "";
+      this.validacion = null;
     }, 5000);
   }
 
@@ -180,9 +186,9 @@ export class AddcFinalComponent implements OnInit {
     }
     this.consultas = this.saveConsulta();
     this.consultasService.postConsulta(this.consultas)
-      .subscribe((res:any) => {
+      .subscribe( res => {
         
-        if(res.cor == "404"){
+        if(res.code == 404){
           console.log(res);
           this.validacion = res.code;
           this.mensaje = res.message;

@@ -4,6 +4,7 @@ import { subscribeOn } from 'rxjs/operators';
 import { ProvedoresService } from '../../../servicios/provedores.service';
 import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Provedor } from '../../../interfaces/provedor.interface';
 
 
 
@@ -16,8 +17,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class EditprovedorComponent implements OnInit {
 
   formaForm: FormGroup;
-  proveedor: any;
-  id_pro: any;
+  proveedor: Provedor;
+  id_pro: string;
   showView:boolean = false;
   constructor(private fb: FormBuilder,
               private provedoresService: ProvedoresService,

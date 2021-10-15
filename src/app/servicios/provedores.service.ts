@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
-
+import { Provedor } from '../interfaces/provedor.interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,37 +15,37 @@ export class ProvedoresService {
   constructor(private http:HttpClient) { }
 
  
-  postprovedor(provedor: any) {
+  postprovedor(provedor: Provedor):Observable<Provedor> {
     const newpro = provedor;
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.prourl, newpro, httpOptions);
+    return this.http.post<Provedor>(this.prourl, newpro, httpOptions);
   }
  
  
-  getprovedor() {
-    return this.http.get(this.prourl);
+  getprovedor():Observable<Provedor> {
+    return this.http.get<Provedor>(this.prourl);
   }
 
 
 
-  putprovedor(provedor:any ,id:string) {
+  putprovedor(provedor:Provedor ,id:string):Observable<Provedor> {
     const newprove = provedor;
     console.log(newprove);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json' 
     });
     const url = `${this.prourl}-update/${id}`;
-    return this.http.post(url, newprove, {headers});
+    return this.http.post<Provedor>(url, newprove, {headers});
   }
 
-  getProveedorr(id$: string) {
+  getProveedorr(id$: string):Observable<Provedor> {
     const url = `${this.prourl + '/' + id$}`;
-    return this.http.get(url);
+    return this.http.get<Provedor>(url);
   }
 
-  delprovedor(id$:string){
+  delprovedor(id$:string):Observable<Provedor>{
   
-   return this.http.get(this.prourl+ '-delete/'+ id$)
+   return this.http.get<Provedor>(this.prourl+ '-delete/'+ id$)
 
   }
 

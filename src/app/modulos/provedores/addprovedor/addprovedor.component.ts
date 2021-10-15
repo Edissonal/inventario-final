@@ -5,6 +5,7 @@ import { ProvedoresService } from '../../../servicios/provedores.service';
 import { NgForm } from '@angular/forms';
 import { UsuariosService } from '../../../servicios/usuarios.service';
 import { Router } from '@angular/router';
+import { Provedor } from '../../../interfaces/provedor.interface';
 @Component({
   selector: 'app-addprovedor',
   templateUrl: './addprovedor.component.html',
@@ -13,8 +14,8 @@ import { Router } from '@angular/router';
 export class AddprovedorComponent implements OnInit {
 
   formaForm: FormGroup;
-  proveedor: any;
-  validacion: any;
+  proveedor: Provedor;
+  validacion: number;
   mensaje: string;
 
   constructor(private fb: FormBuilder,
@@ -25,7 +26,7 @@ export class AddprovedorComponent implements OnInit {
   }
   tiempo() {
     setTimeout(() => {
-      this.validacion = "";
+      this.validacion = null;
     }, 5000);
   }
 
@@ -55,9 +56,9 @@ export class AddprovedorComponent implements OnInit {
     }
     this.proveedor = this.saveProvedor();
     this.provedoresService.postprovedor(this.proveedor)
-      .subscribe((res:any) => { 
+      .subscribe(res => { 
         
-        if (res.code == "404") {
+        if (res.code == 404) {
           console.log(res);
           this.validacion = res.code;
           this.mensaje = res.message;
