@@ -17,7 +17,14 @@ if($method == "OPTIONS") {
 
 //listar sede
 $app -> get('/sede',function() use($db,$app){
-        $sql ='select * from sede order by id_sede ASC;';
+      //  $sql ='select * from sede order by id_sede ASC;';
+          $sql ='SELECT S.id_sede,P.nombre_pro,C.nombre_ciu, S.nombre_sede,S.direccion_sede 
+          FROM  sede S, provedor P, ciudad C 
+          
+          WHERE 
+          
+          S.id_ciu = C.id_ciu AND
+          S.id_pro = P.id_pro;';
         $query =$db->query($sql);
        
         $sedes = array();

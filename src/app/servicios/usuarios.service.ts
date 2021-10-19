@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap, map } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
+import { Usuario } from '../interfaces/usuarios.interfaces';
+
 
 @Injectable({
   providedIn: 'root'
@@ -54,9 +56,9 @@ export class UsuariosService {
   }
 
 
-  postUser(registro:any) {
+  postUser(registro:Usuario):Observable<Usuario> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.urluser, registro, httpOptions);
+    return this.http.post<Usuario>(this.urluser, registro, httpOptions);
   }
 
   soniguales(campo1: string, campo2: string) {
@@ -82,9 +84,8 @@ export class UsuariosService {
     return this.http.get(this.urluser);
   }
 
-  dellusu(id:string){
-    return this.http.get(this.urluser + '-delete/' + id);
-
+  dellusu(id:string):Observable<Usuario>{
+    return this.http.get<Usuario>(this.urluser + '-delete/' + id);
   }
 
   getusu(id:string) {
@@ -92,26 +93,26 @@ export class UsuariosService {
     return this.http.get(url);
   }
 
-  putlogida(usuario:any,id:string){
+  putlogida(usuario:Usuario,id:string):Observable<Usuario>{
 
     const  headers = new HttpHeaders({
     'Content-Type': 'application/json'
   })
    console.log(usuario);
   const url =`${this.urluser}-update/${id}`;
-  return this.http.post(url,usuario,{headers});
+  return this.http.post<Usuario>(url,usuario,{headers});
 
   }
   
 
-  putlogi(usuario:any){
+  putlogi(usuario:any):Observable<Usuario>{
 
     const  headers = new HttpHeaders({
     'Content-Type': 'application/json'
   })
 
   const url =`${this.urluser}-pass`;
-  return this.http.post(url,usuario,{headers});
+  return this.http.post<Usuario>(url,usuario,{headers});
 
   }
   

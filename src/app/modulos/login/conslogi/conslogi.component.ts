@@ -4,6 +4,7 @@ import { UsuariosService } from '../../../servicios/usuarios.service';
 import { CommonModule } from "@angular/common";
 import { Md5 } from 'ts-md5';
 import { Params } from '@angular/router';
+import { Usuario } from 'src/app/interfaces/usuarios.interfaces';
 
 @Component({
   selector: 'app-conslogi',
@@ -12,7 +13,7 @@ import { Params } from '@angular/router';
 })
 export class ConslogiComponent implements OnInit {
 
-  usuarios: any[] = [];
+  usuarios: Usuario[] =[];
   estado: string;
   page = 1;
   pageSize = 10;

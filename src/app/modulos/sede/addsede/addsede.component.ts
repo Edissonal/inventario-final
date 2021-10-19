@@ -21,6 +21,9 @@ export class AddsedeComponent implements OnInit {
   provedores: Provedor[] = [];
   showView: boolean = false;
   sedes: Sedes;
+  validacion: number;
+  mensaje: string
+
 
   constructor(private fb: FormBuilder,
               private sedeService : SedeService,
@@ -50,6 +53,12 @@ export class AddsedeComponent implements OnInit {
   ngOnInit() {
     this.conCiu();
     this.conPro();
+  }
+
+  tiempo() {
+    setTimeout(() => {
+      this.validacion = null;
+    }, 5000);
   }
 
   crearFormulario() { 
@@ -93,9 +102,22 @@ export class AddsedeComponent implements OnInit {
     }
     this.sedes = this.saveSede();
     this.sedeService.postsede(this.sedes)
-      .subscribe(newsede => { 
-        console.log(newsede);
-        this.router.navigate(['/auth/conssede']);
+      .subscribe(res => { 
+        console.log(res);
+        
+        if (res.code == 404) {
+          console.log(res);
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+
+        } else {
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+        }
+
+       // this.router.navigate(['/auth/conssede']);
       }, error => console.log(<any>error));
       this.sedeForm.reset();
   }

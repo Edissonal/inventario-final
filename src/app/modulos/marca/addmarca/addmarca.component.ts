@@ -15,6 +15,8 @@ export class AddmarcaComponent implements OnInit {
 
   formaForm: FormGroup;
   marca: Marcas;
+  validacion: number;
+  mensaje: string;
   constructor(private fb: FormBuilder,
               private router: Router,
               private marcaService: MarcaService) { 
@@ -23,9 +25,15 @@ export class AddmarcaComponent implements OnInit {
 
   ngOnInit() {
   }
-
   get nombreNovalido() {
     return this.formaForm.get('nombre_ma').invalid && this.formaForm.get('nombre_ma').touched;
+  }
+
+
+  tiempo() {
+    setTimeout(() => {
+      this.validacion = null;
+    }, 5000);
   }
 
   crearFormulario() { 
@@ -45,9 +53,20 @@ export class AddmarcaComponent implements OnInit {
     }
     this.marca = this.saveMarca();
     this.marcaService.postmarca(this.marca)
-      .subscribe(newpro => { 
-        console.log(newpro);
-        this.router.navigate(['/auth/consultarma']);
+      .subscribe(res => { 
+        console.log(res);
+        if (res.code == 404) {
+          console.log(res);
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+
+        } else {
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+        }
+        // this.router.navigate(['/auth/consultarma']);
       }, error => console.log(<any>error));
       this.formaForm.reset();
   }

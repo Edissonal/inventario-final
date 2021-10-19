@@ -1,0 +1,152 @@
+ion-header {
+    --background: var(--ion-color-light);
+}
+
+ion-header ion-title span{
+    color: var(--ion-color-primary) !important;
+}
+
+ion-toolbar ion-buttons,
+ion-toolbar ion-avatar,
+ion-toolbar ion-title,
+.infocliente {
+    display: inline-block !important;
+    position: relative;
+}
+
+.direccion {
+    font-family: 'roboto_light' !important;
+}
+
+ion-header ion-input {
+    --background: var(--ion-color-secondary);
+    color: var(--ion-color-dark);
+    border: 1px solid var(--ion-color-secondary);
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    --padding-start: 10px;
+    --padding-end: 20px;
+}
+
+ion-header ion-input ion-icon {
+    margin-left: 10px;
+}
+
+.loader {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    width: 50%;
+    height: auto;
+    // margin-top: 100px;
+}
+
+.elementos ion-avatar {
+    width: 15%;
+    height: auto;
+}
+
+.elementos ion-item ion-avatar {
+    border-radius: 100% !important;
+}
+
+// Slides elementos
+
+ion-card-header {
+    padding: 0px !important;
+}
+
+.elementos-slides ion-card-header span {
+    color: var(--ion-color-secondary);
+}
+
+.elementos-slides .custon-nav{
+    cursor: pointer;
+  }
+
+.elementos-slides .swiper-slide {
+    height: 200px;
+    font-size: 1em;
+}
+
+.elementos-slides .swiper-slide img {
+    width: 100%;
+    height: auto;
+    // position: absolute;
+    top: 10px;
+    bottom: 100px;
+    display: block;
+    opacity: 0.8;
+    border-radius: 10px;
+  }
+
+  .elementos-slides .swiper-slide .pos-badge { 
+    width: auto;
+    height: 20px;
+    position: absolute;
+    right: 0px;
+    z-index: 10;
+}
+
+.elementos-slides .informacion {
+    position: relative;
+    top: 60px;
+    z-index: 10 !important;
+    width: 100%;
+}
+
+.elementos-slides ion-button {
+    font-family: 'roboto_light' !important;
+}
+
+
+.divisor {
+    padding-top: 20%;
+}
+
+// Canasta
+
+ion-card.canasta {
+    z-index: 1;
+}
+
+ion-card.canasta .bg {
+    width: 70%;
+    height: 45%;
+    border-radius: 45%;
+    position: fixed;
+    top: 90%;
+    left: calc(70%/5);
+    color: var(--ion-color-light);
+    background: var(--ion-color-medium);
+    text-align: center;
+}
+
+ion-card.canasta .car{
+    width: 25px;
+    height: 25px;
+    position: relative;
+    margin-top: -10px;
+    background: #ffffff;
+    border: 1px solid var(--ion-color-medium);
+    border-radius: 100%;
+    padding: 2px;
+    z-index: 11;
+}
+
+ion-card.canasta .bg .vecinotransparente{
+    width: 40%;
+    height: auto;
+    position: fixed;
+    left: 120px;
+    margin-top: 30px;
+}
+
+ion-card.canasta .bg .canasta_precio {
+    margin-top: 1%;
+}
+
+ion-card.canasta .bg p {
+    margin-top: -10px;
+}

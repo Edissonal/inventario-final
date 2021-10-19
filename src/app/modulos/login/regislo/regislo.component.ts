@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Usuario } from 'src/app/interfaces/usuarios.interfaces';
 import { Md5 } from 'ts-md5';
 import { UsuariosService } from '../../../servicios/usuarios.service';
 
@@ -17,7 +18,7 @@ export class RegisloComponent implements OnInit {
               private router: Router,
               private activatedRoute: ActivatedRoute) { }
   encrip: any;
-  registro: any;
+  registro: Usuario;
   validacion: number;
   mensaje: string;
   estado: string;
@@ -57,9 +58,9 @@ export class RegisloComponent implements OnInit {
     }
     this.registro = this.savelogin();
     this.usuariosService.postUser(this.registro)
-      .subscribe((res:any) => {
+      .subscribe(res => {
         console.log(res.code);
-        if (res.code == "400") {
+        if (res.code == 400) {
           this.validacion = res.code;
           this.mensaje = res.message;
           this.tiempo();

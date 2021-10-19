@@ -1,0 +1,247 @@
+<!-- Configuracion Pantalla Inicial -->
+<ion-content *ngIf="inicial">
+    <img src="assets/img/bghexagon.jpg" class="bgdireccion">
+    <div style="margin-top: calc(60%/3)">
+        <div class="ion-text-center ion-padding">
+            <img src="assets/img/nubevecino.png" class="img-logo-vecino">
+            <h1 class="text-bienvenida">Hola, bienvenido a Vecino app clientes</h1>
+            <p class="text-msg">Vecino app clientes, necesita tener acceso a tu ubicación para buscar las tiendas mas cercanas 
+                y que puedas realizar tus compras de manera fácil.
+            </p>
+        </div>
+        <div class="custom-shape-divider-bottom-1621732619">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+                <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border" *ngIf="inicial">
+    <ion-toolbar>
+        <div class="buttons ion-padding">
+            <ion-button (click)="ingresarubicacion()" expand="block" fill="outline" shape="round" color="primary">
+                Ingresar mi dirección
+            </ion-button>
+    
+            <ion-button expand="block" fill="clear" shape="round" color="primary" disabled>
+                ----------- ó también puedes -----------
+            </ion-button>
+            
+            <ion-button (click)="detectarubicacion()" expand="block" fill="solid" shape="round" color="primary">
+                Tomar mi ubicación actual
+            </ion-button>
+        </div>
+    </ion-toolbar>
+</ion-footer>
+
+
+<!-- Configuracion Pantalla Ingresar Direccion -->
+<ion-content   *ngIf="ingubicacion" style="height: 100%;"> 
+    <img src="assets/img/bghexagon.jpg" class="bgdireccion">
+    <div style="height: 90%;"  >
+        <ion-header class="ion-no-border ion-no-padding">
+            <ion-toolbar color="transparent">
+                <ion-button (click)="inicio()"  color="light" slot="start" fill="clear">
+                    <ion-icon slot="start" name="arrow-back-outline" color="light"></ion-icon>
+                    Regresar
+                </ion-button>
+                <img src="assets/img/nubevecino.png" class="img-logo-vecinoU">
+            </ion-toolbar>
+        </ion-header>
+        <div class="ion-text-center ion-padding">
+            <!--<img src="assets/img/nubevecino.png" class="img-logo-vecino"> -->
+             <p class="text-msg">
+                Vecino ingresa tu ubicación para ayudarte a 
+                encontrar las tiendas mas cercanas.
+            </p> 
+            <ion-grid fixed>
+                <ion-row>
+                    <ion-col size="12" style="height: 100% !important; max-height: 100% !important">
+                        <form class="ion-no-padding">
+                            <ion-grid class="ion-no-padding">
+                                <ion-row>
+                                    <ion-col class="ion-no-padding">
+                                        <ion-select multiple="false" value="Colombia" mode="ios" class="ion-no-padding selector" color="light">
+                                            <ion-select-option value="Colombia">Colombia</ion-select-option>
+                                        </ion-select>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                            <br>
+                            <!-- PAIS Y CIUDAD -->
+                            <ion-grid class="ion-no-padding">
+                                <ion-row>
+                                    <ion-col size="" style="margin-right:5px;">
+                                        <ion-select multiple="false" placeholder="Departamento" mode="ios"
+                                            class="ion-no-padding selector" color="light" ([ngModel])="departamento" #departamento
+                                            (ionChange)="verdepartamentos( departamento )">
+                                            <ion-select-option [value]="d.value" *ngFor="let d of departamentos">{{ d.ubicacion }}</ion-select-option>
+                                        </ion-select>
+                                    </ion-col>
+                                    <ion-col size="" style="margin-right: 2px;">
+                                        <ion-select multiple="false" placeholder="ciudad" mode="ios" class="ion-no-padding selector"
+                                            [disabled]="!departamentoActive" color="light" ([ngModel])="ciudad" #ciudad
+                                            (ionChange)="ciudades( ciudad )">
+                                            <ion-select-option value="{{ c.ciudad }}" *ngFor="let c of citys">{{ c.ciudad }}
+                                            </ion-select-option>
+                                        </ion-select>
+                                    </ion-col>
+                                    <ion-col size="" style="margin-right: 2px;">
+                                        <ion-select placeholder="Tipo" mode="ios" class="ion-no-padding selector" color="light"
+                                            [disabled]="!ciudadActive" name="tipo" #tipo ([ngModel])="tipo"
+                                            (ionChange)="tipos( tipo )">
+                                            <ion-select-option value="avenida Carrera">Av Carrera</ion-select-option>
+                                            <ion-select-option value="calle">Calle</ion-select-option>
+                                            <ion-select-option value="carrera">Carrera</ion-select-option>
+                                            <ion-select-option value="circular">Circular</ion-select-option>
+                                            <ion-select-option value="circunvalar">Circunvalar</ion-select-option>
+                                            <ion-select-option value="diagonal">Diagonal</ion-select-option>
+                                            <ion-select-option value="manzana">Manzana</ion-select-option>
+                                            <ion-select-option value="transversal">Transversal</ion-select-option>
+                                            <ion-select-option value="vía">Vía</ion-select-option>
+                                        </ion-select>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                            <br>
+
+                            <!-- Direccion -->
+                            <ion-grid class="ion-no-padding">
+                                <ion-row>
+                                    <ion-col size="" style="margin-right: 3px;">
+                                        <ion-input type="text" name="numero" id="numero" #numero ([ngModel])="numero"
+                                            [disabled]="!tipoActive" (ionChange)="_numero( numero )" class="selector" >
+                                        </ion-input>
+                                    </ion-col>
+                                    <ion-col size="" style="margin-right: 3px;">
+                                        <ion-input type="text" name="numeros" id="numeros" #numeros class="selector"
+                                            [disabled]="!n1Active" ([ngModel])="numeros" (ionChange)="_numeros( numeros )">
+                                            <span slot="start"
+                                                style="color:var(--ion-color-primary); padding-left: 5px; padding-right: 5px">#</span>
+                                        </ion-input>
+                                    </ion-col>
+                                    <ion-col size="" style="margin-right: 3px;">
+                                        <ion-input type="text" name="complemento" id="complemento" class="selector"
+                                            [disabled]="!n2Active" ([ngModel])="complemento" #complemento
+                                            (ionChange)="_complemento(complemento)">
+                                            <span slot="start"
+                                                style="color: var(--ion-color-primary); padding-left: 5px; padding-right: 5px">-</span>
+                                        </ion-input>
+                                    </ion-col>
+                                </ion-row>
+                            </ion-grid>
+                            <br>
+            
+                            <!-- BARRIO Y DETALLES -->
+                            <ion-grid class="ion-no-padding">
+                                <ion-row>
+                                    <ion-col size="" style="margin-right: 3px;">
+                                        <ion-input type="text" inputmode="text" placeholder="Edificio, Torre, Apto" #mdetalles
+                                            [disabled]="!complementoActive" id="mdetalles"  class="selector"
+                                            class="selector" (ionChange)="_detalles (mdetalles )"></ion-input>
+                                    </ion-col>
+                                    <ion-col size="" style="margin-right: 3px;">
+                                        <ion-input type="text" name="street" id="street" placeholder="Barrio" ([ngModel])="street"
+                                            [disabled]="!detallesActive" #street (ionChange)="_streets(street)" class="selector">
+                                        </ion-input>
+                                    </ion-col>
+                                </ion-row>
+                        
+                            </ion-grid>
+                            <br>
+                            
+                            <ion-button (click)="buscar()" size="small" fill="solid" slot="end" expand="block" fill="outline" color="light"  
+                                class="ubicar" *ngIf="!buscado">
+                                Aceptar
+                            </ion-button>
+                            <!-- LATITUD Y LONGITUD -->
+                            <div style="display: none;">
+                                <ion-input type="text" placeholder="Latitud" name="latitud" id="latitud" ></ion-input>
+                            <ion-input type="text" placeholder="Longitud" name="longitud" id="longitud"></ion-input>
+                            </div>
+                            
+                            <ion-item color="light" *ngIf="buscado" style="font-family: 'roboto_regular'; text-shadow: none;">
+                                <ion-icon slot="end" name="close-outline"
+                                    color="danger"></ion-icon>
+                                <span style="text-align: center;">
+                                    Tu dirección es: {{ address }}
+                                </span>
+                            </ion-item>
+            
+                            <ion-item color="light" *ngIf="nobuscado" style="font-family: 'roboto_regular'; text-shadow: none;">
+                                <ion-icon slot="end" name="close-outline"
+                                    color="danger"></ion-icon>
+                                <small style="text-align: center;">
+                                   No hemos encontrado su dirección: {{ address }}
+                                </small>
+                            </ion-item>
+
+                            <ion-button (click)="guardarubicacioning()" expand="block" fill="solid" color="primary" shape="rounded" class="ubicar" *ngIf="btnguardar" style="margin-top: 25%;">
+                                Guardar Ubicacion
+                            </ion-button>
+                        </form>
+                    </ion-col>
+                </ion-row>
+            </ion-grid> 
+
+            <div style="height: 170px; margin-bottom: 300px; ">
+                
+            </div>
+           
+        </div>
+        
+    </div>
+    <!--<div class="custom-shape-divider-bottom-1621732619" style="z-index: -1; bottom: 0%;" >
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+         <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="shape-fill"></path>
+         <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="shape-fill"></path>
+         <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="shape-fill"></path>
+     </svg>
+         
+     </div> -->
+    
+</ion-content>
+
+
+
+<!-- Configuracion Pantalla FullMapa -->
+<ion-header class="ion-no-border ion-no-padding headermapa" *ngIf="detectubicacion">
+    <ion-toolbar>
+        <ion-buttons slot="start" (click)="inicio()">
+            <ion-button color="light" fill="clear">
+                <ion-icon name="arrow-back-outline" style="margin-right: 10px;"></ion-icon> Regresar
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+    <form #gpsform >
+        <!-- <p style=" color:#222; padding-left: 5px; padding-right: 5px; ">
+            Vecino, guarda detalles especificos para la entrega de los productos a esta dirección.
+        </p> -->
+        <ion-item>
+            <ion-label position="floating">Direccion</ion-label>
+            <ion-input type="text" value="{{ address }}" style="background:transparent !important; color: #222; border: none !important;" #direccion name="direccion" ([ngModel])="direccion"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating">Apartamento, Casa, Torre</ion-label>
+            <ion-input type="text" placeholder="" style="background:transparent !important; border: none !important;" #detalles name="detalles" ([ngModel])="detalles"></ion-input>
+        </ion-item>
+        <ion-button expand="block" fill="solid" shape="round" color="primary" type="submit" (click)="guardarubicaciongps( direccion, detalles )">
+            Guardar Ubicación
+        </ion-button>
+    </form>
+</ion-header>
+
+
+<ion-content *ngIf="detectubicacion" color="light">
+
+    <div class="map-wrapper" style="height: 100%;">
+        <div id="map_center">
+            <img src="assets/img/casaubicacion.png">
+        </div>
+        <div #map id="map" style="width: 100%; height: 100%;"></div>
+    </div>
+
+</ion-content>

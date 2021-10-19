@@ -1,0 +1,102 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button>
+                <ion-icon name="arrow-back-outline" color="primary"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title size="small" class="direccion ion-text-center">
+            <div class="direccion" *ngFor="let d of direccion" (click)="verDireccion( d.direccion )">
+                <ion-icon name="location" color="primary"></ion-icon>
+                <small id="direccion" *ngIf="d.cod_cliente == cliente; else sindireccion">
+                    {{ d.direccion }}
+                </small>
+                <ng-template #sindireccion>
+                    <small id="direccion">
+                        <b>
+                            Indicanos tu dirección
+                        </b>
+                    </small>
+                </ng-template>
+                <ion-icon name="chevron-down-outline" color="medium"></ion-icon>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+
+    <ion-card color="transparent">
+        <ion-input color="primary" enterkeyhint="go" inputmode="search" clear-input="true"
+            placeholder="¿Vecino que vas a pedir hoy?">
+            <ion-icon name="search"></ion-icon>
+        </ion-input>
+    </ion-card>
+</ion-header>
+
+<ion-content class="ion-text-center">
+    <ion-card color="transparent" class=" elementos" *ngFor="let t of alltenderos">
+        <ion-card-header>
+            <ion-item lines="full">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y"
+                                style="border-radius: 100%; margin-top: 10px">
+                        </ion-col>
+                        <ion-col size="6">
+                            <h6>{{ t.nombretienda }}</h6>
+                            <small>Envio ${{ t.costo_envio | number: '3.0' }} </small><br>
+                            <small><i class="icofont-users-alt-2"></i> 56+</small>
+                        </ion-col>
+                        <ion-col class="ion-text-right">
+                            <h6>3.4</h6>
+                            <small><i class="icofont-star" style="color: var(--ion-color-success)"></i></small>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-item>
+        </ion-card-header><br>
+        <ion-card-content>
+            <ion-slides pager="false" [options]="slideOptsArticulos" #slideWithNav2
+                (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" class="elementos-slides">
+                <div *ngFor="let prod of productos">
+                    <div *ngIf="prod.cod_tendero == t.codigo">
+                        <ion-slide class="ion-text-center">
+                            <ion-card>
+                                <ion-card-header>
+                                    <div class="pos-badge">
+                                        <ion-badge color="primary">{{ prod.precio | number:'3.0' }}</ion-badge>
+                                    </div>
+                                        <div *ngFor="let ima of imagenes" class="ion-text-center icon">
+                                            <img src="{{ cdn_site }}{{ ima.base_url}}{{ima.foto}}"
+                                                *ngIf="prod.codigo == ima.cod_tabla && ima.base_url == 'articulos/' "
+                                                style="width: 100px; height: 100px !important;">
+                                        </div>
+                                </ion-card-header>
+                                <ion-card-content>
+                                    <small><b>{{ prod.articulo }}</b></small>
+                                    <ion-button color="primary" fill="solid" size="small" expand="block"
+                                        (click)="verDetallesProducto( prod.codigo, t.codigo  )">Agregar</ion-button>
+                                </ion-card-content>
+                            </ion-card>
+                        </ion-slide>
+                    </div>
+
+                </div>
+            </ion-slides>
+        </ion-card-content>
+    </ion-card>
+
+
+    <div class="divisor"></div>
+
+    <ion-card color="transparent"
+        class="canasta animate__animated animate__fadeIn animate__delay-5s  ion-activatable ripple-parent"
+         *ngIf="suma > 0">
+        <div class="bg">
+            <img src="assets/img/dashboard/car.png" class="car">
+            <img src="assets/img/addCar/logotransparent.png" class="vecinotransparente">
+            <h6 class="canasta_precio">$ {{suma | number:'3.0' }}</h6>
+            <p>Ver canasta</p>
+            <ion-ripple-effect></ion-ripple-effect>
+        </div>
+    </ion-card>
+</ion-content>

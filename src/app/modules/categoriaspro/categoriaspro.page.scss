@@ -1,0 +1,44 @@
+#categoriasart .swiper-slide {
+    height   : 210px;
+    font-size: 1em;
+    margin-bottom: -50px;
+}
+
+#categoriasart .swiper-slide ion-thumbnail img {
+    background   : #ffffff;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
+    height       : 60px;
+    width: 100% !important;
+    border-radius: 8px;
+    position     : absolute;
+    // left         : 10%;
+    top          : 10px;
+    bottom: 20px;
+}
+
+.cuadros{
+    background   : #ffffff;
+    box-shadow: 0px 0px 5px rgba(0,0,0,0.6);
+    height       : 60px;
+    width: 100% !important;
+    border-radius: 8px;
+    position     : absolute;
+    // left         : 10%;
+    top          : 10px;
+    bottom: 20px;
+}
+
+.espcate{
+    margin-inline:0px;
+}
+
+.estilos{
+    overflow: hidden;
+ //   background-color: #db4c2a;
+}
+
+ion-item.margen {
+    --padding-end: 0px;
+    --inner-padding-end: 0px;
+    // here other custom CSS from documentation
+  }

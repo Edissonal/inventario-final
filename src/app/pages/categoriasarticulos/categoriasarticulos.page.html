@@ -1,0 +1,176 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar color="transparent" class="ion-no-padding">
+        <ion-buttons slot="start" (click)="tiendas()">
+            <ion-button>
+                <ion-icon name="arrow-back-outline" color="light"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title style="font-family: roboto_light; text-align: center; font-size: 1.2em;">
+            {{ nombrecategoriaseleccionada }}
+        </ion-title>
+        <ion-button fill="clear" slot="end" mode="md"
+            class="buttoncanasta animate__animated animate__pulse animate__infinite" (click)="verCanasta()" *ngIf="suma > 0">
+            <ion-icon name="cart-outline" style="display: inline-block; margin-right: 10px;"></ion-icon>
+            <span>$ {{ suma | number: '3.0' }}<br><small>Ir a canasta</small></span>
+        </ion-button>
+    </ion-toolbar>
+    <ion-toolbar color="transparent">
+        <ion-searchbar enterkeyhint="go" color="light" (ionChange)="buscador( busqueda )" mode="ios" #busqueda
+            placeholder="Busca el artículo que necesites"></ion-searchbar>
+    </ion-toolbar>
+    <ion-toolbar color="transparent" class="ion-no-padding">
+        <div class="wave">
+            <img src="assets/img/newwave.svg">
+        </div>
+    </ion-toolbar>
+
+    <!-- Menu de categorias -->
+    <ion-card
+        style="margin-top: -14px; z-index: 99999; background: rgba(255,255,255, 1)!important; border-radius: 100px;  width: 100%;"
+        id="categorias" *ngIf="view" class="ion-no-padding">
+        <ion-grid class="ion-no-padding">
+            <ion-row class="ion-no-padding">
+                <ion-col size="" class="ion-no-padding">
+                    <ion-segment scrollable mode="md" [value]="subCategoryValue" (ionChange)="ionSegmentChange($event)">
+                        <ion-segment-button [id]="'segment' + s.codigo" [value]="s.codigo"
+                            *ngFor="let s of subcategoriasarticulos"
+                            (click)="cambiarSubCategoria(s.codigo, s.subcategoria, true)">
+                            {{ s.subcategoria }}
+                        </ion-segment-button>
+                    </ion-segment>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+
+    <ion-card
+        style="margin-top: -14px; z-index: 99999; background: rgba(255,255,255, 1)!important; border-radius: 100px;  width: 100%;"
+        id="categorias" *ngIf="!view" class="ion-no-padding">
+        <ion-segment scrollable value="1">
+            <ion-segment-button value="1"
+                style=" color:var(--ion-color-dark); font-size: 0.9em; text-transform: capitalize;">
+                Resultados
+            </ion-segment-button>
+        </ion-segment>
+    </ion-card>
+
+</ion-header>
+
+<ion-content #content *ngIf="view" scrollEvents="true" (ionScrollEnd)="onScrollEnd($event)">
+    <ion-grid>
+        <ion-row>
+            <ion-col size="12">
+                <!-- Productos -->
+                <ion-card *ngIf="select" style="padding-bottom: 55px;">
+                    <ion-card-header style="padding-left: 0px !important; padding-bottom: 10px !important"
+                        class="ion-padding">
+                        <b style="font-family: roboto_light !important; color: #000 !important; border-bottom: 1px solid #000; padding-bottom: 5px;"
+                            class="ion-text-capitalize" *ngIf="!nomcategoria">{{ nombresubcategoriafirst }}</b>
+                        <b style="font-family: roboto_light !important; color: #000 !important; border-bottom: 1px solid #000; padding-bottom: 5px;"
+                            class="ion-text-capitalize" *ngIf="nomcategoria">{{ nomcategoria }}</b>
+                    </ion-card-header>
+
+                    <ion-list *ngFor="let p of productossubcategorias">
+                        <ion-item *ngIf="p.estado == 1">
+                            <!-- <ion-thumbnail slot="" style="height: 100px;"> -->
+                            <img src="{{ cdn_site }}{{ p.base_url}}{{p.foto_sm}}"
+                                style="border-radius: 8px; height: 100px; width: 80px; margin-top: 0px" slot="start" />
+                            <img src="assets/img/sin_imagen.png"
+                                style="border-radius: 8px; height: 100px; width: 80px; margin-top: 0px"
+                                *ngIf="p.base_url == null " slot="start" />
+                            <!-- </ion-thumbnail> -->
+                            <ion-label>
+                                <ion-text style="white-space: normal;">
+                                    <h2 style="white-space: normal;">{{ p.articulo }}</h2>
+                                </ion-text>
+                                <p style=" margin-bottom: 25px;">
+                                    <ion-button fill="clear" color="dark"
+                                        style="float: left; --padding-start: 0px; --padding-end: 40px; color:#000 !important"
+                                        strong>
+                                        <b style="font-size: 1.25em; color: #000 !important">$ {{ p.precio | number:
+                                            '3.0' }}</b>
+                                    </ion-button>
+                                    <ion-button fill="solid" color="primary"
+                                        style="float: right; --padding-start: 40px; --padding-end: 40px;"
+                                        (click)="detallesProducto( p.cod_articulo )" *ngIf="p.agotado == 1">
+                                        Ver
+                                    </ion-button>
+                                    <ion-label color="danger"
+                                        style="float: right; --padding-start: 40px; --padding-end: 40px; padding-top: 5px; padding-bottom: 5px; padding-left: 10px; padding-right: 10px; background: var(--ion-color-danger); color: var(--ion-color-light); border-radius: 6px;"
+                                        *ngIf="p.agotado == 0">
+                                        Agotado
+                                    </ion-label>
+                                </p>
+                            </ion-label>
+                        </ion-item>
+                    </ion-list>
+                </ion-card>
+                <!--   Canasta GRID-->
+                <!-- <ion-card color="transparent" class="canasta ion-activatable ripple-parent" (click)="verCanasta()"
+                    *ngIf="suma">
+                    <div class="bg">
+                        <img src="assets/img/car.png" class="car">
+                        <img src="assets/img/logotransparent.png" class="vecinotransparente">
+                        <h6 class="canasta_precio">$ {{ suma | number: '3.0' }}</h6>
+                        <p>Ver canasta</p>
+                        <ion-ripple-effect></ion-ripple-effect>
+                    </div>
+                </ion-card> -->
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+</ion-content>
+
+<!-- Resultados  de la busqueda-->
+<ion-content *ngIf="!view" style="margin-top: -10px;">
+    <ion-card class="ion-no-padding" style="height: auto !important; margin-bottom: 120px !important">
+        <ion-grid>
+            <ion-row *ngFor="let p of resultados | paginate: { itemsPerPage: 8, currentPage: pagesresultados } "
+                style="border: 1px solid var(--ion-color-secondary); border-radius: 6px;">
+                <ion-col>
+                    <ion-img src="{{ cdn_site }}{{ p.base_url}}{{p.foto_sm}}"
+                        style="border-radius: 8px; height:140px; width: 100%;" *ngIf="p.base_url == 'articulos/'">
+                    </ion-img>
+                    <ion-img src="assets/img/sin_imagen.png" style="border-radius: 8px; height:140px; width: 100%;"
+                        *ngIf="p.base_url == null "></ion-img>
+                </ion-col>
+                <ion-col size="7" class="ion-no-padding">
+                    <h6 class="ion-text-capitalize" style="color: var(--ion-color-dark)">{{ p.articulo }}</h6>
+                    <small>{{ p.descripcion | truncate: 80 }}</small><br><br>
+                    <ion-buttons size="small">
+                        <p color="dark" slot="start" style="color: var(--ion-color-dark)"><b>$ {{ p.precio | number:
+                                '3.0' }}</b></p>
+                        <ion-button (click)="detallesProducto( p.cod_articulo )" fill="solid" color="primary"
+                            style="float: right;" class="addprom" size="small" shape="round" *ngIf="p.agotado == 1">
+                            Ver
+                        </ion-button>
+                        <ion-button fill="solid" color="danger" style="float: right;" class="addprom" size="small"
+                            shape="round" *ngIf="p.agotado == 0 || p.agotado == null">
+                            Agotado
+                        </ion-button>
+                    </ion-buttons>
+                </ion-col>
+            </ion-row>
+
+            <ion-row *ngIf="resultados == '' "
+                style="border: 1px solid var(--ion-color-secondary); border-radius: 6px; margin-bottom:5px;">
+                <ion-col>
+                    <div class="ion-text-center icon">
+                        <img src="assets/img/sinresultados.png" style="border-radius: 8px;">
+                    </div>
+                </ion-col>
+                <ion-col size="7">
+                    <h6 class="ion-text-capitalize" style="color: var(--ion-color-dark)">No se encontró ningún resultado
+                    </h6>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <div class="ion-text-center">
+            <pagination-controls style="font-size: 0.8em;" (pageChange)="pagesresultados = $event " previousLabel=''
+                nextLabel=''>
+            </pagination-controls>
+        </div>
+    </ion-card>
+
+</ion-content>

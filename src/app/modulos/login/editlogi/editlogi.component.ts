@@ -4,6 +4,7 @@ import { UsuariosService } from '../../../servicios/usuarios.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { group } from '@angular/animations';
 import { Md5 } from 'ts-md5';
+import { Usuario } from 'src/app/interfaces/usuarios.interfaces';
 
 
 @Component({
@@ -14,13 +15,13 @@ import { Md5 } from 'ts-md5';
 export class EditlogiComponent implements OnInit {
 
   //formaform: FormGroup;
-  usuario: any;
-  id_usu: any;
+  usuario: Usuario;
+  id_usu: string;
   showview: boolean = false;
   showview2: boolean = false;
-  encrip:any;
+  encrip:string;
   encrip1:any;
-  password: any;
+  password: string;
   estado: string;
 
 
