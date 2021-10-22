@@ -27,7 +27,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let man of buscar">
+            <tr *ngFor="let man of buscar | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
                 <td>{{man.nombre_ciu}}</td>
                 <td>{{man.nombre_equi}}</td>
                 <td>{{man.nombre_ma}}</td>
@@ -48,7 +48,7 @@
 
     </table>
     <ngb-pagination [collectionSize]="buscar.length" 
-    [(page)]="page"
-    ></ngb-pagination>
+                [(page)]="page"
+                ></ngb-pagination>
 </div>
 

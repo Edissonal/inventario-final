@@ -4,13 +4,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Provedor } from '../interfaces/provedor.interface';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProvedoresService {
 
-  prourl = "http://localhost/inventario/provedor.php/provedor";
+  //prourl = "http://localhost/inventario/provedor.php/provedor";
+  
+  prourl = environment.prourl;
   
   constructor(private http:HttpClient) { }
 

@@ -4,14 +4,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { Marcas } from '../interfaces/marcas.interfaces';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MarcaService {
 
-  prourl = "http://localhost/inventario/marca.php/marca";
-
+ // prourl = "http://localhost/inventario/marca.php/marca";
+  
+  prourl = environment.marca;
+  
   constructor(private http:HttpClient) { }
 
   postmarca(marca: Marcas):Observable<Marcas> {

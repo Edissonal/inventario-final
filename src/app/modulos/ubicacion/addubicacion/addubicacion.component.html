@@ -24,7 +24,7 @@
             <div class="input-group col">
               <button 
                       type="submit" 
-                      class="btn btn-outline-primary"
+                      class="btn btn-primary"
                     
                      >
                 Guardar
@@ -36,3 +36,10 @@
           
     </div>
 </form>
+
+<div *ngIf="validacion == 404 || validacion == 200">
+  <app-snackbar
+                [fondo]="'#17747E'"
+                [nota]="mensaje"
+      ></app-snackbar>
+</div>

@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  prourl: 'http://localhost/inventario/provedor.php/provedor',
+  ciurl: 'http://localhost/inventario/ciudad.php/ciudad',
+  equiurl: 'http://localhost/inventario/equipo.php/equipo',
+  marca: 'http://localhost/inventario/marca.php/marca',
+  sedeurl: 'http://localhost/inventario/sede.php/sede',
+  ubiurl : 'http://localhost/inventario/ubicacion.php/ubicacion'
 };
 
 /*
@@ -14,3 +20,4 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import { Marcas } from '../app/interfaces/marcas.interfaces';

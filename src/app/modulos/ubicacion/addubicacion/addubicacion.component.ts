@@ -15,6 +15,8 @@ export class AddubicacionComponent implements OnInit {
 
   formaForm: FormGroup;
   ubicacion: Ubicacion;
+  validacion: number;
+  mensaje: string;
   constructor(private fb: FormBuilder,
               private router: Router,
               private ubicacionService: UbicacionService) { 
@@ -23,6 +25,13 @@ export class AddubicacionComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  tiempo() {
+    setTimeout(() => {
+      this.validacion = null;
+    }, 5000);
+  }
+
 
   get nombreNovalido() {
     return this.formaForm.get('nombre_ubi').invalid && this.formaForm.get('nombre_ubi').touched;
@@ -45,9 +54,20 @@ export class AddubicacionComponent implements OnInit {
     }
     this.ubicacion = this.saveUbicacion();
     this.ubicacionService.postubicacion(this.ubicacion)
-      .subscribe(newpro => { 
-        console.log(newpro);
-        this.router.navigate(['/auth/consultarubi']);
+      .subscribe(res => { 
+        console.log(res);
+        if (res.code == 404) {
+          console.log(res);
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+
+        } else {
+          this.validacion = res.code;
+          this.mensaje = res.message;
+          this.tiempo();
+        }
+       // this.router.navigate(['/auth/consultarubi']);
       }, error => console.log(<any>error));
       this.formaForm.reset();
   }

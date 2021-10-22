@@ -20,7 +20,7 @@
         </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let sede of sedes">
+    <tr *ngFor="let sede of sedes | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
     <td>{{sede.nombre_ciu}}</td>
     <td>{{sede.nombre_pro}}</td>
     <td>{{sede.nombre_sede}}</td>

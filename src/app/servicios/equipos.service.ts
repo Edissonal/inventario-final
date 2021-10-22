@@ -5,13 +5,15 @@ import { Equipos } from '../interfaces/equipos.interface';
 
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EquiposService {
 
-  equiurl = "http://localhost/inventario/equipo.php/equipo";
+ // equiurl = "http://localhost/inventario/equipo.php/equipo";
+    equiurl = environment.equiurl;
 
   constructor(private http: HttpClient) { }
   

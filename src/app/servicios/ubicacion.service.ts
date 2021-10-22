@@ -4,13 +4,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { Ubicacion } from '../interfaces/ubicacion.interface';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UbicacionService {
 
-  prourl = "http://localhost/inventario/ubicacion.php/ubicacion";
+  //prourl = "http://localhost/inventario/ubicacion.php/ubicacion";
+  prourl = environment.ubiurl;
 
   constructor(private http:HttpClient) { }
 

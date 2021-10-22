@@ -14,7 +14,7 @@
         
 </thead>
 <tbody>
-    <tr *ngFor="let equipo of equipos">
+    <tr *ngFor="let equipo of equipos | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
     <td>{{equipo.nombre_equi}}</td>
     
     <td><button 

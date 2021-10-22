@@ -4,14 +4,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/Rx';
 import { Sedes } from '../interfaces/sedes.interfaces';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SedeService {
 
-  sedeurl = "http://localhost/inventario/sede.php/sede";
-
+ // sedeurl = "http://localhost/inventario/sede.php/sede";
+     sedeurl = environment.sedeurl; 
+  
   constructor(private http:HttpClient) { }
 
   

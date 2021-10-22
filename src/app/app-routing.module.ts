@@ -30,7 +30,7 @@ const routes: Routes = [
   },
   
   { path: 'logi', component: LoginComponent },
-  { path: 'logire', component: RegisloComponent },
+ // { path: 'logire', component: RegisloComponent },
   { path:'**',redirectTo:'logi'},
 ];
 
