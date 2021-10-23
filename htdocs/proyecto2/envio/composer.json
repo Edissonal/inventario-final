@@ -1,9 +1,0 @@
-{
-	"require": {
-		"slim/slim": "2.*",
-		"phpmailer/phpmailer": "^6.5"
-	},
-	"autoload": {
-		"classmap": ["piramide-uploader"]
-	}
-}
