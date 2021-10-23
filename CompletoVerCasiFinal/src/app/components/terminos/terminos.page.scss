@@ -1,0 +1,28 @@
+.modal-terminos {
+    --background: #000000 !important;
+}
+
+p {
+    font-size: 1em !important;
+    font-family: 'roboto light';
+    text-align: justify;
+}
+
+h2 {
+    font-size: 1.3em !important;
+}
+
+h3, h6 {
+    color: var(--ion-color-primary) !important;
+    font-family: 'roboto black';
+    text-transform: uppercase;
+    text-align: center !important;
+}
+
+.detalles {
+    color: var(--ion-color-light);
+    text-align: justify;
+    font-family: 'roboto thin';
+    white-space: normal;
+    font-size: 0.9em;
+}

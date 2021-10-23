@@ -1,0 +1,127 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start" (click)="iraDashboard()">
+            <ion-button color="primary">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Vecino su pedido</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <p class="ion-text-center ion-text-uppercase entrega">dirección de entrega</p>
+        <ion-title size="small" class="direccion">
+            <div class="direccion" *ngFor="let d of direccion">
+                <ion-icon name="location" color="primary"></ion-icon>
+                <small id="direccion" *ngIf="d.cod_cliente == cliente">
+                    {{ d.direccion }}<br>
+                    {{ d.detalles }}
+                </small>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content style="height: 100%;">
+    <ion-grid>
+        
+        <ion-row>
+            <ion-col size="12"> 
+    <div color="transparent" *ngFor="let venta of pedidoscliente">
+        <div *ngIf="venta.cod_calificacion == null && venta.estatus != 4">
+            <ion-list color="transparent">
+                <ion-item lines="full" class="tiempo">
+                    <small slot="start" class="ion-padding-start">Estado: </small>
+                    <span style="font-size:0.7em; margin-right: 50px;" *ngIf="venta.estatus == 0">
+                        <ion-icon name="ellipse" color="primary"></ion-icon>
+                        Pendiente
+                    </span>
+                    <span style="font-size:0.7em; margin-right: 5px;" *ngIf="venta.estatus == 1">
+                        <ion-icon name="ellipse" color="medium"></ion-icon>
+                        Confirmado
+                    </span>
+                    <span style="font-size:0.7em; margin-right: 5px;" *ngIf="venta.estatus == 2">
+                        <ion-icon name="ellipse" color="success"></ion-icon>
+                        Enviado
+                    </span>
+                    <span style="font-size:0.7em; margin-right: 5px;" *ngIf="venta.estatus == 3">
+                        <ion-icon name="ellipse" color="secondary"></ion-icon>
+                        Cerrado
+                    </span>
+                    <small class="ion-padding-start" style="font-size:0.7em; margin-right: 10px;">Entrega en: </small>
+                    <small *ngIf="venta.tiempoenvio > 0">{{ venta.tiempoenvio }} minutos</small>
+                    <small *ngIf="venta.tiempoenvio == 0">Sin confirmar</small>
+                </ion-item>
+                <!-- Lugar y categoria -->
+                <ion-item lines="full" *ngIf="venta.estatus != 4" >
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col style="border-right: 1px solid var(--ion-color-secondary);">
+                                <img src="{{ cdn_site }}{{ venta.base_url }}{{ venta.foto }}" *ngIf="venta.foto != null" style="width: auto; height: 40px; margin-right: 10px">
+                                <img src="assets/img/icon.png" *ngIf="venta.foto == null" style="width: auto; height: 40px; margin-right: 10px">
+                            </ion-col>
+                            <ion-col size="8" style=" margin-top: 20px;" class="ion-text-center">
+                                <ion-label class="lugar">
+                                    <b class="ion-text-capitalize">{{ venta.nombretienda }}</b><br>
+                                </ion-label>
+                            </ion-col>
+                            <ion-col size="2" class="ion-text-center"
+                                style="border-left: 1px solid var(--ion-color-secondary)">
+                                <div style="color: var(--ion-color-primary);">
+                                    <b>
+                                        <ion-icon name="basket-outline"></ion-icon><br>
+                                        <small class="iont-text-center" (click)="verDetalle( venta.codigo, venta.fecha, venta.tiempoenvio )">Ver</small>
+                                    </b>
+                                </div>
+
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+            </ion-list>
+        </div>
+        <div *ngIf="venta.estatus == 3 && venta.cod_calificacion == null" class="bg-black"></div>
+    </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<!-- Calificacion -->
+<ion-footer color="transparent" class="ion-text-center ion-no-padding ion-no-border" style="z-index: 100;">
+    <div *ngFor="let venta of ventas" class=" ion-no-padding" style="position: fixed; bottom: -0%; width: 100%">
+        <div *ngIf="venta.estatus == 3 && venta.cod_calificacion == null " class="calificaciones  ion-no-padding">
+
+            <div *ngFor="let imag of imagenes" class="ion-text-center" class="logoCal">
+                <img src="{{ cdn_site }}{{ imag.base_url }}{{ imag.foto }}"
+                    *ngIf="imag.cod_tabla == venta.cod_tendero && imag.base_url == 'tiendas/'"
+                    style="width: auto; height: 40px; border-radius: 100%">
+            </div>
+            <ion-card class="ion-no-padding" class="infpo">
+                <ion-card-header>
+                    <ion-card-subtitle *ngFor="let tendero of tiendas">
+                        <div *ngIf="venta.cod_tendero == tendero.codigo">
+                            <h6>{{ tendero.nombretienda }}</h6>
+                        </div>
+                    </ion-card-subtitle>
+                    <ion-card-title>Califica tu experiencia</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                    <form>
+                        <p class="clasificacion" name="radio">
+                            <ion-label for="radio1" (click)="evaluar(5)">★</ion-label>
+                            <ion-label for="radio2" (click)="evaluar(4)">★</ion-label>
+                            <ion-label for="radio3" (click)="evaluar(3)">★</ion-label>
+                            <ion-label for="radio4" (click)="evaluar(2)">★</ion-label>
+                            <ion-label for="radio5" (click)="evaluar(1)">★</ion-label>
+                        </p>
+                    </form>
+
+                </ion-card-content>
+                <ion-button (click)="calificar( venta.codigo )" fill="solid" color="primary">
+                    Enviar
+                </ion-button>
+            </ion-card>
+        </div>
+
+    </div>
+</ion-footer>

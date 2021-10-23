@@ -1,0 +1,180 @@
+ion-content {
+    height: 100%;
+    position: absolute;
+    // bottom: -180px;
+    --background: rgba(0,0,0,0.8) !important;
+    margin-bottom: 25px;
+}
+
+ion-header ion-toolbar .wave {
+    background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) );
+}
+
+ion-header ion-toolbar .wave img {
+    transform: rotate(180deg);
+    height: 60px;
+    margin-bottom: -5px !important;
+}
+
+.tienda img {
+    border-radius: 100% !important;
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tienda h6 {
+    font-family: 'roboto_black' !important;
+    text-align: center;
+    color: var(--ion-color-dark);
+}
+
+.tienda small {
+    display: block;
+    font-family: 'roboto_light' !important;
+    color: var(--ion-color-primary);
+    font-size: 0.7em;
+}
+
+// Articulo 
+.img-prod{
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+}
+
+.articulo {
+    padding-top: 5px;
+    --padding-start: 10px;
+    text-align: center;
+}
+
+.articulo ion-avatar {
+    margin-left: auto;
+    margin-right: auto;
+    width: 30px;
+    height: 30px;;
+}
+
+.articulo small {
+    font-family: 'roboto_black' !important;
+    font-size: 0.6em;
+}
+
+// Precio
+.precio {
+    // background: var(--ion-color-medium);
+    width: 100%;
+    height: 100%;
+    // line-height: 40px;
+    // margin-top: 60px;
+    // margin-top: 30px;
+    // text-align: center;
+    color: var(--ion-color-medium);
+    border-radius: 100% 100% 0% 0%;
+}
+
+.precio img {
+    width: 100px;
+    height: 20px;
+    position: absolute;
+    left: 16px;
+    margin-top: 5px;
+}
+
+.precio small {
+    font-family: 'roboto_black' !important;
+    text-align: center;
+    position: relative;
+    font-size: 0.6em;
+}
+
+// Cantidad 
+.cantidad {
+    border-radius: 6px;
+    margin-top: 35px;
+    margin-left: 5px;
+}
+
+.cantidad ion-button, 
+.cantidad ion-button ion-icon {
+    // font-size: 1em !important;
+}
+
+.cantidad ion-input {
+    border: 1px solid var(--ion-color-secondary);
+    font-size: 0.55em !important;
+}
+
+//  Footbar Canasta
+
+
+.divisor {
+    padding-top: 20%;
+}
+
+ion-grid {
+    height: 100%;
+    overflow-y: auto;
+}
+
+// Canasta
+.ios,
+.md {
+    ion-col.canasta {
+        z-index: 1;
+        color: var(--ion-color-light);
+    }
+    
+    ion-col.canasta .bg {
+        width: 100%;
+        height: 150px;
+        border-radius: 100%;
+        color: var(--ion-color-light);
+        background: var(--ion-color-medium);
+        text-align: center;
+    }
+    
+    ion-col.canasta .car{
+        width: 25px;
+        height: 25px;
+        position: relative;
+        margin-top: -10px;
+        background: #ffffff;
+        border: 1px solid var(--ion-color-medium);
+        border-radius: 100%;
+        padding: 2px;
+        z-index: 11;
+    }
+    
+    ion-col.canasta .bg .vecinotransparente{
+        width: 40%;
+        height: auto;
+        position: fixed;
+        left: 120px;
+        margin-top: 30px;
+    }
+    
+    ion-col.canasta .bg .canasta_precio {
+        margin-top: 0px;
+        // font-size: 24px;
+    }
+    
+    ion-col.canasta .bg .canasta_button1 {
+        margin-top: -20px;
+        font-weight: bolder;
+        font-family: 'roboto_black';
+        text-shadow: 1px 2px 3px #222;
+        font-size: 1.5em;
+    }
+    
+    ion-col.canasta .bg .canasta_button2 {
+        margin-top: -10px;
+    }
+    
+    ion-col.canasta .bg p {
+        margin-top: -10px;
+    }
+}

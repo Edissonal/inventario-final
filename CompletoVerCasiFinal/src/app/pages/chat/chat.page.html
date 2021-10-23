@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar class="toolbar-header">
+      <ion-buttons slot="primary">
+        <ion-button color="secondary" (click)="close()">
+          <ion-icon color="light" slot="icon-only" name="close"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+      <ion-title>Chat</ion-title>
+      <!-- <p> {{ infoTendero?.nombretienda | uppercase}}</p> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="">
+  <ion-grid>
+        
+    <ion-row  style="margin-top: 10px;">
+        <ion-col size="12"> 
+
+  <ng-container *ngFor="let message of messages">
+    <div class="content-message" [ngClass]="{ 'end': currentId == message.fromUser,'start': currentId != message.fromUser }">
+      <ion-avatar *ngIf="currentId != message.fromUser">
+        <img width="30" height="30"  src="assets/img/user.png">
+      </ion-avatar>
+      <div class="message animate__animated animate__fadeIn"  [ngClass]="{ 'my-message': currentId == message.fromUser,'other-message': currentId != message.fromUser }">
+        <b>{{ message.nameUser  | titlecase }}:</b><br>
+        <span>{{ message.msg }} </span>
+        <div class="time ion-text-right" [ngClass]="{'from': currentId == message.fromUser, 'to': currentId != message.fromUser}">
+          <br>{{ message.createdAt?.toMillis() | date:'shortTime'}}
+          <ion-icon class="view" *ngIf="currentId == message.fromUser && !message.view" name="checkmark"></ion-icon>
+          <ion-icon class="view" *ngIf="currentId == message.fromUser && message.view" name="checkmark-done-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="avatar-checked">
+        <ion-avatar *ngIf="currentId == message.fromUser">
+          <img width="30" height="30"  src="assets/img/user.png">
+        </ion-avatar>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="messages.length == 0">
+    <div class="message-empty">
+      <div class="ion-text-center">
+        <ion-text>No tienes mensajes, escribe uno para comenzar</ion-text>
+      </div>
+    </div>
+  </ng-container>
+ 
+        </ion-col>
+    </ion-row>
+    </ion-grid>
+
+</ion-content>
+<ion-footer class="caja">
+  <ion-toolbar  color="light" #toolbar>
+    <!-- autoGrow="true" -->
+    <div class="input-send">
+      <ion-textarea  class="message-input" rows="1" maxLength="500" [(ngModel)]="newMsg" placeholder="Escribe un mensaje" >
+      </ion-textarea>
+      <ion-button class="icon-send" style="--background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) ) !important;" expand="block" [disabled]="newMsg === ''"
+          class="msg-btn" (click)="sendMessage()">
+          <ion-icon  name="send" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+
+

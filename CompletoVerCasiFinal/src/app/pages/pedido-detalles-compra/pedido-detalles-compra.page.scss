@@ -1,0 +1,134 @@
+ion-content {
+    // --background: transparent;
+    // margin-top: -30px;
+    // position: absolute;
+    // bottom: 0px;
+}
+
+.contenedor-modal {
+    // bottom: -15px;
+    // position: absolute;
+    top: 0px !important;
+    height: 100%;
+    margin-right: 10px;
+}
+
+
+ion-content ion-header ion-toolbar{
+    --background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) );
+    color: #fff !important
+}
+
+.chat {
+    position: relative;
+    margin-left: 10px;
+    z-index: 100000;
+    border: 1px dotted var(--ion-color-light);
+    min-width: 65px;
+    border-radius: 8px;
+    ion-badge {
+        position: absolute;
+        right: -10px;
+        opacity: 0.9;
+
+        & ~ ion-icon {
+            margin-right: 1.2rem;
+        }
+    }
+}
+
+.chat img {
+    border: none !important;
+    background: none !important;
+    border-radius: 0px !important;
+    // padding: 0px !important;
+}
+
+.chat small{
+    font-family: 'roboto_black';
+    margin-left: 10px;
+    color: var(--ion-color-light);
+}
+
+.pedido-header {
+    --background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) );
+    width: 100%;
+    // left: -8px;
+    margin: 9 auto;
+    border-radius: 0px;
+    border-radius: 10px 10px 0px 0px;
+    color: #fff !important;
+}
+
+ion-content .pedido-header .wave img {
+    transform: rotate(180deg);
+    height: 60px;
+    margin-bottom: -5px !important;
+}
+
+.pedido-entrega {
+    width: 99%;
+    left: -8px;
+    // border-radius: 10px;
+    margin-top: -10px;
+}
+
+.pedido-productos {
+    width: 99%;
+    left: -8px;
+    margin-top: -10px;
+    border-top: 1px solid var(--ion-color-secondary);
+}
+
+.pedido-resumen {
+    width: 99%;
+    left: -8px;
+    margin-top: -10px;
+    border-top: 1px solid var(--ion-color-secondary);
+}
+
+.pedido-resumen .title {
+    border-bottom: 1px solid var(--ion-color-secondary);
+}
+
+.pedido-progreso {
+    
+    width: 99%;
+    left: -8px;
+    margin-top: -10px;
+    border-top: 1px solid var(--ion-color-secondary);
+}
+
+/*
+* * ION-GRID | Progreso
+*/
+
+ion-progress-bar {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+ion-grid {
+    z-index: 100;
+    // margin-top: -30px;
+}
+
+#otros_detalles ion-grid ion-row ion-col {
+    font-size: 0.9em;
+    padding-right: 20px;
+    padding-top: 10px;
+    color: #000;
+    font-weight: bolder;
+}
+
+ion-grid ion-row ion-col img {
+    background: white;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+    border: 1px solid var(--ion-color-secondary);
+}
+
+

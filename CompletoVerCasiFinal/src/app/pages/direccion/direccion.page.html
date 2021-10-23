@@ -1,0 +1,251 @@
+<ion-header class="ion-no-border">
+	<ion-toolbar>
+		<ion-buttons slot="start" (click)="iraAtras()">
+			<ion-button>
+				<ion-icon name="arrow-back-outline" color="light"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title class="direccion" *ngFor="let d of direccion">
+			<ion-icon name="location" color="light"></ion-icon>
+			{{ d.direccion }}<br><br>
+			<!-- Agregar dirección //-->
+		</ion-title>
+	</ion-toolbar>
+	<ion-toolbar>
+		<ion-segment value="1" color="light" scrollable mode="md">
+			<ion-segment-button value="1" (click)="misDirecciones()">
+				<ion-label style="text-transform: none !important;">Ubicaciones Guardadas</ion-label>
+			</ion-segment-button>
+			<ion-segment-button value="2" (click)="agregar()">
+				<ion-label style="text-transform: none !important;">Agregar Ubicación</ion-label>
+			</ion-segment-button>
+		</ion-segment>
+	</ion-toolbar>
+	<ion-toolbar color="transparent" class="ion-no-padding">
+		<div class="wave">
+			<img src="assets/img/newwave.svg">
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content color="light" class="ion-no-padding" *ngFor="let d of direccion">
+	<div>
+		<ion-grid>
+			<ion-row>
+				<ion-col size="12" *ngIf="verubicaciones" class="ion-no-padding" style="margin-top: -20px !important;">
+					<ion-grid class="mistipos" *ngIf="ubicaciones">
+						<ion-row>
+							<ion-col size="12" class="ion-no-padding">
+								<ion-item *ngFor="let u of ubicaciones">
+									<ion-label style="text-overflow: unset !important;">
+										<ion-text color="medium">{{u.dir_nombre }}</ion-text>
+										<p class="ion-text-capitalize"
+											style="padding-left: 0px !important; font-size: 0.7em !important; font-family: roboto_regular !important;">
+											{{ u.direccion }}
+										</p>
+										<small id="detalles" style="font-family: roboto_regular !important;">
+											<b>Ciudad:</b> {{ u.ciudad }} <br>
+											<b>Detalles Adicionales:</b> {{ u.detalles }}
+										</small>
+									</ion-label>
+
+									<ion-buttons slot="end">
+										<ion-button style="border:none !important;  position: fixed; right: -13px;" fill="clear"
+											color="warning" *ngIf="u.active == '1'">
+											<ion-icon name="star"></ion-icon>
+										</ion-button>
+										<ion-button style="border:none !important;  position: fixed; right: -13px; z-index: 44444 !important;" fill="clear"
+											color="secondary" *ngIf="u.active == '0'" (click)="aplicarDireccion( u.codigo )">
+											<ion-icon name="star-outline"> </ion-icon>
+										</ion-button>
+										<ion-button fill="clear" color="danger"
+											style="border:none !important; position: relative; top: 30px; right: -15px;  z-index: 44444 !important;"
+											*ngIf="u.active != '1'" (click)="eliminarUbicacion( u.codigo )">
+											<ion-icon name="trash"></ion-icon>
+										</ion-button>
+									</ion-buttons>
+								</ion-item>
+							</ion-col>
+						</ion-row>
+					</ion-grid>
+					<p *ngIf="ubicaciones == '' || ubicaciones == null || ubicaciones == undefined ">
+						No tienes ninguna ubicación guardada.
+					</p>
+				</ion-col>
+
+				<ion-col size="12" *ngIf="newubicacion" style="height: 100% !important; max-height: 100% !important;">
+					<form class="ion-no-padding">
+						<ion-grid class="ion-no-padding">
+							<ion-row>
+								<ion-col class="ion-no-padding">
+									<ion-input type="text" placeholder="Nombre para esta ubicación (opcional)" name="nombre"
+										id="nombre" #nombre ([ngModel])="nombre" (ionChange)="nombredireccion(nombre.value)"
+										class="selector">
+									</ion-input><br>
+								</ion-col>
+							</ion-row>
+							<ion-row>
+								<ion-col class="ion-no-padding">
+									<ion-select multiple="false" value="Colombia" mode="ios" class="ion-no-padding selector"
+										color="light">
+										<ion-select-option value="Colombia">Colombia</ion-select-option>
+									</ion-select>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+						<br>
+						<!-- PAIS Y CIUDAD -->
+						<ion-grid class="ion-no-padding">
+							<ion-row>
+								<ion-col size="" style="margin-right:5px;">
+									<ion-select multiple="false" placeholder="Departamento" mode="ios"
+										class="ion-no-padding selector" color="light" ([ngModel])="departamento" #departamento
+										(ionChange)="departamentos( departamento )">
+										<ion-select-option value="AMAZONAS">Amazonas</ion-select-option>
+										<ion-select-option value="ANTIOQUIA">Antioquia</ion-select-option>
+										<ion-select-option value="ARAUCA">Arauca</ion-select-option>
+										<ion-select-option value="SAN%20ANDRES">San Andres</ion-select-option>
+										<ion-select-option value="ATLANTICO">Atlántico</ion-select-option>
+										<ion-select-option value="BOGOTA%20D.C.">Bogotá</ion-select-option>
+										<ion-select-option value="BOLIVAR">Bolivar</ion-select-option>
+										<ion-select-option value="BOYACA">Boyacá</ion-select-option>
+										<ion-select-option value="CALDAS">Caldas</ion-select-option>
+										<ion-select-option value="CAQUETA">Caquetá</ion-select-option>
+										<ion-select-option value="CASANARE">Casanare</ion-select-option>
+										<ion-select-option value="CAUCA">Cauca</ion-select-option>
+										<ion-select-option value="CESAR">Cesar</ion-select-option>
+										<ion-select-option value="CHOCO">Chocó</ion-select-option>
+										<ion-select-option value="CORDOBA">Córdoba</ion-select-option>
+										<ion-select-option value="CUNDINAMARCA">Cundinamarca</ion-select-option>
+										<ion-select-option value="GUINIA">Guainía</ion-select-option>
+										<ion-select-option value="GUAVIARE">Guaviare</ion-select-option>
+										<ion-select-option value="HUILA">Huila</ion-select-option>
+										<ion-select-option value="LA%20GUAJIRA">La Guajira</ion-select-option>
+										<ion-select-option value="MAGDALENA">Magdalena</ion-select-option>
+										<ion-select-option value="META">Meta</ion-select-option>
+										<ion-select-option value="NARINO">Nariño</ion-select-option>
+										<ion-select-option value="NORTE%20DE%20SANTANDER">Nte Santander
+										</ion-select-option>
+										<ion-select-option value="PUTUMAYO">Putumayo</ion-select-option>
+										<ion-select-option value="QUINDIO">Quindío</ion-select-option>
+										<ion-select-option value="RISARALDA">Risaralda</ion-select-option>
+										<ion-select-option value="SANTANDER">Santander</ion-select-option>
+										<ion-select-option value="SUCRE">Sucre</ion-select-option>
+										<ion-select-option value="VALLE%20DEL%20CAUCA">Valle del Cauca</ion-select-option>
+										<ion-select-option value="VAUPES">Vaupes</ion-select-option>
+										<ion-select-option value="VICHADA">Vichada</ion-select-option>
+									</ion-select>
+								</ion-col>
+								<ion-col size="" style="margin-right: 2px;">
+									<ion-select multiple="false" placeholder="ciudad" mode="ios" class="ion-no-padding selector"
+										[disabled]="!departamentoActive" color="light" ([ngModel])="ciudad" #ciudad
+										(ionChange)="ciudades( ciudad )">
+										<ion-select-option value="{{ c.ciudad }}" *ngFor="let c of citys">{{ c.ciudad }}
+										</ion-select-option>
+									</ion-select>
+								</ion-col>
+								<ion-col size="" style="margin-right: 2px;">
+									<ion-select placeholder="Tipo" mode="ios" class="ion-no-padding selector" color="light"
+										[disabled]="!ciudadActive" name="tipo" #tipo ([ngModel])="tipo"
+										(ionChange)="tipos( tipo )">
+										<ion-select-option value="Avenida Carrera">Avenida Carrera</ion-select-option>
+										<ion-select-option value="Calle">Calle</ion-select-option>
+										<ion-select-option value="Carrera">Carrera</ion-select-option>
+										<ion-select-option value="Circular">Circular</ion-select-option>
+										<ion-select-option value="Circunvalar">Circunvalar</ion-select-option>
+										<ion-select-option value="Diagonal">Diagonal</ion-select-option>
+										<ion-select-option value="Manzana">Manzana</ion-select-option>
+										<ion-select-option value="Transversal">Transversal</ion-select-option>
+										<ion-select-option value="Vía">Vía</ion-select-option>
+									</ion-select>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+						<br>
+
+						<!-- Direccion -->
+						<ion-grid class="ion-no-padding">
+							<ion-row>
+								<ion-col size="" style="margin-right: 3px;">
+									<ion-input type="text" name="numero" id="numero" #numero ([ngModel])="numero"
+										[disabled]="!tipoActive" (ionChange)="_numero( numero )" class="selector">
+									</ion-input>
+								</ion-col>
+								<ion-col size="" style="margin-right: 3px;">
+									<ion-input type="text" name="numeros" id="numeros" #numeros class="selector"
+										[disabled]="!n1Active" ([ngModel])="numeros" (ionChange)="_numeros( numeros )">
+										<span slot="start"
+											style="color:var(--ion-color-primary); padding-left: 5px; padding-right: 5px">#</span>
+									</ion-input>
+								</ion-col>
+								<ion-col size="" style="margin-right: 3px;">
+									<ion-input type="text" name="complemento" id="complemento" class="selector"
+										[disabled]="!n2Active" ([ngModel])="complemento" #complemento
+										(ionChange)="_complemento(complemento)">
+										<span slot="start"
+											style="color: var(--ion-color-primary); padding-left: 5px; padding-right: 5px">-</span>
+									</ion-input>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+						<br>
+
+						<!-- BARRIO Y DETALLES -->
+						<ion-grid class="ion-no-padding">
+							<ion-row>
+								<ion-col size="" style="margin-right: 3px;">
+									<ion-input type="text" inputmode="text" placeholder="Edificio, Torre, Apto" name="mdetalles"
+										[disabled]="!complementoActive" id="mdetalles" [(ngModel)]="act.mdetalles" #mdetalles
+										class="selector" class="selector">
+									</ion-input>
+								</ion-col>
+								<ion-col size="" style="margin-right: 3px;">
+									<ion-input type="text" name="street" id="street" placeholder="Barrio" ([ngModel])="street"
+										[disabled]="!detallesActive" #street (ionChange)="_streets(street)" class="selector">
+									</ion-input>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+						<br>
+						<ion-button (click)="buscar()" size="small" fill="solid" slot="end" expand="block" color="primary"
+							class="ubicar" *ngIf="!buscado">
+							Aceptar
+						</ion-button>
+						<!-- LATITUD Y LONGITUD -->
+						<div style="display: none;">
+							<ion-input type="text" placeholder="Latitud" name="latitud" id="latitud" [(ngModel)]="act.latitud"
+								#latitud></ion-input>
+							<ion-input type="text" placeholder="Longitud" name="longitud" id="longitud"
+								[(ngModel)]="act.longitud" #longitud></ion-input>
+						</div>
+
+						<ion-item color="light" *ngIf="buscado" style="font-family: 'roboto_regular'; text-shadow: none;">
+							<ion-icon slot="end" name="close-outline" (click)="clearForm()" color="danger"></ion-icon>
+							<span style="text-align: center;">
+								Tu dirección es: {{ address }}
+							</span>
+						</ion-item>
+
+						<ion-item color="light" *ngIf="nobuscado" style="font-family: 'roboto_regular'; text-shadow: none;">
+							<ion-icon slot="end" name="close-outline" (click)="clearForm( )" color="danger"></ion-icon>
+							<small style="text-align: center;">
+								No hemos encontrado su dirección: {{ address }}
+							</small>
+						</ion-item>
+						<!--  -->
+						<div #map id="map" style="width: 300px;"></div>
+
+						<ion-button fill="solid" expand="block" *ngIf="buscado"
+							(click)="agregarDireccion( departamento, ciudad, tipo, numero, numeros, complemento, mdetalles, barrio )">
+							Agregar Dirección
+						</ion-button>
+					</form>
+					<div style="height: 360px; background: rgb(255, 255, 255);"></div>
+				</ion-col>
+
+			</ion-row>
+
+		</ion-grid>
+	</div>
+
+</ion-content>
