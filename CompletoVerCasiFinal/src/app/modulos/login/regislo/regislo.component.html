@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col col-md"></div>
+    <div class="col-10 col-md-6">
+        <form [formGroup]="formaForm" (ngSubmit)="ngsubmit()">
+            <h4>Introdusca Datos</h4>
+            <label>Nombre</label>
+            <input type="text" 
+                    class="form-control"
+                    formControlName="nombre_usu">
+                    <small        
+                                class="text text-danger"
+                                 *ngIf="camposvalidos('nombre_usu')">nombre Obligatorio</small>
+                    <hr>
+            <label> Correo Electronico</label>
+            <input type="mail" 
+                    class="form-control"
+                    formControlName="correo_usu">
+                    <small        class="text text-danger"
+                    *ngIf="camposvalidos('correo_usu')">correo Obligatorio</small>
+                    <hr>
+
+                    <label>roll usu</label>
+                 
+                    <select class="form-control"
+                            formControlName="roll_usu">
+                        <option>administrador</option>
+                        <option>usuario</option>
+                    </select>
+
+                            <small        class="text text-danger"
+                            *ngIf="camposvalidos('roll_usu')">roll Obligatorio</small>
+                            <hr>
+
+            <label>Contraseña</label>
+            <input type="password" 
+                   class="form-control"
+                   formControlName="password_usu">
+                   <small        class="text text-danger"
+                   *ngIf="camposvalidos('password_usu')">password Obligatorio</small>
+                   <hr>
+            <label>Contraseña</label>
+            <input type="password" 
+                          class="form-control"
+                          formControlName="password_usu2">
+            <small        class="text text-danger"
+                          *ngIf="camposvalidos('password_usu2')"> password 2 debe ser igual</small>      
+
+            <hr>
+            <button type="submit"
+                    class="btn btn-primary"
+                    >Registrar</button>
+
+                    <button class="btn btn-primary ml-3"
+                      routerLink="/auth/constlogi">Regresar</button>
+        </form>
+    </div>
+    <div class="col col-md"></div>
+</div>
+
+
+<div *ngIf="validacion == 404 || validacion == 200">
+    <app-snackbar    [fondo]="'#17747E'"
+                     [nota]="mensaje"
+                     ></app-snackbar>
+
+</div>

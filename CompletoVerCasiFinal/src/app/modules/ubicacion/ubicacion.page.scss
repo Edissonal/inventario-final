@@ -1,0 +1,174 @@
+.headermapa ion-toolbar, 
+ion-content {
+    --background: linear-gradient(to right, rgb(219, 40, 72), rgba(219, 64, 51, 0.98), rgb(219, 76, 42)) !important;
+} 
+
+ion-content {
+    overflow-y: visible !important;
+    .bgdireccion {
+        position: fixed !important;
+        z-index: -1 !important;
+        opacity: 0.16 !important;
+        height: -webkit-fill-available !important;
+    }
+
+    .img-logo-vecino {
+        margin-top: 0%;
+    
+    }  
+    .img-logo-vecinoU {
+        margin-top: 0%;
+        height: 55px;
+    }  
+
+    .text-bienvenida {
+        color: #fff !important;
+        text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.7);
+    }
+
+    .text-msg {
+        padding-top: 5% !important;
+        color: #fff !important;
+        font-family: "roboto_light" !important;
+    }
+
+    .custom-shape-divider-bottom-1621732619 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 180%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+    }
+
+    .custom-shape-divider-bottom-1621732619 svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        // height: 100px;
+        height: 1%;
+    }
+
+    .custom-shape-divider-bottom-1621732619 .shape-fill {
+        fill: #ffffff;
+    }
+
+    // Campos Input para ingresar la ubicacion
+
+    ion-content form ion-input {
+        --background: var(--ion-color-light);
+        color: var(--ion-color-dark);
+        border: 1px solid var(--ion-color-secondary);
+        // border-radius: 8px;
+        margin-left: auto;
+        margin-right: auto;
+        // width: 90%;
+        // --padding-start: 10px;
+        // --padding-end: 20px;
+        // font-size: 0.8em;
+    }
+
+    #aprox {
+        float: left;
+        margin-bottom: 5px;
+    }
+    #aprox input {
+        float: right;
+        margin-right: -15%;
+    }
+
+    .selector {
+        height: 40px !important;
+        padding: 5px !important;
+        border: 1px solid var(--ion-color-secondary) !important;
+        border-radius: 8px !important;
+        background: var(--ion-color-light) !important;
+        color: var(--ion-color-dark) !important;
+        position: relative !important;
+        top: 5px !important;
+        margin-right: 5px !important;
+    }
+}
+
+
+ion-header ion-input {
+    --background: var(--ion-color-secondary);
+    color: var(--ion-color-dark);
+    border: 1px solid var(--ion-color-secondary);
+    border-radius: 6px;
+    font-size: 0.8em;
+    width: 100%;
+}
+
+ion-header ion-input ion-icon {
+    margin-left: 10px;
+    font-size: 0.7em;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+// 
+#map_canvas {
+    width: 90%;
+    height: 80%;
+}
+   
+   
+#address {
+    font-size: 12px;
+}
+   
+.map-wrapper {
+    position: relative;
+}   
+
+#map_center {
+    position: absolute;
+    z-index: 99;
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    margin-left: -21px;
+    margin-top: -41px;
+}
+
+ion-input {
+    border-radius: 6px !important;
+    --background: var(--ion-color-secondary) !important;
+    --color: var(--ion-color-dark) !important;
+}
+
+.selector{
+    height: 40px;
+    padding: 5px !important;
+    color: var(--ion-color-dark);
+    border-radius: 6px !important;
+    background: var(--ion-color-light);
+    color: var(--ion-color-dark);
+    position: relative !important;
+    top: 5px !important;
+    margin-right: 5px !important;
+}
+
+ion-footer {
+    // height: 250px;
+    ion-toolbar {
+        --background: #fff !important;
+    }
+
+    .techos {
+        // position: absolute;
+        // top: -20px;
+    }
+
+    .buttons {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+}
+

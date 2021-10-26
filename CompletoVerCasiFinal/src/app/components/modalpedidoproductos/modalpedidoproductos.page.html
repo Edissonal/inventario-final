@@ -1,0 +1,69 @@
+<ion-header  class="ion-no-border">
+    <ion-toolbar style="--background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) ); color: #fff">
+        <h6 class="ion-padding-start" (click)="vercanasta()">
+            <ion-icon name="arrow-back" color="light"></ion-icon>
+            Regresar a la canasta
+        </h6>
+        <ion-button slot="end" (click)="cerrar()" fill="clear">
+            <ion-icon name="close-circle" color="light"></ion-icon>
+        </ion-button>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content style="height: 100%; background-color: white;" >
+    <ion-grid>
+        
+        <ion-row  style="margin-top: 40px;">
+            <ion-col size="12">
+
+        <ion-card>
+            <p style="text-align: justify; padding-left: 30px; padding-right: 30px;">Vecino estos son los productos que has agregado a la canasta:</p>
+        </ion-card>
+ <!--   </ion-card> --> 
+        <ion-item *ngFor="let t of tendero" lines="full" (click)="vertienda( t.codigo )">
+            <ion-grid  class="ion-no-padding">
+                <ion-row>
+                    <ion-col class="ion-text-center" size="4">
+                        <ion-avatar style="position: relative; top: 10px;">
+                            <img src="{{ cdn_site }}{{ t.base_url }}{{ t.foto }}" class="img-prod" *ngIf="t.foto != null" />
+                            <img src="assets/img/icon.png" class="img-prod" *ngIf="t.foto == null" />
+                        </ion-avatar>
+                    </ion-col>
+                    <ion-col class="ion-text-capitalize">
+                        <h6>{{ t.nombretienda  }}</h6>
+                        <small style="color: var(--ion-color-primary); font-size: 0.9em;"><b>Agregar mas productos</b></small>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+    
+        <ion-list *ngFor="let item of items; let i = index">
+            <ion-item lines="full">
+                <ion-avatar slot="start">
+                    <img src="{{ cdn_site }}{{ item.tipo }}{{ item.fotoelemento }}" >
+                </ion-avatar>
+                <ion-label style="font-family: roboto_regular; white-space: normal;">
+                    <ion-text color="dark">
+                        <b style="color: var(--ion-color-primary)">{{ i + 1 }} - </b>
+                        {{item.nombre }}
+                    </ion-text>
+                    <!-- <p><b>Codigo:</b> {{ item.codigo }}</p> -->
+                    <p><b>Cantidad:</b> {{ item.cantidad }}</p>
+                    <p><b>Total: </b>$ {{ item.precio_unitario * item.cantidad | number:'3.0'}} </p>
+                    <p *ngIf="item.comentarios != null" style="white-space: normal;"><b>Observaciones: </b> {{ item.comentarios }} </p>
+                    <p *ngIf="item.comentarios == null" style="white-space: normal;"><b>Observaciones: </b> Sin observaciones </p>
+
+                    <p  *ngIf="item.menu != '' ">
+                        <ion-button color="primary" fill="solid" size="small" shape="round" (click)="vermenuproducto(  item.nombre, item.tipo, item.menu, i, item.comentarios, item.cantidad )">
+                            Visualizar Menu
+                        </ion-button>
+                    </p>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+
+       </ion-col>
+        </ion-row>
+    </ion-grid>
+    
+</ion-content>

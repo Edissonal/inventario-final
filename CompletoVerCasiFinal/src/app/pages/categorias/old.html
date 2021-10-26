@@ -1,0 +1,64 @@
+<ion-header class="ion-no-border">
+    <ion-toolbar class="ion-padding-top ion-padding-bottom">
+        <ion-buttons slot="start" (click)="atras()">
+            <ion-button>
+                <ion-icon name="arrow-back-outline" color="primary"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title size="small" class="direccion">
+            <div class="direccion">
+                <ion-icon name="location" color="primary"></ion-icon>
+                <small id="direccion" >
+                    {{ direcciontienda }}
+                </small>
+                <ion-icon name="chevron-down-outline" color="medium"></ion-icon>
+            </div>
+        </ion-title>
+        <ion-item lines="none" color="transparent">
+            <ion-avatar slot="end">
+                <img src="{{ cdn_site }}tiendas/{{ logotienda }}"  style="width: 40px; height: 40px; border-radius: 100%;" *ngIf="logotienda" />
+                <img src="assets/img/icon.png" style="width: 40px; height: 40px; border-radius: 100%;"  *ngIf="!logotienda" />
+            </ion-avatar>
+            <ion-label class="ion-text-center">
+                <ion-text color="light" style="font-size: 0.9em">
+                    <span style="font-family: roboto_black !important; font-size: 1.7em; text-transform: capitalize !important">
+                        <b>{{ nombretienda }}</b>
+                    </span><br>
+                    <span style="font-size: 0.9em; text-transform: capitalize;">sss</span>
+                </ion-text>
+            </ion-label>
+        </ion-item>
+
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col size="6" *ngFor="let categoria of imgcategorias" style="z-index: 1000;" color="light" class="ion-activatable ripple-parent" (click)="iracategoria( categoria.codigo, categoria.categoria )">
+                <div style="border: 1px solid var(--ion-color-secondary); border-radius: 8px; height: 120px; width: 100%; position: relative;">
+                    <img src="{{ cdn_site }}categorias_art/{{ categoria.foto }}" class="imgcategoria">
+                    <div class="nombrecategoria">
+                        <span>{{ categoria.categoria }}</span>
+                    </div>
+                </div>
+                <ion-ripple-effect></ion-ripple-effect>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
+
+<!-- Total Canasta -->
+<ion-footer class="ion-no-border">
+    <ion-card color="transparent" class="canasta ion-activatable ripple-parent" (click)="verCanasta()" *ngIf="suma">
+        <div class="bg">
+            <img src="assets/img/car.png" class="car">
+            <img src="assets/img/logotransparent.png" class="vecinotransparente">
+            <h6 class="canasta_precio">$ {{ suma | number: '3.0' }}</h6>
+            <p>Ver canasta</p>
+            <ion-ripple-effect></ion-ripple-effect>
+        </div>
+    </ion-card>
+</ion-footer>
+

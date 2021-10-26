@@ -1,0 +1,111 @@
+.modal-direccion {
+    --background: white !important;
+}
+
+ion-header ion-toolbar{
+    --background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) );
+    color: #fff !important
+}
+
+ion-header ion-toolbar .wave {
+    background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) );
+}
+
+ion-header ion-toolbar .wave img {
+    transform: rotate(180deg);
+    height: 60px;
+    margin-bottom: -8px !important;
+}
+
+ion-header ion-title {
+    font-family: 'roboto_light' !important;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+
+// Ion Content - Grid
+
+ion-grid ion-row ion-col ion-button {
+    border-bottom: 1px solid var(--ion-color-primary);
+    border-radius: 10px;
+    font-family: 'roboto_light';
+}
+
+.active {
+    --background: var(--ion-color-primary);
+    color: var(--ion-color-light);
+}
+
+#detalles {
+    text-transform: capitalize !important;
+}
+
+// Ion Content
+
+ion-content #location {
+    --background: var(--ion-color-secondary);
+    color: var(--ion-color-dark);
+    border: 1px solid var(--ion-color-secondary);
+    border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    --padding-start: 10px;
+    // --padding-end: 20px;
+    font-size: 0.7em;
+    position: fixed;
+    top: 45px;
+    left: 5%;
+    z-index: 11 !important;
+}
+
+ion-content ion-input ion-icon {
+    margin-left: 10px;
+    // font-size: 0.8em;
+}
+
+ion-content ion-card {
+    padding-top: 5%;
+}
+
+ion-content ion-card p {
+    text-align: justify;
+    font-family: 'roboto_regular';
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+ion-content form ion-input {
+    --background: var(--ion-color-light);
+    color: var(--ion-color-dark);
+    border: 1px solid var(--ion-color-secondary);
+    // border-radius: 8px;
+    margin-left: auto;
+    margin-right: auto;
+    // width: 90%;
+    // --padding-start: 10px;
+    // --padding-end: 20px;
+    // font-size: 0.8em;
+}
+
+#aprox {
+    float: left;
+    margin-bottom: 5px;
+}
+#aprox input {
+    float: right;
+    margin-right: -15%; 
+}
+
+.selector{
+    height: 40px !important;
+    padding: 5px !important;
+    border: 1px solid var(--ion-color-secondary) !important;
+    border-radius: 8px !important;
+    background: var(--ion-color-light) !important;
+    color: var(--ion-color-dark) !important;
+    position: relative !important;
+    top: 5px !important;
+    margin-right: 5px !important;
+}

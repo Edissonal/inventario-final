@@ -1,0 +1,34 @@
+
+<ion-list  lines="none" class="estilos">
+  <ion-item>
+
+          <!-- Categorias de articulo -->
+<ion-card color="transparent" id="categoriasart" class="ion-no-paddiing espcate"  style="margin-top: 35px">
+  <ion-card-header class="ion-no-padding">
+      <h6 style="font-family: roboto_black !important;">Categorías de artículos que puedes encontrar</h6>
+  </ion-card-header>
+ 
+</ion-card>
+</ion-item>
+<ion-item>
+<ion-grid >
+  <ion-row>
+      <ion-col size="4" size-lg="3" size-mg="4" size-sm="6" *ngFor="let cart of categoriasart" class="ion-activatable ripple-parent">
+
+          <ion-card>
+              <!--<ion-thumbnail>
+               <ion-img src="{{ cdn_site }}categorias_art/{{ cart.foto }}"></ion-img>
+              </ion-thumbnail>-->
+
+              <ion-thumbnail >
+                  <img src="{{ cdn_site }}categorias_art/{{ cart.foto }}" class="cuadros">
+              </ion-thumbnail>
+              <br>
+               <p style="text-align: center">{{ cart.categoria }}</p>
+          </ion-card>
+      </ion-col>
+    
+  </ion-row>
+</ion-grid>
+</ion-item>
+</ion-list>

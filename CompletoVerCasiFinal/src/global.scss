@@ -1,0 +1,272 @@
+:root {
+    --animate-delay: 10s;
+}
+
+::-webkit-scrollbar {
+    width : 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3) !important;
+    border-radius     : 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius     : 10px;
+    // -webkit-box-shadow: inset 0 0 6px #f75316 !important;
+}
+
+
+@import "~@ionic/angular/css/core.css";
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@font-face {
+    src        : url(assets/fonts/roboto/Roboto-Black.ttf);
+    font-family: 'roboto_black';
+}
+
+@font-face {
+    src        : url(assets/fonts/roboto/Roboto-Regular.ttf);
+    font-family: 'roboto_regular';
+}
+
+@font-face {
+    src        : url(assets/fonts/roboto/Roboto-Light.ttf);
+    font-family: 'roboto_light';
+}
+
+@font-face {
+    src        : url(assets/fonts/roboto/Roboto-Thin.ttf);
+    font-family: 'roboto_thin';
+}
+
+ion-page {
+    height: 100% !important;
+}
+
+.ripple-parent {
+    position   : relative;
+    // overflow: hidden;
+}
+
+ion-title,
+ion-button,
+ion-card-title,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "roboto_black";
+}
+
+ion-input {
+    font-family: 'roboto_regular' !important;
+}
+
+label,
+pre,
+ionc-card-subtitle {
+    font-family: 'roboto_light';
+}
+
+ion-label {
+    font-family: 'roboto_regular';
+    font-weight: 200 !important;
+}
+
+ion-button {
+    text-transform: none;
+}
+
+.button-clear {
+    font-family: 'roboto_light';
+}
+
+ion-card {
+    box-shadow: none;
+}
+
+// SLIDES
+.swiper-pagination-bullet {
+    top       : 100px;
+    background: var(--ion-color-primary) !important;
+}
+
+// Alert Cerrar 
+.alert-wrapper.sc-ion-alert-md {
+    background: rgba(0, 0, 0, 0.7) !important;
+}
+
+.alert-title.sc-ion-alert-md,
+.alert-message.sc-ion-alert-md,
+.alert-input-group.sc-ion-alert-md {
+    color      : white;
+    font-family: 'roboto_light' !important;
+}
+
+.alert-message.sc-ion-alert-md {
+    font-size: 0.8em;
+}
+
+
+/*
+* * MODALS
+*/
+
+.modal-wrapper {
+    background: transparent !important;
+}
+
+/*
+* * ION-RADIOS
+*/
+ion-radio {
+    // width : 15px !important;
+    // height: 15px !important;
+}
+
+// 
+.action-sheet-group.sc-ion-action-sheet-ios:last-child {
+    position     : fixed !important;
+    margin-bottom: 70% !important;
+}
+
+.select-text {
+    text-overflow: inherit !important;
+    font-size    : 0.8em;
+}
+
+// 
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-container-horizontal>.swiper-pagination-bullets {
+    bottom: 35px !important;
+}
+
+// PAGINACION
+.ngx-pagination .current {
+    border-radius: 8px !important;
+}
+
+.ngx-pagination .current {
+    background: linear-gradient(to right, rgb(219, 40, 72), rgba(219, 64, 51, 0.98), rgb(219, 76, 42)) !important;
+}
+
+
+.alert-button.sc-ion-alert-ios:last-child {
+    font-weight: normal !important;
+}
+
+.alert-radio-label.sc-ion-alert-ios {
+    text-transform: capitalize;
+}
+
+.alertaversionnuevabtn {
+    height: auto;
+}
+
+.alert-button.sc-ion-alert-md .alert-button-inner.alert-button.sc-ion-alert-md:last-child {
+    height: auto;
+}
+
+.alertaversionnuevabtn::before {
+    content: url(assets/img/googleplay.png) !important;
+    background-size: 1px 1px !important;
+    display: grid !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin-top: 4px;
+    margin-bottom: -10px;
+    margin-left: 55px;
+    // margin-right: auto;
+}
+
+.alertaversionnuevabtn::after { }
+
+.loader {
+    --background: rgba(0,0,0,0.6);
+    --spinner-color: var(--ion-color-primary);
+    color: #ffffff;
+}
+
+// Estilos modal Chat 
+
+.modal-chat .modal-wrapper {
+    width: 100%;
+    height: 85%;
+    position: absolute;
+    bottom: 0;
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;
+    background: rgba(7, 20, 66, 0.5) !important;
+}
+/*
+* ALERTA CUANDO DETECTA QUE NO SE HA ACTIVADO EL GPS O UBICACION
+*/
+
+.msgalertagps > .alert-wrapper > .alert-head::before {
+    content: url('assets/img/nubevecinoalert.png');
+    display:block;
+    left: 10px;
+    top: 10px;
+}
+
+.msgalertagps {
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+.msgalertagps > .alert-wrapper {
+    background: linear-gradient(to right, rgb(219, 40, 72), rgba(219, 64, 51, 0.98), rgb(219, 76, 42)) !important;
+}
+
+.msgalertagps > .alert-wrapper > .alert-head h2,
+.msgalertagps > .alert-wrapper >.alert-message {
+    color: #ffffff !important;
+}
+
+.msgalertagps > .alert-wrapper > .alert-button-group > .msgalertagps_button{
+    color: #ffffff !important;
+}
+
+// LOADER PEDIDO
+.loader-pedido > .loading-wrapper::before {
+    content: url(assets/img/nubevecinoalert.png);
+    display: block;
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    top: 15px;
+}
+
+.loader-pedido > .loading-wrapper {
+    padding-top: 120px;
+    // background: #000000 !important;
+    background: linear-gradient(to right, rgba(219, 40, 72, 1), rgba(219, 64, 51, 0.98), rgba(219, 76, 42, 1) );
+    border-radius: 8px;
+    border: 1px dotted var(--ion-color-medium);
+    color: #ffffff;
+    font-family: 'roboto_light';
+}
+
+spinner-lines.sc-ion-loading-md, .spinner-lines-small.sc-ion-loading-md, .spinner-bubbles.sc-ion-loading-md, .spinner-circles.sc-ion-loading-md, .spinner-crescent.sc-ion-loading-md, .spinner-dots.sc-ion-loading-md {
+    color: var(--ion-color-light);
+}
+
+.loader-pedido > .loading-content {
+    color: #ffffff;
+}
+
+.native-input[disabled].sc-ion-input-md,
+.native-input[disabled].sc-ion-input-ios {
+    opacity: 1;
+}
