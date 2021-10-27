@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UbicacionService {
 
-  //prourl = "http://localhost/inventario/ubicacion.php/ubicacion";
+
   prourl = environment.ubiurl;
 
   constructor(private http:HttpClient) { }

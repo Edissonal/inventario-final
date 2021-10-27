@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs';
 import { Consultas } from '../interfaces/consultas.interface';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -11,36 +12,35 @@ import { Consultas } from '../interfaces/consultas.interface';
 })
 export class ConsultasService {
 
-  consultasurl = "http://localhost/inventario/consultas.php/consultas";
-  conprourl = "http://localhost/inventario/consultas.php/pro"
-  consprove = "http://localhost/inventario/index.php/provedor";
-  cargaurl = "http://localhost/inventario/upload-consultas.php/provedor";
+  
+  cargaurl = environment.cargaurl;
+  consultasurl = environment.consulta;
+
   constructor(private http: HttpClient) { }
   
   getConsultas(termino:string):Observable<Consultas>
   {
    
-   return this.http.get<Consultas>(`${this.consultasurl}/${termino}`);
+   return this.http.get<Consultas>(`${this.consultasurl}/consultas/${termino}`);
   }
 
   getpro(id: string) {
-   return this.http.get(`${this.conprourl}/"${id}"`);
+   return this.http.get(`${this.consultasurl}/pro/${id}`);
   }
 
   postConsulta(datos: Consultas):Observable<Consultas> {
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
-    return this.http.post<Consultas>(this.consultasurl, datos, httpOptions);
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    let url = `${this.consultasurl}/consultas`;
+    return this.http.post<Consultas>(url, datos, httpOptions);
     
   }
 
   delConsulta(id: string):Observable<Consultas> {
-  
-   return this.http.get<Consultas>(this.consultasurl + '-delete/' + id);
-    
+   return this.http.get<Consultas>(`${this.consultasurl}/consultas-delete/${id}`);
   }
 
   getConsulta(id:string) {
-    const url = `${this.consultasurl}-con/${id}`
+    const url = `${this.consultasurl}/consultas-con/${id}`
     return this.http.get(url);
   }
 
@@ -52,7 +52,7 @@ export class ConsultasService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url = `${this.consultasurl}-update/${id}`;
+    const url = `${this.consultasurl}/consultas-update/${id}`;
     return this.http.post<Consultas>(url, upconsulta, { headers });
     
   }

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Mantenimientos } from '../interfaces/mantenimiento.interface ';
 import { HistoMantenimientos } from '../interfaces/histomantenimiento.interface ';
+import { environment } from '../../environments/environment';
 
 
 
@@ -13,45 +14,38 @@ import { HistoMantenimientos } from '../interfaces/histomantenimiento.interface 
 export class MantenimientosService {
 
   
-  manurl = "http://localhost/inventario/mantenimientos.php/mantenimientos";
 
-  mantourl = "http://localhost/inventario/mantenimientos.php/consultasman";
-
-  seriurl = "http://localhost/inventario/mantenimientos.php/consulman";
-
-  potsmanh = "http://localhost/inventario/hismantenimiento.php/";
-  potsman = "http://localhost/inventario/mantenimientos.php/";
-  mantu = "http://localhost/inventario/mantenimientos.php/mantenimientos-te";
-
+  manurl = environment.mante;
+  potsmanh = environment.potsmanh;
 
   constructor(private http: HttpClient) { }
 
 
   getMantenimiento(termino: string) {
-    return this.http.get(`${this.manurl}/"${termino}"`);
+    return this.http.get(`${this.manurl}/mantenimientos/"${termino}"`);
     
   }
 
   carmantenimiento(datos: any) {
    
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.manurl, datos, httpOptions);
+    return this.http.post(`${this.manurl}/mantenimientos`, datos, httpOptions);
     
   }
   
   getManteni(termino:string){
 
-    return this.http.get(`${this.mantourl}/${termino}`);
+    return this.http.get(`${this.manurl}/consultasman/${termino}`);
   }
 
   getserial(termino:string) {
     
-    return this.http.get(`${this.seriurl}/"${termino}"`);
+    return this.http.get(`${this.manurl}/consulman/"${termino}"`);
   }
 
   postMante(datos: Mantenimientos):Observable<Mantenimientos> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    let url = this.potsman + 'addman';
+    let url = this.manurl + '/addman';
     return this.http.post<Mantenimientos>(url, datos, httpOptions);
 
     
@@ -60,17 +54,18 @@ export class MantenimientosService {
   posManteH(datos: HistoMantenimientos):Observable<HistoMantenimientos> {
     console.log(datos)
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    let url = this.potsmanh + 'addmanh';
+    let url = this.potsmanh + '/addmanh';
     return this.http.post<HistoMantenimientos>(url, datos, httpOptions); 
   }
 
   deleteMan(id:string):Observable<Mantenimientos> {
-    return this.http.get<Mantenimientos>(this.manurl + '-delete/' + id);
+    return this.http.get<Mantenimientos>(`${this.manurl}/mantenimientos-delete/${id}`);
+  
   }
 
 
   getMa(id:string):Observable<Mantenimientos> {
-    const url = `${this.manurl}-te/${id}`
+    const url = `${this.manurl}/mantenimientos-te/${id}`
     return this.http.get<Mantenimientos>(url);
   }
 
@@ -79,7 +74,7 @@ export class MantenimientosService {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
-    const url = `${this.manurl}-update/${id}`;
+    const url = `${this.manurl}/mantenimientos-update/${id}`;
     return this.http.post<Mantenimientos>(url, mantenimiento, { headers });
   }
 }

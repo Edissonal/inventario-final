@@ -16,7 +16,7 @@ export class HismantenimientoService {
 
   getConsultas(termino:string) 
   {
-   return this.http.get(`${this.consultasurl}/"${termino}"`);
+   return this.http.get(`${this.consultasurl}/${termino}`);
   }
 
   getvenceman() {

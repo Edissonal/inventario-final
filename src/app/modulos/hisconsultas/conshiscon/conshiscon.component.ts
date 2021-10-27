@@ -10,11 +10,13 @@ export class ConshisconComponent {
 
   busquedas: any[] = [];
   termino: string;
+  page = 1;
+  pageSize = 10;
+  
   constructor(private hisconsultasService:HisconsultasService) { }
 
   consul(termino) {
     console.log(termino);
-    
     this.hisconsultasService.getConsultas(termino)
       .subscribe(resp => {
        console.log(resp);

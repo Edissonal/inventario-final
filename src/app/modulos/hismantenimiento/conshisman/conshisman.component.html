@@ -29,7 +29,7 @@
         </tr>
 </thead>
 <tbody>
-    <tr *ngFor="let busqueda of busquedas">   
+    <tr *ngFor="let busqueda of busquedas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">   
     <td>{{busqueda.nombre_ma}}</td>
     <td>{{busqueda.nombre_equi}}</td>
     <td>{{busqueda.nombre_pro}}</td>
@@ -48,4 +48,8 @@
     </tr>
 </tbody>
 </table>
+
+<ngb-pagination [collectionSize]="busquedas.length" 
+                [(page)]="page"
+                ></ngb-pagination>
 </div>

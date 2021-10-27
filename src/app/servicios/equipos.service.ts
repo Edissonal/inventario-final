@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class EquiposService {
 
- // equiurl = "http://localhost/inventario/equipo.php/equipo";
+
     equiurl = environment.equiurl;
 
   constructor(private http: HttpClient) { }

@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SedeService {
 
- // sedeurl = "http://localhost/inventario/sede.php/sede";
+
      sedeurl = environment.sedeurl; 
   
   constructor(private http:HttpClient) { }

@@ -10,6 +10,9 @@ export class ConshismanComponent {
 
   busquedas: any[] = [];
   termino: string;
+  page = 1;
+  pageSize = 10;
+  
   constructor(private hismantenimientoService:HismantenimientoService) { }
 
   consul(termino) {

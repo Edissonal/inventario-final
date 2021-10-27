@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MarcaService {
 
- // prourl = "http://localhost/inventario/marca.php/marca";
+
   
   prourl = environment.marca;
   

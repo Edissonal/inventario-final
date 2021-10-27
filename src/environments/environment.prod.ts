@@ -5,5 +5,10 @@ export const environment = {
   equiurl: 'http://localhost/inventario/equipo.php/equipo',
   marca: 'http://localhost/inventario/marca.php/marca',
   sedeurl: 'http://localhost/inventario/sede.php/sede',
-  ubiurl : 'http://localhost/inventario/ubicacion.php/ubicacion'
+  ubiurl: 'http://localhost/inventario/ubicacion.php/ubicacion',
+  mante: 'http://localhost/inventario/mantenimientos.php',
+  potsmanh: 'http://localhost/inventario/hismantenimiento.php',
+  consulta: 'http://localhost/inventario/consultas.php',
+  cargaurl: 'http://localhost/inventario/upload-consultas.php/provedor',
+  usurl : 'http://localhost/inventario/usuarios.php'
 };

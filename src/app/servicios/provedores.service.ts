@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProvedoresService {
 
-  //prourl = "http://localhost/inventario/provedor.php/provedor";
+
   
   prourl = environment.prourl;
   

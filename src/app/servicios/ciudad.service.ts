@@ -12,7 +12,6 @@ import { environment } from 'src/environments/environment';
 export class CiudadService {
 
 
-  //ciurl = "http://localhost/inventario/ciudad.php/ciudad";
     ciurl = environment.ciurl;
 
   constructor(private http: HttpClient) { 
