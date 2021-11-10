@@ -1,0 +1,31 @@
+<h3>Listado de usuarios</h3>
+<div class="d-flex flex-row-reverse mt-3">
+    <button class="btn btn-primary" routerLink="/auth/logire" >Agregar</button>
+</div>
+<br>
+<br>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr class="filters">
+                <th>nombre </th>
+                <th>correo</th>
+                <th>Eliminar</th>
+                <th>Cambiar pass</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let usu of usuarios | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <td>{{usu.nombre_usu}}</td>
+        <td>{{usu.correo_usu}}</td>
+        <td> <button class="btn btn-primary"
+                     (click)="delusuario(usu.id_usu)">eliminar</button></td>
+    
+        <td> <button class="btn btn-danger"  (click)="generadorPass(usu.correo_usu,usu.id_usu)">Cambiar Pass</button></td>
+        </tr>
+    </tbody>
+
+</table>
+
+<ngb-pagination [collectionSize]="usuarios.length" 
+                [(page)]="page"
+                ></ngb-pagination>
