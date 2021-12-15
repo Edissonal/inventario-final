@@ -54,6 +54,7 @@ export class CargamanComponent implements OnInit {
      for (var i = 0; i < this.datos.length; i++) {
        this.datos[i].fecha_man = moment(this.datos[i].fecha_man).add(1, 'day').format('YYYY-MM-DD');
      }
+
       
      this.cargaHman(this.datos);
      
@@ -61,7 +62,7 @@ export class CargamanComponent implements OnInit {
 
       this.mantenimientosService.carmantenimiento(this.datos)
       .subscribe((res:any) => {
-        //console.log(res);
+       // console.log(res);
         if(res.code == "404"){
           console.log('error');
           this.validacion = res.code;

@@ -11,6 +11,7 @@ use PHPMailer\PHPMailer\Exception;
 $app = new \Slim\Slim();
 $db = new mysqli('localhost','utecson6_ealonso','Alice1989','utecson6_inventario');
 
+//$db = new mysqli('localhost','root','','inventario');
 //cabezeras 
 
 
@@ -23,153 +24,67 @@ $method = $_SERVER['REQUEST_METHOD'];
 if($method == "OPTIONS") {
     die();
 }
-        $mail = new PHPMailer(true);
-    
-       //  mails($correo_usu,$nombre_pro,$fecha_pro_man);
 
-       try {
-        //Server settings
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-        $mail->isSMTP();                                            //Send using SMTP
-        $mail->Host       = 'smtp.mi.com.co';                     //Set the SMTP server to send through
-        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'Comercial@tecsoni.com.co';                     //SMTP username
-        $mail->Password   = 'Mauricio86';                               //SMTP password
-        $mail->SMTPSecure = 'ssl';           //Enable implicit TLS encryption
-        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
-    
-        //Recipients
-       // $mail->setFrom('pruebasEdi123@hotmail.com', 'Mailer');
-          $mail->setFrom('Comercial@tecsoni.com.co', 'Mailer');
-          $mail->addAddress('edissonalonso@gmail.com', 'Mailer');     //Add a recipient
-         // $mail->addAddress($correo_usu, 'Mailer');
-       // $mail->addAddress('ellen@example.com');               //Name is optional
-        //$mail->addReplyTo('info@example.com', 'Information');
-        //$mail->addCC('cc@example.com');
-        //$mail->addBCC('bcc@example.com');
-    
-        //Attachments
-       // $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-       // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
-   
-    
-        //Content
-        $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = 'Mantenimeinto esta por vencer tecsoni';
-        $mail->Body    = '
+include('mail.php');
+
+$sql ='SELECT P.nombre_pro,H.id_usu ,Us.nombre_usu,Us.correo_usu ,H.fecha_pro_man,H.periodicidad_man 
+FROM hismantenimiento H ,usuario Us ,provedor P
+WHERE 
+H.id_usu = Us.id_usu AND
+H.id_pro = P.id_pro';
+$query =$db->query($sql);
+
+$envios = array();
+while($envio = $query->fetch_assoc()){
+
+    $envios[] =$envio;
+}
+
+
+$ids = array_column($envios, 'nombre_pro');
+$ids = array_unique($ids);
+
+$envios = array_filter($envios, function ($key, $value) use ($ids) {
+return in_array($value, array_keys($ids));
+}, ARRAY_FILTER_USE_BOTH);
+
+$mensaje="";
+
+    foreach ($envios as $row) {
+        $fecha_pro_man =   $row{'fecha_pro_man'};
+        $nombre_usu =   $row{'nombre_usu'};
+        $nombre_pro =   $row{'nombre_pro'};
+        $correo_usu =   $row{'correo_usu'};
+
+        $ahora = date("Y-m-d");
+        $fechapro = strtotime('-30 day',strtotime($fecha_pro_man));
+        $date_past = date('Y-m-d', $fechapro);
+
+        $fechact= strtotime($ahora);
         
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <title>Document</title>
-            <style type="text/css">
-            table {
-                    border-collapse:separate;
-                    border-spacing: 10;
-                    border:solid black 1px;
-                    border-radius:10px;
-                    -moz-border-radius:10px;
-                    -webkit-border-radius: 5px;
-                     border:1px solid #CDCDCD;
-                     font: small/ 1.5 Arial,Helvetica,sans-serif;
-                     text-align: center;
-                    
-            }
 
-            tr {
-                box-sizing: border-box;
-                background-color: #fff;
-                color: #24292e;
-                font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
-                font-size: 14px;
-                line-height: 1.5;
-                margin: 0;
-                        }
-            td {
-                display: table-cell;
-                vertical-align: inherit;
-                box-sizing: border-box;
-                 font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji!important;
-                padding: 16px;
-            }
-            button{
-                background-color: #055d6b!important;
-    box-sizing: border-box;
-    color: #fff;
-    text-decoration: none;
-    border-radius: .5em;
-    display: inline-block;
-    font-size: inherit;
-    font-weight: 500;
-    line-height: 1.5;
-    vertical-align: middle;
-    white-space: nowrap;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji!important;
-    padding: .75em 1.5em;
-    border: 1px solid #055d6b;
-                
-            }
-            h3{
-                box-sizing: border-box;
-    margin-bottom: 0;
-    margin-top: 0;
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 1.25!important;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji!important;
-            }
-          
-            h2{
-                box-sizing: border-box;
-    margin-bottom: 0;
-    margin-top: 8px!important;
-    font-weight: 400!important;
-    font-size: 24px;
-    line-height: 1.25!important;
-    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji!important;
-            }
-
-            .centrar{
-            
-                /*/ margin-left: 10%;*/
-                text-align:center
-             }
- 
-             div.centrar table {
-                 margin: 0 auto;
-                 text-align: center;
- }
-            
-            </style>
-            
-        </head>
-        <body>
-                    Prueba
-      
-            </body>
-            </html>';
-       // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-    
-        $mail->send();
-        //echo 'Message has been sent';
+        if($fechact >$fechapro){
+     
+            //mandar correo por archivo externo
+         mails($correo_usu,$nombre_pro,$fecha_pro_man);
+    }else{
+       
         $result  = array (
             'status'=>'success',
-            'code' =>200,
-            'message'=>'correo  enviado'
+            'code' =>404,
+            'message'=>'no ahi novedad con las fechas'
            );
-           return true;
-    } catch (Exception $e) {
-      //  echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
-      $result  = array (
-        'status'=>'mail no enviado',
-        'code' =>400,
-        'data'=>$mail->ErrorInfo
-       );
-       echo json_encode($result);
+        echo json_encode($result);
     }
-       
- 
+    }
+
+
+ $result  = array (
+    'status'=>'success',
+    'code' =>200,
+    'message'=>'correo enviado correctamente'
+   );
+echo json_encode($result); 
     
     
 ?>

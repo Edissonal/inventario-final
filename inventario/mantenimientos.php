@@ -121,7 +121,36 @@ $app ->post('/mantenimientos',function() use($app,$db){
     $estado = true;
     $mensaje='';
 
+    $validacion = array(
+        "id_ma" ,
+        "id_equi" ,
+        "id_pro" ,
+        "id_ciu" ,
+        "id_sede" ,
+        "id_ubi" ,
+        "id_con" ,
+        "periodicidad_man" ,
+        "fecha_man" ,
+        "costo_man" ,
+    ); 
+
     foreach($data as $row){
+        foreach($validacion as $campo){
+             
+
+            if(!array_key_exists($campo,$row)){
+             
+              $estado = false;
+              $mensaje='fallas en formato cabecera';
+             }
+          } 
+    }
+
+
+    if($estado == true){
+    foreach($data as $row){
+
+      
 
         $fecha_man=   $row->{'fecha_man'};
 
@@ -249,6 +278,8 @@ $app ->post('/mantenimientos',function() use($app,$db){
 
 
     }
+
+}
 
     
     

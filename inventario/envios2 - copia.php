@@ -1,31 +1,48 @@
 <?php 
+
+
+require_once'vendor/autoload.php';
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
+$app = new \Slim\Slim();
+$db = new mysqli('localhost','utecson6_ealonso','Alice1989','utecson6_inventario');
 
-function mails($correo_usu,$nombre_pro,$fecha_pro_man){
-
-    $mail = new PHPMailer(true);
+//cabezeras 
 
 
-    try {
+
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
+header("Allow: GET, POST, OPTIONS, PUT, DELETE");
+$method = $_SERVER['REQUEST_METHOD'];
+if($method == "OPTIONS") {
+    die();
+}
+        $mail = new PHPMailer(true);
+    
+       //  mails($correo_usu,$nombre_pro,$fecha_pro_man);
+
+       try {
         //Server settings
-       // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.mi.com.co';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
         $mail->Username   = 'Comercial@tecsoni.com.co';                     //SMTP username
         $mail->Password   = 'Mauricio86';                               //SMTP password
         $mail->SMTPSecure = 'ssl';           //Enable implicit TLS encryption
-        $mail->Port       = 465;          
-        
+        $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+    
         //Recipients
        // $mail->setFrom('pruebasEdi123@hotmail.com', 'Mailer');
           $mail->setFrom('Comercial@tecsoni.com.co', 'Mailer');
-         // $mail->addAddress('edissonalonso@gmail.com', 'Mailer');     //Add a recipient
-          $mail->addAddress($correo_usu, 'Mailer');
+          $mail->addAddress('edissonalonso@gmail.com', 'Mailer');     //Add a recipient
+         // $mail->addAddress($correo_usu, 'Mailer');
        // $mail->addAddress('ellen@example.com');               //Name is optional
         //$mail->addReplyTo('info@example.com', 'Information');
         //$mail->addCC('cc@example.com');
@@ -128,24 +145,8 @@ function mails($correo_usu,$nombre_pro,$fecha_pro_man){
             
         </head>
         <body>
-            
-            <div class="centrar">
-          
-           <table>
-            <tr>
-                <td   aling="center" valing="top"> <h2>El mantenimiento esta por vencer</h2></td>
-            </tr>
-           <tr>
-           <td  aling="center" valing="top"><h3>El mantenimiento del provedor '.$nombre_pro.' </h3></td>
-           </tr>
-           <tr>
-           <td  aling="center" valing="top">el mantenimiento estara por caducar en la fecha '.$fecha_pro_man.'</td>
-           </tr>
-           <tr>
-           <td>relize su ventana de mantenimiento antes de vencerse la fecha limite</td>
-           </tr>
-            </table>
-        </div>
+                    Prueba
+      
             </body>
             </html>';
        // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
@@ -167,7 +168,8 @@ function mails($correo_usu,$nombre_pro,$fecha_pro_man){
        );
        echo json_encode($result);
     }
-   
-}
-
+       
+ 
+    
+    
 ?>

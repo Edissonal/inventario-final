@@ -37,6 +37,50 @@ function iniciales($nombre) {
     }
 }
 
+//Adicionar HistoConsultas
+$app ->post('/addconh',function() use($app,$db){
+
+    $data = json_decode(file_get_contents('php://input', true));
+
+    $id_ma =   $data->{'id_ma'};
+    $id_equi = $data->{'id_equi'};
+    $id_pro =  $data->{'id_pro'};
+    $id_ciu =  $data->{'id_ciu'};
+    $id_sede =  $data->{'id_sede'};    
+    $id_ubi =  $data->{'id_ubi'};    
+    $modelo_con =   $data->{'modelo_con'};
+    $serial_con =   $data->{'serial_con'};
+    $placa_con =   $data->{'placa_con'};
+    $mantenimiento_con =   $data->{'mantenimiento_con'};
+    $estado_hcon =   $data->{'estado_hcon'};
+    $fecha_hcon =   $data->{'fecha_hcon'};
+    $id_usu =   $data->{'id_usu'};
+    
+
+    $query ="INSERT INTO hisconsultas (
+    id_ma,id_equi,id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con,mantenimiento_con,estado_hcon,fecha_hcon,id_usu) 
+    VALUES 
+    ('".$id_ma."','".$id_equi."','".$id_pro."','".$id_ciu."','".$id_sede."','".$id_ubi."','".$modelo_con."','".$serial_con."','".$placa_con."','".$mantenimiento_con."',
+     '".$estado_hcon."','".$fecha_hcon."','".$id_usu."')";
+     $insert = $db->query($query);  
+
+    $result  = array (
+            'status'=>'error',
+            'code' =>404,
+            'message'=>'Consulta no creada correctamente'
+    );
+        
+    if($insert){
+     $result  = array (
+     'status'=>'success',
+     'code' =>200,
+     'message'=>'Consulta creada correctamente'
+    );
+    
+    }
+    echo json_encode($result);
+    
+});
 
 //listar provedores
 $app -> get('/consultas/:id',function($id) use($db,$app){

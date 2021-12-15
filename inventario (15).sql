@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.9.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 08-09-2021 a las 05:51:20
--- Versión del servidor: 10.4.14-MariaDB
--- Versión de PHP: 7.2.34
+-- Tiempo de generación: 04-12-2021 a las 16:36:08
+-- Versión del servidor: 10.4.10-MariaDB
+-- Versión de PHP: 7.1.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -202,34 +203,28 @@ CREATE TABLE `consultas` (
 --
 
 INSERT INTO `consultas` (`id_con`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `modelo_con`, `serial_con`, `placa_con`, `mantenimiento_con`) VALUES
-(190, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0001', 'si'),
-(191, 3, 2, 3, 2, 2, 3, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0001', 'no'),
-(192, 4, 2, 4, 7, 3, 8, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0001', 'si'),
-(193, 2, 1, 3, 15, 1, 9, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0002', 'no'),
-(194, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0002', 'no'),
-(195, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0002', 'no'),
-(196, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0003', 'si'),
-(197, 3, 2, 3, 2, 2, 6, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0003', 'no'),
-(198, 4, 2, 4, 7, 3, 6, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0003', 'si'),
-(199, 2, 1, 3, 15, 1, 8, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0004', 'no'),
-(200, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0004', 'no'),
-(201, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0004', 'no');
-
---
--- Disparadores `consultas`
---
-DELIMITER $$
-CREATE TRIGGER `deletedhconsultas` BEFORE DELETE ON `consultas` FOR EACH ROW INSERT INTO hisconsultas VALUES(null, OLD.id_con, OLD.id_ma, OLD.id_equi, OLD.id_pro, OLD.id_ciu, OLD.id_sede, OLD.id_ubi, OLD.modelo_con, OLD.serial_con, OLD.placa_con, OLD.mantenimiento_con,'Deleted', NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `inserthconsultas` AFTER INSERT ON `consultas` FOR EACH ROW INSERT INTO hisconsultas VALUES(null, NEW.id_con, NEW.id_ma, NEW.id_equi, NEW.id_pro, NEW.id_ciu, NEW.id_sede, NEW.id_ubi, NEW.modelo_con, NEW.serial_con, NEW.placa_con, NEW.mantenimiento_con,'Insert', NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `updatehcosultas` AFTER UPDATE ON `consultas` FOR EACH ROW INSERT INTO hisconsultas VALUES(null, NEW.id_con, NEW.id_ma, NEW.id_equi, NEW.id_pro, NEW.id_ciu, NEW.id_sede, NEW.id_ubi, NEW.modelo_con, NEW.serial_con, NEW.placa_con, NEW.mantenimiento_con,'Update', NOW())
-$$
-DELIMITER ;
+(451, 3, 3, 1, 11, 5, 4, 'perreo', '22222', 'DIA0008', 'si'),
+(452, 4, 3, 1, 9, 4, 3, '1111111111', 'fdgh,fh,gfh,gfh,ñf', 'DIA0009', 'si'),
+(453, 41, 3, 1, 10, 6, 7, 'gfhgfhgfhfgfh', '344354353453', 'DIA0010', 'si'),
+(454, 41, 96, 1, 17, 4, 4, 'gfhgfhgfh', '435435435435', 'DIA0011', 'si'),
+(455, 41, 3, 1, 14, 5, 5, 'dfgdfgfdgfdgf', '45345345345334', 'DIA0012', 'si'),
+(456, 4, 3, 1, 13, 3, 5, 'reterterterrrtert', 'gfdfgdfgdfgdf', 'DIA0013', 'si'),
+(457, 44, 90, 1, 10, 5, 5, 'dfgdfggfdgh', '3453454354', 'DIA0014', 'si'),
+(459, 43, 90, 1, 16, 6, 5, 'chuis', 'asdfsafkñlsdk', 'DIA0016', 'no'),
+(460, 2, 3, 1, 18, 4, 2, 'ffffff', 'fffffffff', 'DIA0017', 'si'),
+(461, 3, 2, 1, 14, 4, 3, 'banco feo', 'cra100N266', 'DIA0018', 'no'),
+(462, 1, 2, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi22', 'DIA0001', 'si'),
+(463, 1, 1, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi23', 'DIA0002', 'si'),
+(464, 4, 2, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi24', 'DIA0003', 'si'),
+(465, 2, 1, 2, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi25', 'BDO0004', 'si'),
+(466, 2, 2, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi26', 'DIA0005', 'si'),
+(467, 2, 1, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi27', 'DIA0006', 'si'),
+(468, 1, 1, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi28', 'DIA0007', 'si'),
+(469, 1, 2, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi29', 'DIA0008', 'si'),
+(470, 1, 1, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi30', 'DIA0009', 'si'),
+(471, 2, 1, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi31', 'DIA0010', 'si'),
+(472, 3, 2, 1, 11, 5, 4, 'BNZ228PKLM', '123mdmdfi32', 'DIA0011', 'si'),
+(473, 2, 2, 1, 14, 4, 3, 'xxxxx', 'cccccccc', 'DIA0012', 'si');
 
 -- --------------------------------------------------------
 
@@ -249,7 +244,9 @@ CREATE TABLE `equipo` (
 INSERT INTO `equipo` (`id_equi`, `nombre_equi`) VALUES
 (1, 'SWITCH'),
 (2, 'SERVIDORES'),
-(3, 'ACCES POINT');
+(3, 'ACCES POINT'),
+(90, 'teclado'),
+(96, 'control');
 
 -- --------------------------------------------------------
 
@@ -259,7 +256,6 @@ INSERT INTO `equipo` (`id_equi`, `nombre_equi`) VALUES
 
 CREATE TABLE `hisconsultas` (
   `id_hcon` int(100) NOT NULL,
-  `id_con` int(100) NOT NULL,
   `id_ma` int(100) NOT NULL,
   `id_equi` int(100) NOT NULL,
   `id_pro` int(100) NOT NULL,
@@ -271,26 +267,9 @@ CREATE TABLE `hisconsultas` (
   `placa_con` char(100) COLLATE utf8_spanish_ci NOT NULL,
   `mantenimiento_con` varchar(100) COLLATE utf8_spanish_ci NOT NULL,
   `estado_hcon` char(100) COLLATE utf8_spanish_ci NOT NULL,
-  `fecha_hcon` datetime NOT NULL
+  `fecha_hcon` datetime NOT NULL,
+  `id_usu` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `hisconsultas`
---
-
-INSERT INTO `hisconsultas` (`id_hcon`, `id_con`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `modelo_con`, `serial_con`, `placa_con`, `mantenimiento_con`, `estado_hcon`, `fecha_hcon`) VALUES
-(64, 190, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0001', 'si', 'Insert', '2021-08-31 20:04:33'),
-(65, 191, 3, 2, 3, 2, 2, 3, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0001', 'no', 'Insert', '2021-08-31 20:04:33'),
-(66, 192, 4, 2, 4, 7, 3, 8, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0001', 'si', 'Insert', '2021-08-31 20:04:33'),
-(67, 193, 2, 1, 3, 15, 1, 9, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0002', 'no', 'Insert', '2021-08-31 20:04:33'),
-(68, 194, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0002', 'no', 'Insert', '2021-08-31 20:04:33'),
-(69, 195, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0002', 'no', 'Insert', '2021-08-31 20:04:33'),
-(70, 196, 1, 1, 1, 15, 1, 1, 'QWDFGTRLOPMN', 'POERILSDJYNC', 'DIA0003', 'si', 'Insert', '2021-08-31 20:13:52'),
-(71, 197, 3, 2, 3, 2, 2, 6, 'POLIUYTGFDERSD', 'OPLUIOPLKJMN', 'CON0003', 'no', 'Insert', '2021-08-31 20:13:52'),
-(72, 198, 4, 2, 4, 7, 3, 6, 'MNKLOPUYJH', 'QWEDVFCXSAZ', 'WOM0003', 'si', 'Insert', '2021-08-31 20:13:52'),
-(73, 199, 2, 1, 3, 15, 1, 8, 'qazxswedcvfr', 'rfvcdewsxzaq', 'CON0004', 'no', 'Insert', '2021-08-31 20:13:52'),
-(74, 200, 3, 2, 4, 2, 3, 5, 'MJUNHYBGTVFR', 'RFVTGBYHN', 'WOM0004', 'no', 'Insert', '2021-08-31 20:13:52'),
-(75, 201, 4, 2, 1, 82, 3, 10, 'mnbvcxzasdfg', 'FDSAZXCVBNM', 'DIA0004', 'no', 'Insert', '2021-08-31 20:13:52');
 
 -- --------------------------------------------------------
 
@@ -300,7 +279,6 @@ INSERT INTO `hisconsultas` (`id_hcon`, `id_con`, `id_ma`, `id_equi`, `id_pro`, `
 
 CREATE TABLE `hismantenimiento` (
   `id_hman` int(100) NOT NULL,
-  `id_man` int(100) NOT NULL,
   `id_ma` int(100) NOT NULL,
   `id_equi` int(100) NOT NULL,
   `id_pro` int(100) NOT NULL,
@@ -314,8 +292,36 @@ CREATE TABLE `hismantenimiento` (
   `fecha_pro_man` char(100) COLLATE utf8_spanish_ci NOT NULL,
   `costo_man` char(100) COLLATE utf8_spanish_ci NOT NULL,
   `estado_hman` char(100) COLLATE utf8_spanish_ci NOT NULL,
-  `fecha_hman` datetime NOT NULL
+  `fecha_hman` datetime NOT NULL,
+  `id_usu` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `hismantenimiento`
+--
+
+INSERT INTO `hismantenimiento` (`id_hman`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `id_con`, `fecha_man`, `estado_man`, `periodicidad_man`, `fecha_pro_man`, `costo_man`, `estado_hman`, `fecha_hman`, `id_usu`) VALUES
+(117, 1, 1, 1, 11, 5, 4, 470, '2021-3-19', 'Finalizado', '6', '2020-9-19', '2000000', 'insert', '2021-10-27 00:00:00', 29),
+(118, 2, 1, 2, 11, 5, 4, 465, '2021-10-27', 'Finalizado', '12', '2020-10-27', '30000000', 'insert', '2021-10-27 00:00:00', 29),
+(119, 1, 1, 1, 11, 5, 4, 463, '2021-3-25', 'Finalizado', '12', '2022-3-25', '300000000', 'insert', '2021-10-27 00:00:00', 29),
+(120, 1, 1, 1, 11, 5, 4, 468, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(121, 2, 1, 1, 11, 5, 4, 467, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(122, 2, 1, 1, 11, 5, 4, 471, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(123, 1, 2, 1, 11, 5, 4, 462, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(124, 1, 2, 1, 11, 5, 4, 469, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(125, 2, 2, 1, 11, 5, 4, 466, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(126, 3, 2, 1, 14, 4, 3, 461, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(127, 3, 2, 1, 11, 5, 4, 472, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(128, 2, 3, 1, 18, 4, 2, 460, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(129, 3, 3, 1, 11, 5, 4, 451, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(130, 4, 2, 1, 11, 5, 4, 464, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(131, 4, 3, 1, 9, 4, 3, 452, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(132, 4, 3, 1, 13, 3, 5, 456, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(133, 41, 3, 1, 10, 6, 7, 453, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(134, 41, 3, 1, 14, 5, 5, 455, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(135, 43, 90, 1, 16, 6, 5, 459, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(136, 44, 90, 1, 10, 5, 5, 457, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29),
+(137, 41, 96, 1, 17, 4, 4, 454, '2021-10-27', 'encurso', '6', '2022-04-27', '20000', 'carga', '2021-10-27 00:00:00', 29);
 
 -- --------------------------------------------------------
 
@@ -340,20 +346,31 @@ CREATE TABLE `mantenimiento` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
--- Disparadores `mantenimiento`
+-- Volcado de datos para la tabla `mantenimiento`
 --
-DELIMITER $$
-CREATE TRIGGER `deletehmantenimiento` BEFORE DELETE ON `mantenimiento` FOR EACH ROW INSERT INTO hismantenimiento VALUES(null, OLD.id_man, OLD.id_ma, OLD.id_equi, OLD.id_pro, OLD.id_ciu, OLD.id_sede, OLD.id_ubi, OLD.id_con, OLD.fecha_man, OLD.estado_man, OLD.periodicidad_man, OLD.fecha_pro_man, OLD.costo_man, 'Delete', NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `inserthmantenimiento` AFTER INSERT ON `mantenimiento` FOR EACH ROW INSERT INTO hismantenimiento VALUES(null, NEW.id_man, NEW.id_ma, NEW.id_equi, NEW.id_pro, NEW.id_ciu, NEW.id_sede, NEW.id_ubi, NEW.id_con, NEW.fecha_man, NEW.estado_man, NEW.periodicidad_man, NEW.fecha_pro_man, NEW.costo_man, 'Insert', NOW())
-$$
-DELIMITER ;
-DELIMITER $$
-CREATE TRIGGER `updatehmantenimiento` AFTER UPDATE ON `mantenimiento` FOR EACH ROW INSERT INTO hismantenimiento VALUES(null, NEW.id_man, NEW.id_ma, NEW.id_equi, NEW.id_pro, NEW.id_ciu, NEW.id_sede, NEW.id_ubi, NEW.id_con, NEW.fecha_man, NEW.estado_man, NEW.periodicidad_man, NEW.fecha_pro_man, NEW.costo_man, 'Update', NOW())
-$$
-DELIMITER ;
+
+INSERT INTO `mantenimiento` (`id_man`, `id_ma`, `id_equi`, `id_pro`, `id_ciu`, `id_sede`, `id_ubi`, `id_con`, `fecha_man`, `estado_man`, `periodicidad_man`, `fecha_pro_man`, `costo_man`) VALUES
+(455, 1, 1, 1, 11, 5, 4, 470, '2021-3-19', 'Finalizado', '6', '2021-9-19', '2000000'),
+(456, 2, 1, 2, 11, 5, 4, 465, '2021-10-27', 'Finalizado', '12', '2022-10-27', '30000000'),
+(457, 1, 1, 1, 11, 5, 4, 463, '2021-3-25', 'Finalizado', '12', '2022-3-25', '300000000'),
+(458, 1, 1, 1, 11, 5, 4, 468, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(459, 2, 1, 1, 11, 5, 4, 467, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(460, 2, 1, 1, 11, 5, 4, 471, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(461, 1, 2, 1, 11, 5, 4, 462, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(462, 1, 2, 1, 11, 5, 4, 469, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(463, 2, 2, 1, 11, 5, 4, 466, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(464, 3, 2, 1, 14, 4, 3, 461, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(465, 3, 2, 1, 11, 5, 4, 472, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(466, 2, 3, 1, 18, 4, 2, 460, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(467, 3, 3, 1, 11, 5, 4, 451, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(468, 4, 2, 1, 11, 5, 4, 464, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(469, 4, 3, 1, 9, 4, 3, 452, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(470, 4, 3, 1, 13, 3, 5, 456, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(471, 41, 3, 1, 10, 6, 7, 453, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(472, 41, 3, 1, 14, 5, 5, 455, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(473, 43, 90, 1, 16, 6, 5, 459, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(474, 44, 90, 1, 10, 5, 5, 457, '2021-10-27', 'encurso', '6', '2022-04-27', '20000'),
+(475, 41, 96, 1, 17, 4, 4, 454, '2021-10-27', 'encurso', '6', '2022-04-27', '20000');
 
 -- --------------------------------------------------------
 
@@ -374,8 +391,11 @@ INSERT INTO `marca` (`id_ma`, `nombre_ma`) VALUES
 (1, 'CISCO'),
 (2, 'HP'),
 (3, 'DELL'),
-(4, 'D-LINK'),
-(5, 'ARUBA');
+(4, 'D-LINK1'),
+(41, 'colermaster'),
+(42, 'samsung'),
+(43, 'asus'),
+(44, 'portatil');
 
 -- --------------------------------------------------------
 
@@ -394,10 +414,17 @@ CREATE TABLE `provedor` (
 --
 
 INSERT INTO `provedor` (`id_pro`, `nombre_pro`, `nit_pro`) VALUES
-(1, 'DIAN', '8001972684'),
+(1, 'DIAN', '80019726841'),
 (2, 'BDO', '1234567890876'),
 (3, 'Contraloria', '123567890'),
-(4, 'WOM', '123456789');
+(4, 'WOM', '123456789'),
+(108, 'vision software', '1073680979'),
+(109, 'perro vete', '1073680979'),
+(110, 'fdsfdsfsdfds', '3211312312'),
+(111, 'sadsnajkdnaskjdnasjk', '2132123132131'),
+(112, 'asfasdfsdfsdfsd', '12333333333'),
+(113, 'dsfgfdgdfgdfgfdgdfgdf', '1232131231231232'),
+(114, 'ddsfdsfsfsdfsdfd', '123123213131232');
 
 -- --------------------------------------------------------
 
@@ -418,12 +445,15 @@ CREATE TABLE `sede` (
 --
 
 INSERT INTO `sede` (`id_sede`, `id_ciu`, `id_pro`, `nombre_sede`, `direccion_sede`) VALUES
-(1, 15, 2, 'Sede calle 30', 'Carrea 20 N 30 - 55'),
+(1, 15, 2, 'calle 100 sura prepagada', 'Carrea 20 N 30 - 55'),
 (2, 15, 1, 'Sede 68', 'Calle 68 - 20 50'),
 (3, 82, 1, 'Sede Poblado', 'Carrera 50 N 20 - 35'),
 (4, 13, 4, 'Sede Palmas', 'Carrera 13 N 50 25'),
 (5, 15, 3, 'Sede Edificio Inter', 'Calle 20 50 A 40'),
-(6, 8, 4, 'Centro', 'Calle 20 N 50 - 25');
+(6, 8, 4, 'Centro', 'Calle 20 N 50 - 25'),
+(18, 4, 2, 'Banco deoccidente', 'Cra 13 No 18-31'),
+(22, 3, 2, 'banco de Occidente', 'Cra 10 No 18-31'),
+(23, 3, 4, 'Martires', 'Cra 10 No 12-99');
 
 -- --------------------------------------------------------
 
@@ -472,8 +502,9 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usu`, `nombre_usu`, `correo_usu`, `password_usu`, `rol_usu`, `esta_usu`) VALUES
-(29, 'edisson Andres', 'edissonalonso@gmail.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'administrador', ''),
-(30, 'Carolina Tavera', 'mcarotaverao@gmail.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'administrador', '');
+(29, 'edisson Andres', 'edissonalonso@gmail.com', 'bb0ccf2b1bcbe3b74bad89590c4d2fde', 'administrador', 'digitado'),
+(30, 'Carolina Tavera', 'mcarotaverao@gmail.com', 'b8c32f21745a2c1091f239817785aeb6', 'usuario', 'generado'),
+(36, 'rosa', 'edisson@gmail.com', 'd8b9039cfa218dbc6853da9c24e85339', 'administrador', 'digitado');
 
 --
 -- Índices para tablas volcadas
@@ -513,7 +544,8 @@ ALTER TABLE `hisconsultas`
   ADD KEY `id_ciu` (`id_ciu`),
   ADD KEY `id_sede` (`id_sede`),
   ADD KEY `id_ubi` (`id_ubi`),
-  ADD KEY `id_ma` (`id_ma`);
+  ADD KEY `id_ma` (`id_ma`),
+  ADD KEY `id_usu` (`id_usu`);
 
 --
 -- Indices de la tabla `hismantenimiento`
@@ -527,7 +559,7 @@ ALTER TABLE `hismantenimiento`
   ADD KEY `id_sede` (`id_sede`),
   ADD KEY `id_ubi` (`id_ubi`),
   ADD KEY `id_con` (`id_con`),
-  ADD KEY `id_man` (`id_man`);
+  ADD KEY `id_usu` (`id_usu`);
 
 --
 -- Indices de la tabla `mantenimiento`
@@ -588,61 +620,61 @@ ALTER TABLE `ciudad`
 -- AUTO_INCREMENT de la tabla `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id_con` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=202;
+  MODIFY `id_con` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=474;
 
 --
 -- AUTO_INCREMENT de la tabla `equipo`
 --
 ALTER TABLE `equipo`
-  MODIFY `id_equi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
+  MODIFY `id_equi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT de la tabla `hisconsultas`
 --
 ALTER TABLE `hisconsultas`
-  MODIFY `id_hcon` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `id_hcon` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
 
 --
 -- AUTO_INCREMENT de la tabla `hismantenimiento`
 --
 ALTER TABLE `hismantenimiento`
-  MODIFY `id_hman` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `id_hman` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
 
 --
 -- AUTO_INCREMENT de la tabla `mantenimiento`
 --
 ALTER TABLE `mantenimiento`
-  MODIFY `id_man` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=375;
+  MODIFY `id_man` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=476;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `id_ma` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id_ma` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de la tabla `provedor`
 --
 ALTER TABLE `provedor`
-  MODIFY `id_pro` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+  MODIFY `id_pro` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT de la tabla `sede`
 --
 ALTER TABLE `sede`
-  MODIFY `id_sede` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_sede` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `ubicacion`
 --
 ALTER TABLE `ubicacion`
-  MODIFY `id_ubi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
+  MODIFY `id_ubi` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=100;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usu` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_usu` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- Restricciones para tablas volcadas
@@ -669,7 +701,8 @@ ALTER TABLE `hisconsultas`
   ADD CONSTRAINT `hisconsultas_ibfk_3` FOREIGN KEY (`id_ciu`) REFERENCES `ciudad` (`id_ciu`),
   ADD CONSTRAINT `hisconsultas_ibfk_4` FOREIGN KEY (`id_sede`) REFERENCES `sede` (`id_sede`),
   ADD CONSTRAINT `hisconsultas_ibfk_5` FOREIGN KEY (`id_ubi`) REFERENCES `ubicacion` (`id_ubi`),
-  ADD CONSTRAINT `hisconsultas_ibfk_6` FOREIGN KEY (`id_ma`) REFERENCES `marca` (`id_ma`);
+  ADD CONSTRAINT `hisconsultas_ibfk_6` FOREIGN KEY (`id_ma`) REFERENCES `marca` (`id_ma`),
+  ADD CONSTRAINT `hisconsultas_ibfk_7` FOREIGN KEY (`id_usu`) REFERENCES `usuario` (`id_usu`);
 
 --
 -- Filtros para la tabla `hismantenimiento`
@@ -681,7 +714,8 @@ ALTER TABLE `hismantenimiento`
   ADD CONSTRAINT `hismantenimiento_ibfk_4` FOREIGN KEY (`id_ciu`) REFERENCES `ciudad` (`id_ciu`),
   ADD CONSTRAINT `hismantenimiento_ibfk_5` FOREIGN KEY (`id_sede`) REFERENCES `sede` (`id_sede`),
   ADD CONSTRAINT `hismantenimiento_ibfk_6` FOREIGN KEY (`id_ubi`) REFERENCES `ubicacion` (`id_ubi`),
-  ADD CONSTRAINT `hismantenimiento_ibfk_7` FOREIGN KEY (`id_con`) REFERENCES `consultas` (`id_con`);
+  ADD CONSTRAINT `hismantenimiento_ibfk_7` FOREIGN KEY (`id_con`) REFERENCES `consultas` (`id_con`),
+  ADD CONSTRAINT `hismantenimiento_ibfk_8` FOREIGN KEY (`id_usu`) REFERENCES `usuario` (`id_usu`);
 
 --
 -- Filtros para la tabla `mantenimiento`

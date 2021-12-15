@@ -229,6 +229,39 @@ $app ->post('/mantenimientosh',function() use($app,$db){
     $estado = true;
     $mensaje='';
 
+
+    $validacion = array(
+        "id_ma" ,
+        "id_equi" ,
+        "id_pro" ,
+        "id_ciu" ,
+        "id_sede" ,
+        "id_ubi" ,
+        "id_con" ,
+        "periodicidad_man" ,
+        "fecha_man" ,
+        "costo_man" ,
+        "estado_hman" ,
+        "fecha_hman" ,
+        "id_usu" ,
+    ); 
+
+
+
+    foreach($data as $row){
+        foreach($validacion as $campo){
+             
+
+            if(!array_key_exists($campo,$row)){
+             
+              $estado = false;
+              $mensaje='fallas en la cabezera de los datos';
+             }
+          } 
+    }
+
+
+  if($estado == true){
     foreach($data as $row){
 
         $fecha_man=   $row->{'fecha_man'};
@@ -372,7 +405,7 @@ $app ->post('/mantenimientosh',function() use($app,$db){
 
 
     }
-
+}
     
     
     
