@@ -1,0 +1,33 @@
+<h3>Listado de provedores</h3>
+<div class="d-flex flex-row-reverse mt-3">
+    <button class="btn btn-primary" routerLink="/auth/adicionarpro" >Agregar</button>
+</div>
+<br>
+
+<table class="table table-bordered table-striped">
+<thead>
+    <tr class="filters">
+        <th>Nombre</th>
+        <th>Nit</th>
+        <th>editar</th>
+        <th>eliminar</th>
+        </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let provedor of provedores | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize" >
+    <td>{{provedor.nombre_pro}}</td>
+    <td>{{provedor.nit_pro}}</td>
+    <td><button 
+        class="btn btn-primary" 
+        routerLink="/auth/editarpro/{{provedor.id_pro}}">editar</button></td>
+    <td><button 
+        class="btn btn-danger"
+        (click)="eliminarpro(provedor.id_pro)"
+        >eliminar</button></td>
+    </tr>
+</tbody>
+</table>
+
+<ngb-pagination [collectionSize]="provedores.length" 
+                [(page)]="page"
+                ></ngb-pagination>

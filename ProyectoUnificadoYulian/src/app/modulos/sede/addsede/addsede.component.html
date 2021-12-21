@@ -1,0 +1,92 @@
+<h4>Ingreso de sede</h4>
+<div *ngIf="showView">
+<form autocomplete="off" [formGroup]="sedeForm"  (ngSubmit)="onSubmit()">
+    <div>
+      <div class="form-group row">
+        <label class="col-2 col-form-label">Ciudad</label>
+        <div class="col">
+            <select class="form-control" 
+                    formControlName="id_ciu"
+                    [class.is-invalid]="ciudadNovalido">
+              <option *ngFor="let ciu of ciudades"
+                      [value]="ciu.id_ciu">{{ciu.nombre_ciu}}</option>
+            </select>
+            <small *ngIf="ciudadNovalido" class="text text-danger">
+                Ingrese ciudad valida
+            </small> 
+
+
+        </div>
+    </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Proveedor</label>
+            <div class="col">
+              <select class="form-control" 
+              formControlName="id_pro"
+              [class.is-invalid]="provedorNovalido">
+              <option *ngFor="let pro of provedores"
+                [value]="pro.id_pro">{{pro.nombre_pro}}</option>
+              </select>
+      <small *ngIf="provedorNovalido" class="text text-danger">
+          Ingrese proveedor valido
+      </small> 
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Nombre Sede</label>
+            <div class="col">
+      
+              <input class="form-control"
+                     type="text"
+                     placeholder="Nombre"
+                     formControlName="nombre_sede"
+                     [class.is-invalid]="nombreNovalido">
+                    
+                    <small *ngIf="nombreNovalido" class="text text-danger">
+                        Ingrese nombre valido
+                      </small>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Direccion Sede</label>
+            <div class="col">
+      
+              <input class="form-control"
+                     type="text"
+                     placeholder="Direccion"
+                     formControlName="direccion_sede"
+                     [class.is-invalid]="direccionNovalido"
+                    >
+                    <small *ngIf="direccionNovalido" class="text text-danger">
+                        Ingrese Direccion valida
+                      </small>  
+            </div>
+          </div>
+
+        
+          <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col">
+              <button 
+                      type="submit" 
+                      class="btn btn-primary"
+                    
+                     >
+                Guardar
+              </button>
+              <button class="btn btn-primary ml-3" 
+                      routerLink="/auth/conssede">Regresar</button>
+            </div>
+          </div>
+          
+        </div>
+</form>
+</div>
+
+<div *ngIf="validacion == 404 || validacion == 200">
+  <app-snackbar
+                [fondo]="'#17747E'"
+                [nota]="mensaje"
+      ></app-snackbar>
+
+</div>

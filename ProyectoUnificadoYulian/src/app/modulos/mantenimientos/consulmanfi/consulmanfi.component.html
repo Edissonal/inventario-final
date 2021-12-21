@@ -1,0 +1,34 @@
+<h4>Ingreso Mantenimiento</h4>
+<form autocomplete="off" [formGroup]="formafi">
+
+    <div>
+          <div class="form-group row">
+            <label class="col-2 col-form-label">Proveedor</label>
+            <div class="col">
+
+                <select class="form-control"
+                formControlName="prove"
+                [class.is-invalid]="nopro"
+                #busca 
+                (change)="buscaMan(busca.value)">
+                <option>Selecione Provedor</option>
+                <option
+                *ngFor="let pro of provedores"
+                [value]="pro.nombre_pro">{{pro.nombre_pro}}</option>
+            </select>
+            <small *ngIf="nopro" class="text text-danger">
+                Ingrese Provedor valido
+            </small>   
+        </div>
+    </div>
+
+    </div>
+</form>
+
+
+<app-addmante  
+                *ngIf="mante" 
+                [mante]="mante"
+                (onMantenimiento)="reseteo($event)"
+                (onvalida)="validacion($event)"
+                ></app-addmante>
