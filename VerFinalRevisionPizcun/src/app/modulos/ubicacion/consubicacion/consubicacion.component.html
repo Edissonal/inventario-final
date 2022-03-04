@@ -1,0 +1,32 @@
+<h3>Listado Ubicación</h3>
+
+<div class="d-flex flex-row-reverse mt-3">
+    <button class="btn btn-primary" routerLink="/auth/adicionarubi" >Agregar</button>
+</div>
+<br>
+<br>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr class="filters">
+            <th>Nombre</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+             </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ubicacion of ubicacionn | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <td>{{ubicacion.nombre_ubi}}</td>
+        <td><button 
+            class="btn btn-primary" 
+            routerLink="/auth/editarubi/{{ubicacion.id_ubi}}">editar</button></td>
+        <td><button 
+            class="btn btn-danger"
+            (click)="eliminarubi(ubicacion.id_ubi)"
+            >eliminar</button></td>
+        </tr>
+    </tbody>
+    </table>
+
+    <ngb-pagination [collectionSize]="ubicacionn.length" 
+                [(page)]="page"
+                ></ngb-pagination>
