@@ -1,35 +1,51 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { HttpModule } from '@angular/http';
+import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
+
 import { HttpClientModule } from '@angular/common/http';
 
+import { AppComponent } from './app.component';
+//servicios
+import { ProvedoresService } from "./servicios/provedores.service";
+
 //modulos
-import { ModulosModule } from './modulos.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EstandarModule } from './estandar/estandar/estandar.module';
+
+import { ProvedorComponent } from './modulos/provedor/provedor.component';
+import { ListasproveComponent } from './modulos/listasprove/listasprove.component';
+import { ConproveComponent } from './modulos/conprove/conprove.component';
+import { UpdateproComponent } from './modulos/updatepro/updatepro.component';
 
 
+//rutas
 
-
+import { AppRoutingModule } from '././app-routing.module';
+import { UploadComponent } from './modulos/upload/upload.component';
+import { PruebaComponent } from './modulos/prueba/prueba.component';
 
 @NgModule({
   declarations: [
-    AppComponent
-    
+    AppComponent,
+    ProvedorComponent,
+    ListasproveComponent,
+    ConproveComponent,
+    UpdateproComponent,
+    UploadComponent,
+    PruebaComponent
+
+
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
+     HttpModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
-    ModulosModule,
-    EstandarModule,
-    NgbModule,
-   
+    AppRoutingModule
+    
   ],
-  providers: [],
+  providers: [ProvedoresService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

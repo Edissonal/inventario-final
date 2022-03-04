@@ -1,0 +1,7 @@
+<div class="progress-bar-container">
+  <div class="progress-bar-row" [style.background]="progresBarBackground" [style.width]="progresBar + '%'">
+    <div class="progress-bar-animation"></div>
+  </div>
+  <div class="progress-bar-animation-2"></div>
+  <div class="progress-bar-text" [style.margin-left]="progresBar < 3 ? '18px' : '0px'" [style.width]="progresBar + '%'" [style.color]="progresBar < 3 ? '#333333' : progresBarColor">{{progresBar}}%</div>
+</div>

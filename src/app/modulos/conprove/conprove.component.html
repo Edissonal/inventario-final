@@ -1,0 +1,18 @@
+<table>
+    <thead>
+        <th>nombre</th>
+        <th>direccion</th>
+        <th>nit</th>
+        <th>eliminar</th>
+        <th>editar</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let provedor of provedores">
+            <td>{{provedor.nombre_pro}}</td>
+            <td>{{provedor.direccion_pro}}</td>
+            <td>{{provedor.nit_pro}}</td>
+            <td><button (click)="eliminarpro(provedor.id_pro)">eliminar</button></td>
+            <td><button routerLink="/editar/{{provedor.id_pro}}">Editar</button></td>
+        </tr>
+    </tbody>
+</table>

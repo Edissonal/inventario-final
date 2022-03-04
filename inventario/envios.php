@@ -5,10 +5,10 @@ require_once'vendor/autoload.php';
 
 
 $app = new \Slim\Slim();
-//$db = new mysqli('localhost','utecson6_ealonso','Alice1989','utecson6_inventario');
-$db = new mysqli('localhost','utecson6_ealonso','Alice1989','utecson6_inventario');
+//include("implement.php");
 //cabezeras 
 
+$db = new mysqli('localhost','root','','inventario');
 
 
 header('Access-Control-Allow-Origin: *');

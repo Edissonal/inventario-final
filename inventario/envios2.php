@@ -9,12 +9,11 @@ use PHPMailer\PHPMailer\Exception;
 
 
 $app = new \Slim\Slim();
-$db = new mysqli('localhost','utecson6_ealonso','Alice1989','utecson6_inventario');
 
-//$db = new mysqli('localhost','root','','inventario');
+include("implement.php");
+
+
 //cabezeras 
-
-
 
 header('Access-Control-Allow-Origin: *');
 header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Request-Method");
@@ -66,6 +65,8 @@ $mensaje="";
         if($fechact >$fechapro){
      
             //mandar correo por archivo externo
+			
+
          mails($correo_usu,$nombre_pro,$fecha_pro_man);
     }else{
        

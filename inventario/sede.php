@@ -2,7 +2,7 @@
 
 require_once'vendor/autoload.php';
 $app = new \Slim\Slim();
-$db = new mysqli('localhost','root','','inventario');
+include("implement.php");
 
 //cabezeras 
 

@@ -2,7 +2,7 @@
 
 require_once'vendor/autoload.php';
 $app = new \Slim\Slim();
-$db = new mysqli('localhost','root','','inventario');
+include("implement.php");
 
 //cabezeras 
 
@@ -226,7 +226,7 @@ $app ->post('/addconh',function() use($app,$db){
 
 //cargas histoconsultas
 
-$app ->post('/consultash',function() use($app,$db){
+/*$app ->post('/consultash',function() use($app,$db){
 
     $data = json_decode(file_get_contents('php://input', true));
     $count ='';
@@ -260,7 +260,7 @@ $app ->post('/consultash',function() use($app,$db){
             break;  
         }
 
-        $id_pro =  $row->{'id_con'};
+        $id_pro =  $row->{'id_pro'};
         $result = $db->query("select * from provedor  where id_pro='".$id_pro."'");
         $count=$result->num_rows;
 
@@ -284,7 +284,7 @@ $app ->post('/consultash',function() use($app,$db){
             break;  
         }
 
-        $id_se =  $row->{'id_se'};
+        $id_se =  $row->{'id_sede'};
         $result = $db->query("select * from sede  where id_sede='".$id_se."'");
         $count=$result->num_rows;
 
@@ -321,16 +321,8 @@ $app ->post('/consultash',function() use($app,$db){
           $estado = false;
           break;
         }
-
-
-        $placa_con =  $row->{'placa_con'};
-        if(empty($placa_con)){
-          $mensaje='Placa es obligatorio';
-          $estado = false;
-          break;
-        }
-
-        $mante =  $row->{'ti_man'};
+		
+        $mante =  $row->{'mantenimiento_con'};
         if(empty($mante)){
           $mensaje='Indicar si tiene o no mantenimiento es obligatorio';
           $estado = false;
@@ -364,19 +356,19 @@ $app ->post('/consultash',function() use($app,$db){
     
 if($estado == true){
     foreach($data as $row){
-	$id_ma =   $data->{'id_ma'};
-    $id_equi = $data->{'id_equi'};
-    $id_pro =  $data->{'id_pro'};
-    $id_ciu =  $data->{'id_ciu'};
-    $id_se =  $data->{'id_sede'};    
-    $id_ubi =  $data->{'id_ubi'};    
-    $modelo_con =   $data->{'modelo_con'};
-    $serial_con =   $data->{'serial_con'};
-    $placa_con =   $data->{'placa_con'};
-    $mante =   $data->{'mantenimiento_con'};
-    $estado_hcon =   $data->{'estado_hcon'};
-    $fecha_hcon =   $data->{'fecha_hcon'};
-    $id_usu =   $data->{'id_usu'};
+	$id_ma =   $row->{'id_ma'};
+    $id_equi = $row->{'id_equi'};
+    $id_pro =  $row->{'id_pro'};
+    $id_ciu =  $row->{'id_ciu'};
+    $id_se =  $row->{'id_sede'};    
+    $id_ubi =  $row->{'id_ubi'};    
+    $modelo_con =   $row->{'modelo_con'};
+    $serial_con =   $row->{'serial_con'};
+    $placa_con =   $row->{'placa_con'};
+    $mante =   $row->{'mantenimiento_con'};
+    $estado_hcon =   $row->{'estado_hcon'};
+    $fecha_hcon =   $row->{'fecha_hcon'};
+    $id_usu =   $row->{'id_usu'};
     
 
     $query ="INSERT INTO hisconsultas (
@@ -410,8 +402,54 @@ if($estado == true){
         );
 }
 echo json_encode($result);     
-});
+}); */
 
+$app ->post('/consultash',function() use($app,$db){
+	
+	$data = json_decode(file_get_contents('php://input', true));
+	
+	foreach($data as $row){
+	$id_ma =   $row->{'id_ma'};
+    $id_equi = $row->{'id_equi'};
+    $id_pro =  $row->{'id_pro'};
+    $id_ciu =  $row->{'id_ciu'};
+    $id_se =  $row->{'id_sede'};    
+    $id_ubi =  $row->{'id_ubi'};    
+    $modelo_con =   $row->{'modelo_con'};
+    $serial_con =   $row->{'serial_con'};
+    $placa_con =   $row->{'placa_con'};
+    $mante =   $row->{'mantenimiento_con'};
+    $estado_hcon =   $row->{'estado_hcon'};
+    $fecha_hcon =   $row->{'fecha_hcon'};
+    $id_usu =   $row->{'id_usu'};
+	
+	//echo json_encode($placa_con);
+    
+
+    $query ="INSERT INTO hisconsultas (
+    id_ma,id_equi,id_pro,id_ciu,id_sede,id_ubi,modelo_con,serial_con,placa_con,mantenimiento_con,estado_hcon,fecha_hcon,id_usu) 
+    VALUES 
+    ('".$id_ma."','".$id_equi."','".$id_pro."','".$id_ciu."','".$id_se."','".$id_ubi."','".$modelo_con."','".$serial_con."','".$placa_con."','".$mante."',
+     '".$estado_hcon."','".$fecha_hcon."','".$id_usu."')";
+     $insert = $db->query($query);
+   
+      }
+       $result  = array (
+           'status'=>'error',
+           'code' =>404,
+           'message'=>'Inventario no creado correctamente'
+          );
+       
+       if($insert){
+        $result  = array (
+        'status'=>'success',
+        'code' =>200,
+        'message'=>'Inventario creado correctamente'
+       );
+   
+       }
+	echo json_encode($result);   
+});
 $app->run();
 
 ?>

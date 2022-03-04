@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 $app = new \Slim\Slim();
-$db = new mysqli('localhost','root','','inventario');
+include("implement.php");
 $mail = new PHPMailer(true);
 
 
@@ -287,16 +287,16 @@ $app->post('/login-update/:id',function($id) use($db,$app,$mail){
             //Server settings
           //  $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.mi.com.co';                     //Set the SMTP server to send through
+            $mail->Host       = 'smtp.hostinger.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'Comercial@tecsoni.com.co';                     //SMTP username
-            $mail->Password   = 'Mauricio86';                               //SMTP password
+            $mail->Username   = 'notificaciones@inventario-tecsoni.com.co';                     //SMTP username
+            $mail->Password   = 'Virtual123*';                               //SMTP password
             $mail->SMTPSecure = 'tls';           //Enable implicit TLS encryption
             $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
         
             //Recipients
            // $mail->setFrom('pruebasEdi123@hotmail.com', 'Mailer');
-              $mail->setFrom('Comercial@tecsoni.com.co', 'Mailer');
+              $mail->setFrom('notificaciones@inventario-tecsoni.com.co', 'Mailer');
            // $mail->addAddress('edissonalonso@gmail.com', 'Mailer');     //Add a recipient
               $mail->addAddress($correo, 'Mailer');
            // $mail->addAddress('ellen@example.com');               //Name is optional
@@ -418,7 +418,7 @@ $app->post('/login-update/:id',function($id) use($db,$app,$mail){
                </tr>
                <tr>
                <td  aling="center" valing="top">
-                <a href="http://localhost:4200/logi">
+                <a href="http://inventario-tecsoni.com.co/logi">
                 <button>Reset pass </button>
             </a>
                 </td>

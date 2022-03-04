@@ -4,9 +4,8 @@ require_once'vendor/autoload.php';
 
 
 $app = new \Slim\Slim();
-$db = new mysqli('localhost','root','','inventario');
 
-//cabezeras 
+include("implement.php");
 
 
 
@@ -48,7 +47,7 @@ $app -> get('/hismantenimiento/:id',function($id) use($db,$app){
         H.id_usu,
         Us.nombre_usu,
         
-        H.fecha_hman from hismantenimiento H , MARCA M, equipo E, provedor p , ubicacion U , sede S, ciudad D ,consultas C, usuario Us
+        H.fecha_hman from hismantenimiento H , marca M, equipo E, provedor P , ubicacion U , sede S, ciudad D ,consultas C, usuario Us
         
         WHERE
         
@@ -59,7 +58,7 @@ $app -> get('/hismantenimiento/:id',function($id) use($db,$app){
         H.id_ciu = D.id_ciu and            
         H.id_sede = S.id_sede and
         H.id_usu = Us.id_usu  and
-        H.id_con = C.id_con and  nombre_pro like'".$id."%'";
+        H.id_con = C.id_con and  nombre_pro like '".$id."%'";
 
         $query =$db->query($sql);
        
