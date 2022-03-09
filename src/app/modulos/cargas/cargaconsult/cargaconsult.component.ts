@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import * as XLSX from "xlsx";
 import { ConsultasService } from '../../../servicios/consultas.service';
+import * as moment from 'moment';
+import { UsuariosService } from '../../../servicios/usuarios.service';
+import { HisconsultasService } from '../../../servicios/hisconsultas.service';
 
 @Component({
   selector: 'app-cargaconsult',
@@ -17,7 +20,9 @@ export class CargaconsultComponent implements OnInit {
   validacion: any;
   mensaje: any;
 
-  constructor(private consultasService:ConsultasService) { }
+  constructor(private consultasService:ConsultasService,
+              private usuariosService: UsuariosService,
+              private hisconsultasService:HisconsultasService) { }
 
   ngOnInit() {
   }
@@ -42,11 +47,28 @@ export class CargaconsultComponent implements OnInit {
       var first_sheet_name = workbook.SheetNames[0];
       var worksheet = workbook.Sheets[first_sheet_name];
       this.datos = XLSX.utils.sheet_to_json(worksheet, { raw: true });
-     
+      console.log(this.datos);
+
+      
+     let idusu = this.usuariosService.data.data.id_usu;
+     let fec = new Date();
+     let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+     let estado_hcon = 'carga';
+     for (var i = 0; i < this.datos.length; i++) {
+     this.datos[i].id_usu = idusu;
+     this.datos[i].fecha_hcon = fachamo;
+     this.datos[i].estado_hcon = estado_hcon;
+    
+      }
+
+      //this.cargaHcon(this.datos);
+      console.log(this.datos);
+
+           
       this.consultasService.cargaConsul(this.datos)
       .subscribe((res:any) => {
         if (res.code == "404") {
-          console.log("quepasa aqui");
+          console.log("error");
           this.validacion = res.code;
           this.mensaje = res.message;
           this.tiempo();
@@ -61,12 +83,28 @@ export class CargaconsultComponent implements OnInit {
           
      }
        
-      }, (error) =>
-      
-        console.log(error)
-      
-        );
+      }, (error) => console.log(<any>error));
     }
   }
+
+  /*cargaHcon(data: any) {
+
+    let datos: any[] = data;
+     let idusu = this.usuariosService.data.data.id_usu;
+     let fec = new Date();
+     let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+     let estado_hcon = 'carga';
+     for (var i = 0; i < this.datos.length; i++) {
+     this.datos[i].id_usu = idusu;
+     this.datos[i].fecha_hcon = fachamo;
+     this.datos[i].estado_hcon = estado_hcon;
+    
+      }
+     this.hisconsultasService.cargahistocon(datos)
+       .subscribe(res => {
+         console.log(res);
+       });
+ 
+   }*/
 
 }

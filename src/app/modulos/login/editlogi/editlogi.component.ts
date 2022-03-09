@@ -37,7 +37,7 @@ export class EditlogiComponent implements OnInit {
         this.usuariosService.getusu(this.id_usu)
           .subscribe(res => {
             this.usuario = res['data'];
-            console.log(this.usuario);
+           // console.log(this.usuario);
             this.showview = true;
         })
       })

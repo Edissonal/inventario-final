@@ -10,6 +10,8 @@ import { Marcas } from '../../../interfaces/marcas.interfaces';
 export class ConsmarcausuComponent implements OnInit {
 
   marcas: Marcas[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private marcaService: MarcaService) { }
 
   ngOnInit() {

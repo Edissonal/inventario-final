@@ -6,8 +6,13 @@
              </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let marca of marcas">
+        <tr *ngFor="let marca of marcas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
         <td>{{marca.nombre_ma}}</td>
         </tr>
     </tbody>
     </table>
+
+
+<ngb-pagination [collectionSize]="marcas.length" 
+[(page)]="page"
+></ngb-pagination>

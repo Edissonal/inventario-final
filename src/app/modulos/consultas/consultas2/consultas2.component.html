@@ -22,7 +22,7 @@
                 </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let bus of buscar">
+            <tr *ngFor="let bus of buscar | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
             <td>{{bus.nombre_ma}}</td>
             <td>{{bus.nombre_equi}}</td>
             <td>{{bus.nombre_pro}}</td>
@@ -35,4 +35,9 @@
             <td>{{bus.mantenimiento_con}}</td>
         </tbody>
         </table>
+
+        <ngb-pagination [collectionSize]="buscar.length" 
+                [(page)]="page"
+                ></ngb-pagination>
 </div>
+

@@ -12,6 +12,8 @@ import { Ciudad } from '../../../interfaces/ciudad.interface';
 import { Sedes } from '../../../interfaces/sedes.interfaces';
 import { Consultas } from '../../../interfaces/consultas.interface';
 import { Ubicacion } from '../../../interfaces/ubicacion.interface';
+import { UsuariosService } from '../../../servicios/usuarios.service';
+import { HisconsultasService } from '../../../servicios/hisconsultas.service';
 
 @Component({
   selector: 'app-addc-final',
@@ -30,13 +32,18 @@ export class AddcFinalComponent implements OnInit {
   consultas: Consultas;
   validacion: number;
   mensaje: string;
+  histcon: any;
+  valorfi: any;
+  costo_man: string = "0";
   constructor(private fb: FormBuilder,
               private marcaService: MarcaService,
               private equiposService: EquiposService,
               private ubicacionService: UbicacionService,
               private consultasService: ConsultasService,
               private ciudadService: CiudadService,
-              private sedeService:SedeService) {
+              private sedeService:SedeService,
+              private usuariosService:UsuariosService,
+              private hisconsultasService:HisconsultasService) {
     
     if (this.consulta) {
       this.showView = true;
@@ -185,6 +192,7 @@ export class AddcFinalComponent implements OnInit {
       return;
     }
     this.consultas = this.saveConsulta();
+    this.histcon = this.saveConh();
     this.consultasService.postConsulta(this.consultas)
       .subscribe( res => {
         
@@ -220,4 +228,45 @@ export class AddcFinalComponent implements OnInit {
     }
     return saveconsulta
   }
+  saveConh(){
+       
+    let fec = new Date();
+    let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+    let estado_hcon = 'insert';
+    let idusu = this.usuariosService.data.data.id_usu;
+    
+    const saveConh = {
+    
+      id_ma: this.consultaForm.get('id_ma').value,
+      id_equi: this.consultaForm.get('id_equi').value,
+      id_con:this.consultaForm.get('id_con').value,
+      id_ciu: this.consultaForm.get('id_ciu').value,
+      id_se: this.consultaForm.get('id_se').value,
+      id_ubi: this.consultaForm.get('id_ubi').value,
+      modelo_con:this.consultaForm.get('modelo_con').value,
+      serial_con: this.consultaForm.get('serial_con').value,
+      placa_con: this.consultaForm.get('placa_con').value,
+      ti_man:this.consultaForm.get('ti_man').value,
+      estado_hcon: estado_hcon,
+      fecha_hcon: fachamo,  
+      id_usu: idusu  
+      
+      
+
+  }
+
+    return saveConh;
+  }
+
+  postDatos() {
+    this.hisconsultasService.posConsH(this.histcon)
+    .subscribe(res => {
+      console.log(res);
+    }, error => {
+      console.log(error);
+    });
+    
+    
+  }
+
 }

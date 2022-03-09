@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FormControl, FormGroup } from '@angular/forms';
 import 'rxjs/Rx';
+import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({
@@ -9,25 +11,27 @@ import 'rxjs/Rx';
 })
 export class HismantenimientoService {
 
-  consultasurl = "http://localhost/inventario/hismantenimiento.php/hismantenimiento";
-  potsmanh = "http://localhost/inventario/hismantenimiento.php/";
+
+  //potsmanh = "http://localhost/inventario/hismantenimiento.php/";
+
+  consultasurl = environment.consultasurl;
 
   constructor(private http: HttpClient) { }
 
   getConsultas(termino:string) 
   {
-   return this.http.get(`${this.consultasurl}/${termino}`);
+   return this.http.get(`${this.consultasurl}hismantenimiento/${termino}`);
   }
 
   getvenceman() {
     
-    let url = `${this.potsmanh}venman`;
+    let url = `${this.consultasurl}venman`;
     return this.http.get(url);
   }
 
   
   cargahistoman(datos: any) {
-    let url = this.potsmanh + 'mantenimientosh';
+    let url = this.consultasurl + 'mantenimientosh';
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.post(url, datos, httpOptions);
   }

@@ -7,6 +7,7 @@ import { Consultas } from '../interfaces/consultas.interface';
 import { environment } from '../../environments/environment';
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +16,7 @@ export class ConsultasService {
   
   cargaurl = environment.cargaurl;
   consultasurl = environment.consulta;
+  potsconsh = environment.potsconsh;
 
   constructor(private http: HttpClient) { }
   
@@ -32,6 +34,14 @@ export class ConsultasService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     let url = `${this.consultasurl}/consultas`;
     return this.http.post<Consultas>(url, datos, httpOptions);
+    
+  }
+
+  posConsH(datos: string) {
+    console.log(datos)
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    let url = this.potsconsh + 'addconh';
+    return this.http.post(url, datos, httpOptions);
     
   }
 

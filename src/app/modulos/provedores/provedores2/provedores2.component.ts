@@ -9,6 +9,8 @@ import { ProvedoresService } from '../../../servicios/provedores.service';
 export class Provedores2Component implements OnInit {
 
   provedores: any[] = [];
+  page = 1;
+  pageSize = 10;
   constructor(private ProvedoresService:ProvedoresService) { }
 
   ngOnInit(): void {

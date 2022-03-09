@@ -10,6 +10,8 @@ export class Consultas2Component implements OnInit {
 
   buscar: any[]= [];
   termino: string;
+  page = 1;
+  pageSize = 10;
   constructor(private consultasService:ConsultasService) { }
 
   ngOnInit(): void {

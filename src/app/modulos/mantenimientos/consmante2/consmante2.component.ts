@@ -11,7 +11,9 @@ export class Consmante2Component implements OnInit {
   
   buscar: any[] = [];
   valor: number;
-  total: number[]=[];
+  total: number[] = [];
+  page = 1;
+  pageSize = 10;
 
   constructor(private mantenimientosService:MantenimientosService) { }
   

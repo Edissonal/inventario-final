@@ -101,7 +101,7 @@ export class UsuariosService {
     const  headers = new HttpHeaders({
     'Content-Type': 'application/json'
   })
-   console.log(usuario);
+  // console.log(usuario);
   const url =`${this.usurl}/usuario-update/${id}`;
   return this.http.post<Usuario>(url,usuario,{headers});
 
@@ -121,7 +121,6 @@ export class UsuariosService {
   
   cambiarpass(id: number, pass: string) {
     
-    console.log('CLAVE',pass);
     
     const headers = new HttpHeaders({
       'Content-Type': 'application/json'

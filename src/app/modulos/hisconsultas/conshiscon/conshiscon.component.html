@@ -10,7 +10,7 @@
 <table class="table table-bordered table-striped">
 <thead>
     <tr class="filters">
-        <th>ID_Consulta</th>
+        
         <th>Marca</th>
         <th>Equipo</th>
         <th>Provedor</th>
@@ -27,7 +27,7 @@
 </thead>
 <tbody>
     <tr *ngFor="let busqueda of busquedas | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-    <td>{{busqueda.id_con}}</td>    
+       
     <td>{{busqueda.nombre_ma}}</td>
     <td>{{busqueda.nombre_equi}}</td>
     <td>{{busqueda.nombre_pro}}</td>

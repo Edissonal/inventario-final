@@ -8,11 +8,15 @@
     </tr>
 </thead>    
     <tbody>
-    <tr *ngFor="let provedor of provedores">
+    <tr *ngFor="let provedor of provedores  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
         <td>{{provedor.nombre_pro}}</td>
         <td>{{provedor.nit_pro}}</td>
     </tr>
     </tbody>
 
+    
+<ngb-pagination [collectionSize]="provedores.length" 
+[(page)]="page"
+></ngb-pagination>
 
 </table>

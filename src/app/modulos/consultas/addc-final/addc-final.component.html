@@ -1,6 +1,6 @@
 <h4>Ingreso datos Equipo</h4>
 <div *ngIf="showView">
-<form autocomplete="off"  [formGroup]="consultaForm"  (ngSubmit)="onSubmit()">
+<form autocomplete="off"  [formGroup]="consultaForm"  (ngSubmit)="onSubmit();postDatos();">
     <div class="form-group row">
         <label class="col-2 col-form-label">Id</label>
         <div class="col">

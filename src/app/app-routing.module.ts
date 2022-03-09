@@ -1,24 +1,43 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ConproveComponent } from './modulos/conprove/conprove.component';
-import { ProvedorComponent } from './modulos/provedor/provedor.component';
-import { UpdateproComponent } from './modulos/updatepro/updatepro.component';
-import { UploadComponent } from './modulos/upload/upload.component';
-import { PruebaComponent } from './modulos/prueba/prueba.component';
+import { ErrorComponent } from './modulos/error/error.component';
+import { LoginComponent } from './modulos/login/login/login.component';
+import { AuthGuard } from './modulos/auth/auth.guard';
+import { RegisloComponent } from './modulos/login/regislo/regislo.component';
+import { EditlogiComponent } from './modulos/login/editlogi/editlogi.component';
+
+
+
+
 
 
 const routes: Routes = [
-  { path: 'consulta', component: ConproveComponent },
-  { path: 'adicionar', component: ProvedorComponent },
-  { path: 'editar/:id', component: UpdateproComponent },
-  { path: 'upload', component:  UploadComponent },
-  { path: 'prueba', component:  PruebaComponent },
-  { path:'**',pathMatch:'full',redirectTo:'upload' },
 
+ {
+    path: 'auth', loadChildren: () => import('./modulos.module').then(m => m.ModulosModule),
+  canLoad: [AuthGuard],
+  canActivate:[AuthGuard]
+  },
+  {
+    path: 'usu', loadChildren: () => import('./estandar/estandar/estandar.module').then(m => m.EstandarModule),
+    canLoad: [AuthGuard],
+    canActivate:[AuthGuard]
+  },
+  {
+    path: 'editar', loadChildren: () => import('./restablece/restablece.module').then(m => m.RestableceModule),
+    canLoad: [AuthGuard],
+    canActivate:[AuthGuard]
+  },
+  
+ 
+
+   { path: 'logi', component: LoginComponent },
+ // { path: 'logire', component: RegisloComponent },
+  { path:'**',redirectTo:'logi'},
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

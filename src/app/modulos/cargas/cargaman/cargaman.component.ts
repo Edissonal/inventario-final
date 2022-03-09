@@ -51,11 +51,19 @@ export class CargamanComponent implements OnInit {
       this.datos = XLSX.utils.sheet_to_json(worksheet, { raw: false, dateNF: 'yyyy-mm-dd' });
 
      
-     for (var i = 0; i < this.datos.length; i++) {
-       this.datos[i].fecha_man = moment(this.datos[i].fecha_man).add(1, 'day').format('YYYY-MM-DD');
-     }
-
+      for (var i = 0; i < this.datos.length; i++) {
       
+          if (this.datos[i].fecha_man ===  undefined) {
+            break;
+            
+          }else{
+            this.datos[i].fecha_man = moment(this.datos[i].fecha_man).add(1, 'day').format('YYYY-MM-DD');
+           }
+           
+      }
+     
+      
+   
      this.cargaHman(this.datos);
      
   

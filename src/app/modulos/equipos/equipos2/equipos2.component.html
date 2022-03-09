@@ -8,9 +8,13 @@
             </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let equi of equipos">
+        <tr *ngFor="let equi of equipos  | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
         <td>{{equi.nombre_equi}}</td>
 
      
     </tbody>
     </table>
+    
+    <ngb-pagination [collectionSize]="equipos.length" 
+                [(page)]="page"
+                ></ngb-pagination>

@@ -56,7 +56,7 @@ export class ConslogiComponent implements OnInit {
      var randPassword = Array(pwdLen).fill(pwdChars).map(function (x) { return x[Math.floor(Math.random() * x.length)] }).join('');
      const md5 = new Md5();
      var encriptFinal:any = md5.appendStr(randPassword).end();
-     console.log(randPassword, correo);
+    // console.log(randPassword, correo);
      this.estado = "generado";
 
      const valores:any={

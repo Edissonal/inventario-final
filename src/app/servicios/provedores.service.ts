@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
-import 'rxjs/Rx';
+import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import 'rxjs/Rx';
+import { Provedor } from '../interfaces/provedor.interface';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -9,44 +12,47 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class ProvedoresService {
 
-  prourl = "http://localhost/inventario/index.php/provedor";
-   
-  constructor(private http: HttpClient) {
-   }
 
   
+  prourl = environment.prourl;
   
+  constructor(private http:HttpClient) { }
 
-
-  postprovedor(provedor: any) {
+ 
+  postprovedor(provedor: Provedor):Observable<Provedor> {
     const newpro = provedor;
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post(this.prourl, newpro, httpOptions);
+    return this.http.post<Provedor>(this.prourl, newpro, httpOptions);
+  }
+ 
+ 
+  getprovedor():Observable<Provedor> {
+    return this.http.get<Provedor>(this.prourl);
   }
 
 
-  getprovedor() {
-    return this.http.get(this.prourl);
-  }
 
-  delprovedor(id$: string) {
-    return this.http.get(this.prourl + '-delete/' + id$);
-  }
-
-  getprovedorr(id$: string) {
-    const url = `${this.prourl + '/' + id$}`;
-    return this.http.get(url);
-
-  }
-
-  putprovedor(provedor: any, id: string) {
-    
-    const newprove = JSON.stringify(provedor);
-    console.log(newprove)
+  putprovedor(provedor:Provedor ,id:string):Observable<Provedor> {
+    const newprove = provedor;
+    console.log(newprove);
     const headers = new HttpHeaders({
       'Content-Type': 'application/json' 
     });
     const url = `${this.prourl}-update/${id}`;
-    return this.http.post(url, newprove, {headers});
+    return this.http.post<Provedor>(url, newprove, {headers});
   }
+
+  getProveedorr(id$: string):Observable<Provedor> {
+    const url = `${this.prourl + '/' + id$}`;
+    return this.http.get<Provedor>(url);
+  }
+
+  delprovedor(id$:string):Observable<Provedor>{
+  
+   return this.http.get<Provedor>(this.prourl+ '-delete/'+ id$)
+
+  }
+
+ 
 }
+

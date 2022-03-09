@@ -9,7 +9,9 @@ import { Equipos } from '../../../interfaces/equipos.interface';
 })
 export class Equipos2Component implements OnInit {
 
-  constructor(private equiposService:EquiposService) { }
+  constructor(private equiposService: EquiposService) { }
+  page = 1;
+  pageSize = 10;
   equipos: Equipos[] = [];
 
   ngOnInit(): void {
