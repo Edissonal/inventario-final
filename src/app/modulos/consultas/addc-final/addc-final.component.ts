@@ -231,7 +231,7 @@ export class AddcFinalComponent implements OnInit {
   saveConh(){
        
     let fec = new Date();
-    let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+    let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()} ${fec.getHours()}:${fec.getMinutes()}:${fec.getSeconds()}`;
     let estado_hcon = 'insert';
     let idusu = this.usuariosService.data.data.id_usu;
     

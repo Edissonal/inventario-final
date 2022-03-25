@@ -66,7 +66,7 @@ $app -> get('/hisconsultas/:id',function($id) use($db,$app){
         H.id_ubi = U.id_ubi and
         H.id_ciu = D.id_ciu and
         H.id_sede = S.id_sede and
-		H.id_usu = Us.id_usu and nombre_pro  like''".$id."'%'";
+	    H.id_usu = Us.id_usu and (P.nombre_pro  like '".$id."%' OR Us.nombre_usu  like'".$id."%') ORDER BY fecha_hcon DESC";
 
         $query =$db->query($sql);
        

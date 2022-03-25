@@ -130,4 +130,17 @@ export class UsuariosService {
     return this.http.post(url, pass, { headers });
 
   }
+
+  putusu(usuario: Usuario,id:string):Observable<Usuario> {
+    
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+
+    const url = `${this.usurl}/usuario-updateusu/${id}`;
+    return this.http.post(url, usuario,{ headers });
+    
+  }
+
+
 }

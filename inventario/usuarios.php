@@ -157,6 +157,39 @@ $app->post('/usuario-update/:id',function($id) use($db,$app){
 });
 
 
+//actualizaciones roles de usuarios
+$app->post('/usuario-updateusu/:id',function($id) use($db,$app){
+
+    $data = json_decode(file_get_contents('php://input', true));
+   
+   $nombre = $data->{'nombre_usu'};
+   $correo = $data->{'correo_usu'};
+   $rol_usu = $data->{'rol_usu'};
+ 
+   $sql ="UPDATE usuario SET nombre_usu = '$nombre', correo_usu = '$correo' , rol_usu = '$rol_usu'  WHERE id_usu = '$id'";
+    $query = $db ->query($sql);
+    
+    if($query){
+        $result=array(
+            'status'=> 'succes',
+            'code' => 200,
+            'message'=>'Usuario actualizado '
+           );
+    }else{
+        $result=array(
+            'status'=> 'error',
+            'code' => 404,
+            'message'=>'Usuario no actualizado'
+           );
+    }
+    echo json_encode($result); 
+});
+
+
+
+
+
+
 //guardar Usuario
 $app ->post('/usuario',function() use($app,$db){
 
@@ -418,7 +451,7 @@ $app->post('/login-update/:id',function($id) use($db,$app,$mail){
                </tr>
                <tr>
                <td  aling="center" valing="top">
-                <a href="http://inventario-tecsoni.com.co/logi">
+                <a href="http://inventario-tecsoni.com.co/#/logi">
                 <button>Reset pass </button>
             </a>
                 </td>

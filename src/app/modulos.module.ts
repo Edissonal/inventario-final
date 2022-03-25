@@ -54,6 +54,7 @@ import { ConshismanComponent } from './modulos/hismantenimiento/conshisman/consh
 import { MenunavbarComponent } from './modulos/navbar/menunavbar/menunavbar.component';
 import { MenuadminComponent } from './modulos/login/menuadmin/menuadmin.component';
 import { VencemanComponent } from './modulos/hismantenimiento/venceman/venceman.component';
+import { EditusuComponent } from './modulos/login/editusu/editusu.component';
 
 
 
@@ -108,6 +109,7 @@ import { VencemanComponent } from './modulos/hismantenimiento/venceman/venceman.
     MenunavbarComponent,
     MenuadminComponent,
     VencemanComponent,
+    EditusuComponent,
 
   ],
   imports: [

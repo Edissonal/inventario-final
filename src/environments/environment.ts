@@ -30,9 +30,7 @@ export const environment = {
   usurl : 'http://inventario-tecsoni.com.co/inventario/usuarios.php',
   potsconsh: "http://inventario-tecsoni.com.co/inventario/consultas.php/",
   hismanteurl: "http://inventario-tecsoni.com.co/inventario/hisconsultas.php/",
-  consultasurl : "http://inventario-tecsoni.com.co/inventario/hismantenimiento.php/"
-  
-
+  consultasurl: "http://inventario-tecsoni.com.co/inventario/hismantenimiento.php/"
   
 };
 //http://inventario-tecsoni.com.co/inventario/implement.php

@@ -44,10 +44,9 @@ $app -> get('/hismantenimiento/:id',function($id) use($db,$app){
         H.fecha_pro_man,
         H.costo_man,
         H.estado_hman,
-        H.id_usu,
-        Us.nombre_usu,
-        
-        H.fecha_hman from hismantenimiento H , marca M, equipo E, provedor P , ubicacion U , sede S, ciudad D ,consultas C, usuario Us
+        H.id_usu,Us.nombre_usu,
+        H.fecha_hman 
+        from hismantenimiento H , marca M, equipo E, provedor P , ubicacion U , sede S, ciudad D ,consultas C, usuario Us
         
         WHERE
         
@@ -57,8 +56,10 @@ $app -> get('/hismantenimiento/:id',function($id) use($db,$app){
         H.id_ubi = U.id_ubi and
         H.id_ciu = D.id_ciu and            
         H.id_sede = S.id_sede and
-        H.id_usu = Us.id_usu  and
-        H.id_con = C.id_con and  nombre_pro like '".$id."%'";
+        H.id_con = C.id_con and 
+        H.id_usu = Us.id_usu  
+        and  (P.nombre_pro  like '".$id."%' OR Us.nombre_usu  like'".$id."%') ORDER BY fecha_hman DESC";
+        
 
         $query =$db->query($sql);
        

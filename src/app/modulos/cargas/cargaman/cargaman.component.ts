@@ -96,7 +96,7 @@ export class CargamanComponent implements OnInit {
    let datos: any[] = data;
     let idusu = this.usuariosService.data.data.id_usu;
     let fec = new Date();
-    let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+    let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()} ${fec.getHours()}:${fec.getMinutes()}:${fec.getSeconds()}`;
     let estado_hman = 'carga';
     for (var i = 0; i < this.datos.length; i++) {
     this.datos[i].id_usu = idusu;

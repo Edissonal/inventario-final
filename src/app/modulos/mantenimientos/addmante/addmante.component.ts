@@ -367,7 +367,7 @@ saveManH() {
   const valor = this.forma.get('fecha_man').value;
   let costofi = parseFloat(this.costo_man.replace(/,/g, ''));
   let fec = new Date();
-  let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()}`;
+  let fachamo = `${fec.getFullYear()}-${fec.getMonth() + 1}-${fec.getDate()} ${fec.getHours()}:${fec.getMinutes()}:${fec.getSeconds()}`;
   let estado_hman = 'insert';
   let idusu = this.usuariosService.data.data.id_usu;
   
@@ -416,7 +416,7 @@ onSubmit() {
 
   this.mantenimientos = this.saveMan();
   this.histman = this.saveManH();
-//  console.log(this.mantenimientos);
+  console.log(this.histman);
   this.mantenimientosService.postMante(this.mantenimientos)
     .subscribe((res:any) => {
     

@@ -20,7 +20,7 @@ export class HisconsultasService {
 
   getConsultas(termino:string) 
   {
-   return this.http.get(`${this.hismanteurl}hisconsultas/"${termino}"`);
+   return this.http.get(`${this.hismanteurl}hisconsultas/${termino}`);
   }
 
   getpro(id: string) {

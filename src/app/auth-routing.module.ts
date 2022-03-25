@@ -44,6 +44,7 @@ import { MenunavbarComponent } from './modulos/navbar/menunavbar/menunavbar.comp
 import { MenuadminComponent } from './modulos/login/menuadmin/menuadmin.component';
 import { RegisloComponent } from './modulos/login/regislo/regislo.component';
 import { VencemanComponent } from './modulos/hismantenimiento/venceman/venceman.component';
+import { EditusuComponent } from './modulos/login/editusu/editusu.component';
 
 
 const routes: Routes =[
@@ -91,6 +92,7 @@ const routes: Routes =[
   { path: 'hismantenimiento', component: ConshismanComponent },
   { path: 'vence', component: VencemanComponent },
   { path: 'logire', component: RegisloComponent },
+  { path: 'editusu/:id', component: EditusuComponent },
   { path:'**',redirectTo:'consultas'},
 ]
 }

@@ -5,10 +5,9 @@ require_once'vendor/autoload.php';
 
 
 $app = new \Slim\Slim();
-//include("implement.php");
+include("implement.php");
 //cabezeras 
 
-$db = new mysqli('localhost','root','','inventario');
 
 
 header('Access-Control-Allow-Origin: *');
